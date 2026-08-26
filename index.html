@@ -8,7 +8,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -21,51 +21,53 @@
             theme: {
                 extend: {
                     colors: {
-                        ivory: '#FFF7F7',
-                        peach: '#F8D2CB',
-                        rose: '#DCA9B5',
-                        charcoal: '#4D4D4D',
+                        black: '#000000',
+                        slate: '#29475A',
+                        orange: '#FF7A2F',
+                        light: '#E9EAED',
                         white: '#FFFFFF',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                     },
                     boxShadow: {
-                        'soft': '0 10px 40px -10px rgba(77, 77, 77, 0.08)',
-                        'card': '0 4px 20px -2px rgba(77, 77, 77, 0.05)',
+                        'soft': '0 10px 40px -10px rgba(41, 71, 90, 0.15)',
+                        'card': '0 4px 20px -2px rgba(41, 71, 90, 0.08)',
+                        'glow': '0 0 20px rgba(255, 122, 47, 0.2)',
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Custom Styles for specific form inputs and scrollbars to maintain elegance */
+        /* Custom Styles for specific form inputs and scrollbars to maintain the tech aesthetic */
         ::-webkit-scrollbar {
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #FFF7F7;
+            background: #E9EAED;
         }
         ::-webkit-scrollbar-thumb {
-            background: #DCA9B5;
+            background: #29475A;
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #4D4D4D;
+            background: #FF7A2F;
         }
         
         .glass-nav {
-            background: rgba(255, 247, 247, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(12px);
         }
         
         .huge-number {
             font-size: 16rem;
             line-height: 1;
-            opacity: 0.03;
+            opacity: 0.04;
             z-index: 0;
             pointer-events: none;
             user-select: none;
+            font-weight: 800;
         }
         
         /* Hide scrollbar for horizontal scrolling areas but keep functionality */
@@ -78,69 +80,69 @@
         }
     </style>
 </head>
-<body class="bg-ivory text-charcoal font-sans antialiased selection:bg-rose selection:text-white relative">
+<body class="bg-light text-slate font-sans antialiased selection:bg-orange selection:text-black relative">
 
     <!-- Sticky Navigation -->
-    <nav class="fixed top-0 w-full z-50 glass-nav border-b border-charcoal/10 transition-all duration-300" id="navbar">
+    <nav class="fixed top-0 w-full z-50 glass-nav border-b border-white/10 transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="font-bold text-lg tracking-wide flex items-center gap-2">
-                <i data-feather="book-open" class="text-rose"></i>
-                <span>DATA<span class="text-rose">.</span>RESEARCH</span>
+            <div class="font-bold text-lg tracking-wide flex items-center gap-2 text-white">
+                <i data-feather="book-open" class="text-orange"></i>
+                <span>DATA<span class="text-orange">.</span>RESEARCH</span>
             </div>
             
-            <div class="hidden lg:flex items-center space-x-8 text-sm font-medium text-charcoal/70">
-                <a href="#home" class="nav-link hover:text-rose transition-colors relative" data-target="home">HOME</a>
-                <a href="#discover" class="nav-link hover:text-rose transition-colors relative" data-target="discover">DISCOVER</a>
-                <a href="#evaluate" class="nav-link hover:text-rose transition-colors relative" data-target="evaluate">EVALUATE</a>
-                <a href="#understand" class="nav-link hover:text-rose transition-colors relative" data-target="understand">UNDERSTAND</a>
-                <a href="#question" class="nav-link hover:text-rose transition-colors relative" data-target="question">QUESTION</a>
-                <a href="#analyse" class="nav-link hover:text-rose transition-colors relative" data-target="analyse">ANALYSE</a>
-                <a href="#ai-assist" class="nav-link hover:text-rose transition-colors relative" data-target="ai-assist">AI ASSIST</a>
+            <div class="hidden lg:flex items-center space-x-8 text-sm font-medium text-light/70">
+                <a href="#home" class="nav-link hover:text-orange transition-colors relative text-white" data-target="home">HOME</a>
+                <a href="#discover" class="nav-link hover:text-orange transition-colors relative" data-target="discover">DISCOVER</a>
+                <a href="#evaluate" class="nav-link hover:text-orange transition-colors relative" data-target="evaluate">EVALUATE</a>
+                <a href="#understand" class="nav-link hover:text-orange transition-colors relative" data-target="understand">UNDERSTAND</a>
+                <a href="#question" class="nav-link hover:text-orange transition-colors relative" data-target="question">QUESTION</a>
+                <a href="#analyse" class="nav-link hover:text-orange transition-colors relative" data-target="analyse">ANALYSE</a>
+                <a href="#ai-assist" class="nav-link hover:text-orange transition-colors relative" data-target="ai-assist">AI ASSIST</a>
             </div>
             
-            <button class="lg:hidden text-charcoal">
+            <button class="lg:hidden text-white hover:text-orange transition-colors">
                 <i data-feather="menu"></i>
             </button>
         </div>
         
         <!-- Progress Tracker (YOUR RESEARCH JOURNEY) -->
-        <div class="border-t border-charcoal/5 bg-white/50 backdrop-blur-sm hidden md:block">
-            <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between text-xs font-semibold uppercase tracking-[0.15em] text-charcoal/40">
+        <div class="border-t border-white/10 bg-black/50 hidden md:block">
+            <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between text-xs font-semibold uppercase tracking-[0.15em] text-light/40">
                 <div class="flex items-center gap-4 w-full">
-                    <span class="text-charcoal/30 shrink-0">JOURNEY:</span>
+                    <span class="text-white/40 shrink-0">JOURNEY:</span>
                     <div class="flex items-center justify-between flex-grow" id="journey-tracker">
-                        <span class="journey-step flex items-center gap-2 transition-colors duration-300" data-step="discover">
-                            <span class="w-1.5 h-1.5 rounded-full bg-charcoal/20 indicator"></span>
+                        <span class="journey-step flex items-center gap-2 transition-colors duration-300 text-orange" data-step="discover">
+                            <span class="w-2 h-2 rounded-full bg-orange indicator shadow-[0_0_8px_rgba(255,122,47,0.8)]"></span>
                             DISCOVER
                         </span>
-                        <i data-feather="chevron-right" class="w-3 h-3 text-charcoal/20"></i>
+                        <i data-feather="chevron-right" class="w-3 h-3 text-slate"></i>
                         
-                        <span class="journey-step flex items-center gap-2 transition-colors duration-300" data-step="evaluate">
-                            <span class="w-1.5 h-1.5 rounded-full bg-charcoal/20 indicator"></span>
+                        <span class="journey-step flex items-center gap-2 transition-colors duration-300 text-slate" data-step="evaluate">
+                            <span class="w-2 h-2 rounded-full bg-slate indicator"></span>
                             EVALUATE
                         </span>
-                        <i data-feather="chevron-right" class="w-3 h-3 text-charcoal/20"></i>
+                        <i data-feather="chevron-right" class="w-3 h-3 text-slate"></i>
                         
-                        <span class="journey-step flex items-center gap-2 transition-colors duration-300" data-step="understand">
-                            <span class="w-1.5 h-1.5 rounded-full bg-charcoal/20 indicator"></span>
+                        <span class="journey-step flex items-center gap-2 transition-colors duration-300 text-slate" data-step="understand">
+                            <span class="w-2 h-2 rounded-full bg-slate indicator"></span>
                             UNDERSTAND
                         </span>
-                        <i data-feather="chevron-right" class="w-3 h-3 text-charcoal/20"></i>
+                        <i data-feather="chevron-right" class="w-3 h-3 text-slate"></i>
                         
-                        <span class="journey-step flex items-center gap-2 transition-colors duration-300" data-step="question">
-                            <span class="w-1.5 h-1.5 rounded-full bg-charcoal/20 indicator"></span>
+                        <span class="journey-step flex items-center gap-2 transition-colors duration-300 text-slate" data-step="question">
+                            <span class="w-2 h-2 rounded-full bg-slate indicator"></span>
                             QUESTION
                         </span>
-                        <i data-feather="chevron-right" class="w-3 h-3 text-charcoal/20"></i>
+                        <i data-feather="chevron-right" class="w-3 h-3 text-slate"></i>
                         
-                        <span class="journey-step flex items-center gap-2 transition-colors duration-300" data-step="analyse">
-                            <span class="w-1.5 h-1.5 rounded-full bg-charcoal/20 indicator"></span>
+                        <span class="journey-step flex items-center gap-2 transition-colors duration-300 text-slate" data-step="analyse">
+                            <span class="w-2 h-2 rounded-full bg-slate indicator"></span>
                             ANALYSE
                         </span>
-                        <i data-feather="chevron-right" class="w-3 h-3 text-charcoal/20"></i>
+                        <i data-feather="chevron-right" class="w-3 h-3 text-slate"></i>
                         
-                        <span class="journey-step flex items-center gap-2 transition-colors duration-300" data-step="ai-assist">
-                            <span class="w-1.5 h-1.5 rounded-full bg-charcoal/20 indicator"></span>
+                        <span class="journey-step flex items-center gap-2 transition-colors duration-300 text-slate" data-step="ai-assist">
+                            <span class="w-2 h-2 rounded-full bg-slate indicator"></span>
                             INSIGHT
                         </span>
                     </div>
@@ -150,52 +152,50 @@
     </nav>
 
     <!-- HERO SECTION -->
-    <section id="home" class="min-h-screen pt-32 flex items-center relative overflow-hidden">
-        <!-- Abstract visual background elements -->
-        <div class="absolute inset-0 pointer-events-none opacity-40">
+    <section id="home" class="min-h-screen pt-32 flex items-center relative overflow-hidden bg-black">
+        <!-- Abstract visual background elements (Updated for dark theme) -->
+        <div class="absolute inset-0 pointer-events-none opacity-50">
             <svg class="absolute top-1/4 right-0 w-1/2 h-full" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <!-- Abstract Data Visual -->
-                <circle cx="50" cy="300" r="4" fill="#4D4D4D"/>
-                <circle cx="120" cy="250" r="6" fill="#DCA9B5"/>
-                <circle cx="200" cy="280" r="5" fill="#F8D2CB"/>
-                <circle cx="280" cy="150" r="8" fill="#DCA9B5"/>
-                <circle cx="350" cy="100" r="12" fill="#4D4D4D"/>
+                <circle cx="50" cy="300" r="4" fill="#29475A"/>
+                <circle cx="120" cy="250" r="6" fill="#E9EAED"/>
+                <circle cx="200" cy="280" r="5" fill="#FF7A2F"/>
+                <circle cx="280" cy="150" r="8" fill="#29475A"/>
+                <circle cx="350" cy="100" r="12" fill="#FF7A2F"/>
                 
-                <path d="M50 300 L120 250 L200 280 L280 150 L350 100" stroke="#4D4D4D" stroke-width="1" stroke-dasharray="4 4" fill="none"/>
+                <path d="M50 300 L120 250 L200 280 L280 150 L350 100" stroke="#4D4D4D" stroke-width="1.5" stroke-dasharray="4 6" fill="none"/>
                 
                 <!-- Curves -->
-                <path d="M-50 400 C 100 400, 150 150, 450 50" stroke="#F8D2CB" stroke-width="40" stroke-linecap="round" fill="none" opacity="0.3"/>
-                <path d="M0 350 C 150 300, 250 200, 400 100" stroke="#DCA9B5" stroke-width="2" fill="none" opacity="0.5"/>
+                <path d="M-50 400 C 100 400, 150 150, 450 50" stroke="#29475A" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.6"/>
+                <path d="M0 350 C 150 300, 250 200, 400 100" stroke="#FF7A2F" stroke-width="1.5" fill="none" opacity="0.4"/>
             </svg>
         </div>
 
         <div class="max-w-7xl mx-auto px-6 w-full relative z-10 grid lg:grid-cols-2 gap-12 items-center">
             <div>
-                <p class="text-rose tracking-[0.2em] uppercase text-sm font-semibold mb-6 flex items-center gap-4">
-                    <span class="w-8 h-px bg-rose block"></span>
-                    Digital Research Workbook
+                <p class="text-slate tracking-[0.2em] uppercase text-sm font-bold mb-6 flex items-center gap-4">
+                    <span class="w-8 h-px bg-slate block"></span>
+                    <span class="text-white">Digital Research Workbook</span>
                 </p>
-                <h1 class="text-5xl md:text-7xl font-bold text-charcoal leading-[1.1] mb-8">
+                <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-[1.1] mb-8 tracking-tight">
                     FROM <br/>
-                    <span class="text-rose inline-block relative">
+                    <span class="text-orange inline-block relative drop-shadow-[0_0_15px_rgba(255,122,47,0.3)]">
                         PUBLIC DATA
-                        <!-- Subtle underline -->
-                        <span class="absolute bottom-1 left-0 w-full h-3 bg-peach/40 -z-10 rounded-full"></span>
                     </span><br/>
                     TO RESEARCH
                 </h1>
                 
-                <p class="text-xl text-charcoal/70 font-light mb-10 max-w-lg leading-relaxed">
+                <p class="text-xl text-light/80 font-light mb-10 max-w-lg leading-relaxed">
                     A guided framework to discover datasets, evaluate quality, formulate strong research questions, and apply rigorous analysis.
                 </p>
                 
                 <div class="flex items-center gap-6">
-                    <a href="#discover" class="bg-charcoal text-white rounded-full px-8 py-4 font-medium hover:bg-rose transition-colors duration-300 inline-flex items-center gap-3 shadow-soft group">
+                    <a href="#discover" class="bg-orange text-black rounded-full px-8 py-4 font-bold hover:bg-white hover:text-black transition-all duration-300 inline-flex items-center gap-3 shadow-[0_0_20px_rgba(255,122,47,0.2)] group">
                         START THE WORKBOOK
                         <i data-feather="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                     </a>
-                    <span class="text-sm font-medium text-rose tracking-widest uppercase">
-                        Discover • Evaluate • Explore • Analyse
+                    <span class="text-sm font-semibold text-slate tracking-widest uppercase">
+                        Discover • Evaluate • Understand • Question • Analyse
                     </span>
                 </div>
             </div>
@@ -203,148 +203,148 @@
     </section>
 
     <!-- SECTION 01: DISCOVER -->
-    <section id="discover" class="py-32 relative border-t border-charcoal/5">
-        <div class="absolute top-10 left-10 huge-number text-charcoal">01</div>
+    <section id="discover" class="py-32 relative border-t border-slate/10 bg-light">
+        <div class="absolute top-10 left-10 huge-number text-slate">01</div>
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="mb-16 max-w-2xl">
-                <span class="px-4 py-1.5 rounded-full bg-peach/50 text-charcoal text-xs font-bold uppercase tracking-widest mb-4 inline-block border border-peach">Stage 01</span>
-                <h2 class="text-4xl font-bold text-charcoal mb-4">Dataset Hunt</h2>
-                <p class="text-charcoal/70 text-lg">Locate reliable secondary data sources. A strong research project begins with credible, well-documented public data.</p>
+                <span class="px-4 py-1.5 rounded-full bg-slate/10 text-slate text-xs font-bold uppercase tracking-widest mb-4 inline-block border border-slate/20">Stage 01</span>
+                <h2 class="text-4xl font-extrabold text-black mb-4 tracking-tight">Dataset Hunt</h2>
+                <p class="text-slate text-lg">Locate reliable secondary data sources. A strong research project begins with credible, well-documented public data.</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Repository Card 1 -->
-                <div class="bg-white rounded-2xl p-8 border border-charcoal/10 shadow-card hover:shadow-soft transition-all duration-300 group">
-                    <div class="w-12 h-12 rounded-full bg-ivory flex items-center justify-center text-rose mb-6 group-hover:scale-110 transition-transform border border-charcoal/5">
+                <div class="bg-white rounded-2xl p-8 border border-slate/10 shadow-card hover:shadow-soft transition-all duration-300 group hover:border-orange/30">
+                    <div class="w-12 h-12 rounded-xl bg-light flex items-center justify-center text-orange mb-6 group-hover:bg-orange group-hover:text-black transition-colors border border-slate/5">
                         <i data-feather="database"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-charcoal mb-3">Government Portals</h3>
-                    <p class="text-charcoal/70 text-sm mb-6 line-clamp-3">Official open data portals providing census, economic, and demographic data. Excellent for population-level studies.</p>
+                    <h3 class="text-xl font-bold text-black mb-3">Government Portals</h3>
+                    <p class="text-slate/80 text-sm mb-6 line-clamp-3 leading-relaxed">Official open data portals providing census, economic, and demographic data. Excellent for population-level studies.</p>
                     <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="px-3 py-1 bg-ivory rounded-full text-xs font-medium text-charcoal border border-charcoal/5">Data.gov</span>
-                        <span class="px-3 py-1 bg-ivory rounded-full text-xs font-medium text-charcoal border border-charcoal/5">Eurostat</span>
+                        <span class="px-3 py-1 bg-light rounded-md text-xs font-semibold text-slate border border-slate/10">Data.gov</span>
+                        <span class="px-3 py-1 bg-light rounded-md text-xs font-semibold text-slate border border-slate/10">Eurostat</span>
                     </div>
-                    <a href="#" class="text-rose font-medium text-sm inline-flex items-center gap-1 group-hover:gap-2 transition-all">Explore Repositories <i data-feather="arrow-right" class="w-3 h-3"></i></a>
+                    <a href="#" class="text-orange font-semibold text-sm inline-flex items-center gap-1 group-hover:gap-2 transition-all">Explore Repositories <i data-feather="arrow-right" class="w-3 h-3"></i></a>
                 </div>
 
                 <!-- Repository Card 2 -->
-                <div class="bg-white rounded-2xl p-8 border border-charcoal/10 shadow-card hover:shadow-soft transition-all duration-300 group">
-                    <div class="w-12 h-12 rounded-full bg-peach/30 flex items-center justify-center text-rose mb-6 group-hover:scale-110 transition-transform border border-peach/50">
+                <div class="bg-white rounded-2xl p-8 border border-slate/10 shadow-card hover:shadow-soft transition-all duration-300 group hover:border-orange/30">
+                    <div class="w-12 h-12 rounded-xl bg-light flex items-center justify-center text-orange mb-6 group-hover:bg-orange group-hover:text-black transition-colors border border-slate/5">
                         <i data-feather="globe"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-charcoal mb-3">Global Organizations</h3>
-                    <p class="text-charcoal/70 text-sm mb-6 line-clamp-3">Harmonized international datasets covering health, development, and climate indicators across multiple countries.</p>
+                    <h3 class="text-xl font-bold text-black mb-3">Global Organizations</h3>
+                    <p class="text-slate/80 text-sm mb-6 line-clamp-3 leading-relaxed">Harmonized international datasets covering health, development, and climate indicators across multiple countries.</p>
                     <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="px-3 py-1 bg-ivory rounded-full text-xs font-medium text-charcoal border border-charcoal/5">World Bank</span>
-                        <span class="px-3 py-1 bg-ivory rounded-full text-xs font-medium text-charcoal border border-charcoal/5">WHO</span>
+                        <span class="px-3 py-1 bg-light rounded-md text-xs font-semibold text-slate border border-slate/10">World Bank</span>
+                        <span class="px-3 py-1 bg-light rounded-md text-xs font-semibold text-slate border border-slate/10">WHO</span>
                     </div>
-                    <a href="#" class="text-rose font-medium text-sm inline-flex items-center gap-1 group-hover:gap-2 transition-all">Explore Repositories <i data-feather="arrow-right" class="w-3 h-3"></i></a>
+                    <a href="#" class="text-orange font-semibold text-sm inline-flex items-center gap-1 group-hover:gap-2 transition-all">Explore Repositories <i data-feather="arrow-right" class="w-3 h-3"></i></a>
                 </div>
 
                 <!-- Repository Card 3 -->
-                <div class="bg-white rounded-2xl p-8 border border-charcoal/10 shadow-card hover:shadow-soft transition-all duration-300 group">
-                    <div class="w-12 h-12 rounded-full bg-rose/10 flex items-center justify-center text-rose mb-6 group-hover:scale-110 transition-transform border border-rose/20">
+                <div class="bg-white rounded-2xl p-8 border border-slate/10 shadow-card hover:shadow-soft transition-all duration-300 group hover:border-orange/30">
+                    <div class="w-12 h-12 rounded-xl bg-light flex items-center justify-center text-orange mb-6 group-hover:bg-orange group-hover:text-black transition-colors border border-slate/5">
                         <i data-feather="code"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-charcoal mb-3">Research & ML Platforms</h3>
-                    <p class="text-charcoal/70 text-sm mb-6 line-clamp-3">Community and academic hubs offering diverse datasets, often pre-cleaned, ranging from niche surveys to massive image repositories.</p>
+                    <h3 class="text-xl font-bold text-black mb-3">Research & ML Platforms</h3>
+                    <p class="text-slate/80 text-sm mb-6 line-clamp-3 leading-relaxed">Community and academic hubs offering diverse datasets, often pre-cleaned, ranging from niche surveys to massive image repositories.</p>
                     <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="px-3 py-1 bg-ivory rounded-full text-xs font-medium text-charcoal border border-charcoal/5">Kaggle</span>
-                        <span class="px-3 py-1 bg-ivory rounded-full text-xs font-medium text-charcoal border border-charcoal/5">Harvard Dataverse</span>
+                        <span class="px-3 py-1 bg-light rounded-md text-xs font-semibold text-slate border border-slate/10">Kaggle</span>
+                        <span class="px-3 py-1 bg-light rounded-md text-xs font-semibold text-slate border border-slate/10">Harvard Dataverse</span>
                     </div>
-                    <a href="#" class="text-rose font-medium text-sm inline-flex items-center gap-1 group-hover:gap-2 transition-all">Explore Repositories <i data-feather="arrow-right" class="w-3 h-3"></i></a>
+                    <a href="#" class="text-orange font-semibold text-sm inline-flex items-center gap-1 group-hover:gap-2 transition-all">Explore Repositories <i data-feather="arrow-right" class="w-3 h-3"></i></a>
                 </div>
             </div>
             
             <!-- Quick Input Canvas -->
-            <div class="mt-12 bg-white rounded-2xl p-8 border border-charcoal/10 shadow-sm flex flex-col md:flex-row items-center gap-6">
-                <div class="bg-peach/30 p-4 rounded-xl shrink-0">
-                    <i data-feather="edit-3" class="text-rose"></i>
+            <div class="mt-12 bg-white rounded-2xl p-8 border border-slate/10 shadow-card flex flex-col md:flex-row items-center gap-6">
+                <div class="bg-light p-4 rounded-xl shrink-0 border border-slate/5">
+                    <i data-feather="edit-3" class="text-slate"></i>
                 </div>
                 <div class="flex-grow">
-                    <h4 class="font-bold text-charcoal mb-1">Found a dataset?</h4>
-                    <p class="text-sm text-charcoal/60">Paste the URL or name here to keep track for the next stage.</p>
+                    <h4 class="font-bold text-black mb-1">Found a dataset?</h4>
+                    <p class="text-sm text-slate/80">Paste the URL or name here to keep track for the next stage.</p>
                 </div>
                 <div class="w-full md:w-1/3 flex">
-                    <input type="text" placeholder="Dataset Name or URL..." class="w-full bg-ivory border-y border-l border-charcoal/20 rounded-l-xl px-4 py-3 focus:outline-none focus:border-rose text-sm text-charcoal">
-                    <button class="bg-charcoal text-white px-4 py-3 rounded-r-xl text-sm font-medium hover:bg-rose transition-colors">Save</button>
+                    <input type="text" placeholder="Dataset Name or URL..." class="w-full bg-light border border-slate/20 rounded-l-xl px-4 py-3 focus:outline-none focus:border-orange focus:ring-1 focus:ring-orange text-sm text-black transition-all">
+                    <button class="bg-slate text-white px-6 py-3 rounded-r-xl text-sm font-bold hover:bg-orange hover:text-black transition-colors">Save</button>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- SECTION 02: EVALUATE -->
-    <section id="evaluate" class="py-32 relative bg-white border-t border-charcoal/5">
-        <div class="absolute top-10 right-10 huge-number text-charcoal">02</div>
+    <section id="evaluate" class="py-32 relative bg-white border-t border-slate/10">
+        <div class="absolute top-10 right-10 huge-number text-slate">02</div>
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="mb-16 max-w-2xl">
-                <span class="px-4 py-1.5 rounded-full bg-peach/50 text-charcoal text-xs font-bold uppercase tracking-widest mb-4 inline-block border border-peach">Stage 02</span>
-                <h2 class="text-4xl font-bold text-charcoal mb-4">Dataset Quality Check</h2>
-                <p class="text-charcoal/70 text-lg">Not all public data is research-grade. Use this checklist to critically evaluate your chosen dataset before committing to it.</p>
+                <span class="px-4 py-1.5 rounded-full bg-slate/10 text-slate text-xs font-bold uppercase tracking-widest mb-4 inline-block border border-slate/20">Stage 02</span>
+                <h2 class="text-4xl font-extrabold text-black mb-4 tracking-tight">Dataset Quality Check</h2>
+                <p class="text-slate text-lg">Not all public data is research-grade. Use this checklist to critically evaluate your chosen dataset before committing to it.</p>
             </div>
 
             <div class="grid lg:grid-cols-2 gap-12">
                 <!-- Checklist -->
                 <div class="space-y-4">
                     <!-- Item 1 -->
-                    <label class="flex items-start gap-4 p-5 rounded-2xl border border-charcoal/10 bg-ivory cursor-pointer hover:border-rose/50 transition-colors group has-[:checked]:bg-peach/20 has-[:checked]:border-rose">
+                    <label class="flex items-start gap-4 p-5 rounded-2xl border border-slate/10 bg-light cursor-pointer hover:border-orange/50 transition-colors group has-[:checked]:bg-white has-[:checked]:border-orange has-[:checked]:shadow-glow">
                         <div class="pt-1">
-                            <input type="checkbox" class="w-5 h-5 accent-rose rounded border-charcoal/30 cursor-pointer">
+                            <input type="checkbox" class="w-5 h-5 accent-orange rounded border-slate/30 cursor-pointer">
                         </div>
                         <div>
-                            <h4 class="text-lg font-bold text-charcoal group-has-[:checked]:text-rose">Provenance & Trust</h4>
-                            <p class="text-sm text-charcoal/70 mt-1">Is the source clearly identified and reputable? (e.g., government, university, established NGO)</p>
+                            <h4 class="text-lg font-bold text-black group-has-[:checked]:text-orange transition-colors">Provenance & Trust</h4>
+                            <p class="text-sm text-slate/80 mt-1">Is the source clearly identified and reputable? (e.g., government, university, established NGO)</p>
                         </div>
                     </label>
                     
                     <!-- Item 2 -->
-                    <label class="flex items-start gap-4 p-5 rounded-2xl border border-charcoal/10 bg-ivory cursor-pointer hover:border-rose/50 transition-colors group has-[:checked]:bg-peach/20 has-[:checked]:border-rose">
+                    <label class="flex items-start gap-4 p-5 rounded-2xl border border-slate/10 bg-light cursor-pointer hover:border-orange/50 transition-colors group has-[:checked]:bg-white has-[:checked]:border-orange has-[:checked]:shadow-glow">
                         <div class="pt-1">
-                            <input type="checkbox" class="w-5 h-5 accent-rose rounded border-charcoal/30 cursor-pointer">
+                            <input type="checkbox" class="w-5 h-5 accent-orange rounded border-slate/30 cursor-pointer">
                         </div>
                         <div>
-                            <h4 class="text-lg font-bold text-charcoal group-has-[:checked]:text-rose">Documentation (Metadata)</h4>
-                            <p class="text-sm text-charcoal/70 mt-1">Is there a codebook or data dictionary explaining what each variable means?</p>
+                            <h4 class="text-lg font-bold text-black group-has-[:checked]:text-orange transition-colors">Documentation (Metadata)</h4>
+                            <p class="text-sm text-slate/80 mt-1">Is there a codebook or data dictionary explaining what each variable means?</p>
                         </div>
                     </label>
 
                     <!-- Item 3 -->
-                    <label class="flex items-start gap-4 p-5 rounded-2xl border border-charcoal/10 bg-ivory cursor-pointer hover:border-rose/50 transition-colors group has-[:checked]:bg-peach/20 has-[:checked]:border-rose">
+                    <label class="flex items-start gap-4 p-5 rounded-2xl border border-slate/10 bg-light cursor-pointer hover:border-orange/50 transition-colors group has-[:checked]:bg-white has-[:checked]:border-orange has-[:checked]:shadow-glow">
                         <div class="pt-1">
-                            <input type="checkbox" class="w-5 h-5 accent-rose rounded border-charcoal/30 cursor-pointer">
+                            <input type="checkbox" class="w-5 h-5 accent-orange rounded border-slate/30 cursor-pointer">
                         </div>
                         <div>
-                            <h4 class="text-lg font-bold text-charcoal group-has-[:checked]:text-rose">Timeliness & Recency</h4>
-                            <p class="text-sm text-charcoal/70 mt-1">Is the data recent enough for your research goals? Has it been updated as promised?</p>
+                            <h4 class="text-lg font-bold text-black group-has-[:checked]:text-orange transition-colors">Timeliness & Recency</h4>
+                            <p class="text-sm text-slate/80 mt-1">Is the data recent enough for your research goals? Has it been updated as promised?</p>
                         </div>
                     </label>
                     
                     <!-- Item 4 -->
-                    <label class="flex items-start gap-4 p-5 rounded-2xl border border-charcoal/10 bg-ivory cursor-pointer hover:border-rose/50 transition-colors group has-[:checked]:bg-peach/20 has-[:checked]:border-rose">
+                    <label class="flex items-start gap-4 p-5 rounded-2xl border border-slate/10 bg-light cursor-pointer hover:border-orange/50 transition-colors group has-[:checked]:bg-white has-[:checked]:border-orange has-[:checked]:shadow-glow">
                         <div class="pt-1">
-                            <input type="checkbox" class="w-5 h-5 accent-rose rounded border-charcoal/30 cursor-pointer">
+                            <input type="checkbox" class="w-5 h-5 accent-orange rounded border-slate/30 cursor-pointer">
                         </div>
                         <div>
-                            <h4 class="text-lg font-bold text-charcoal group-has-[:checked]:text-rose">Completeness (Missing Data)</h4>
-                            <p class="text-sm text-charcoal/70 mt-1">Are there large gaps or excessive missing values in the variables you care about most?</p>
+                            <h4 class="text-lg font-bold text-black group-has-[:checked]:text-orange transition-colors">Completeness (Missing Data)</h4>
+                            <p class="text-sm text-slate/80 mt-1">Are there large gaps or excessive missing values in the variables you care about most?</p>
                         </div>
                     </label>
                 </div>
 
                 <!-- Informational Panel -->
-                <div class="bg-charcoal text-ivory rounded-3xl p-10 flex flex-col justify-center shadow-card relative overflow-hidden">
+                <div class="bg-slate text-white rounded-3xl p-10 flex flex-col justify-center shadow-card relative overflow-hidden">
                     <!-- Decor -->
-                    <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-rose/20 rounded-full blur-3xl"></div>
-                    <div class="absolute top-10 left-10 w-20 h-20 bg-peach/10 rounded-full blur-xl"></div>
+                    <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-orange/20 rounded-full blur-3xl"></div>
+                    <div class="absolute top-10 left-10 w-20 h-20 bg-black/30 rounded-full blur-xl"></div>
                     
-                    <i data-feather="shield" class="w-10 h-10 text-rose mb-6"></i>
-                    <h3 class="text-2xl font-bold mb-4">The "Goldilocks" Dataset</h3>
-                    <p class="text-ivory/80 leading-relaxed mb-6 font-light">
+                    <i data-feather="shield" class="w-10 h-10 text-orange mb-6 relative z-10"></i>
+                    <h3 class="text-2xl font-bold mb-4 relative z-10">The "Goldilocks" Dataset</h3>
+                    <p class="text-light/90 leading-relaxed mb-6 font-light relative z-10">
                         A perfect dataset rarely exists. Your goal isn't perfection, but determining if the flaws are manageable. If you answered "No" to Provenance or Documentation, heavily reconsider using the dataset.
                     </p>
-                    <div class="bg-ivory/10 border border-ivory/20 rounded-xl p-4 backdrop-blur-sm">
-                        <div class="text-xs uppercase tracking-widest text-peach font-bold mb-1">Pro Tip</div>
-                        <p class="text-sm text-ivory/90">Always check the methodology section to understand how the data was collected. Bias often hides in the sampling method.</p>
+                    <div class="bg-black/30 border border-white/10 rounded-xl p-4 backdrop-blur-sm relative z-10">
+                        <div class="text-xs uppercase tracking-widest text-orange font-bold mb-1">Pro Tip</div>
+                        <p class="text-sm text-light">Always check the methodology section to understand how the data was collected. Bias often hides in the sampling method.</p>
                     </div>
                 </div>
             </div>
@@ -352,41 +352,41 @@
     </section>
 
     <!-- SECTION 03: UNDERSTAND -->
-    <section id="understand" class="py-32 relative bg-ivory border-t border-charcoal/5">
-        <div class="absolute top-10 left-10 huge-number text-charcoal">03</div>
+    <section id="understand" class="py-32 relative bg-light border-t border-slate/10">
+        <div class="absolute top-10 left-10 huge-number text-slate">03</div>
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="mb-16 max-w-2xl">
-                <span class="px-4 py-1.5 rounded-full bg-peach/50 text-charcoal text-xs font-bold uppercase tracking-widest mb-4 inline-block border border-peach">Stage 03</span>
-                <h2 class="text-4xl font-bold text-charcoal mb-4">Dataset Anatomy</h2>
-                <p class="text-charcoal/70 text-lg">Deconstruct your dataset. Identify your independent, dependent, and control variables to map out your analysis.</p>
+                <span class="px-4 py-1.5 rounded-full bg-slate/10 text-slate text-xs font-bold uppercase tracking-widest mb-4 inline-block border border-slate/20">Stage 03</span>
+                <h2 class="text-4xl font-extrabold text-black mb-4 tracking-tight">Dataset Anatomy</h2>
+                <p class="text-slate text-lg">Deconstruct your dataset. Identify your independent, dependent, and control variables to map out your analysis.</p>
             </div>
 
-            <div class="bg-white border border-charcoal/10 shadow-card rounded-2xl overflow-hidden">
-                <div class="px-8 py-6 border-b border-charcoal/10 flex justify-between items-center bg-white">
-                    <h3 class="font-bold text-charcoal flex items-center gap-2">
-                        <i data-feather="layout" class="w-5 h-5 text-rose"></i> Variable Mapping Table
+            <div class="bg-white border border-slate/10 shadow-card rounded-2xl overflow-hidden">
+                <div class="px-8 py-6 border-b border-slate/10 flex justify-between items-center bg-white">
+                    <h3 class="font-bold text-black flex items-center gap-2">
+                        <i data-feather="layout" class="w-5 h-5 text-orange"></i> Variable Mapping Table
                     </h3>
-                    <button class="text-xs font-bold text-rose uppercase tracking-wide hover:text-charcoal transition-colors">Add Row +</button>
+                    <button class="text-xs font-bold text-slate uppercase tracking-wide hover:text-orange transition-colors">Add Row +</button>
                 </div>
                 
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse">
                         <thead>
-                            <tr class="bg-ivory border-b border-charcoal/10 text-xs uppercase tracking-wider text-charcoal/60">
-                                <th class="px-8 py-4 font-semibold w-1/4">Variable Name</th>
-                                <th class="px-8 py-4 font-semibold w-1/6">Data Type</th>
-                                <th class="px-8 py-4 font-semibold w-1/6">Role</th>
-                                <th class="px-8 py-4 font-semibold w-5/12">Notes / Description</th>
+                            <tr class="bg-light border-b border-slate/10 text-xs uppercase tracking-wider text-slate font-bold">
+                                <th class="px-8 py-4 w-1/4">Variable Name</th>
+                                <th class="px-8 py-4 w-1/6">Data Type</th>
+                                <th class="px-8 py-4 w-1/6">Role</th>
+                                <th class="px-8 py-4 w-5/12">Notes / Description</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-charcoal/5 text-sm text-charcoal">
+                        <tbody class="divide-y divide-slate/5 text-sm text-black">
                             <!-- Row 1 -->
-                            <tr class="hover:bg-peach/10 transition-colors">
+                            <tr class="hover:bg-light/50 transition-colors">
                                 <td class="px-8 py-4">
-                                    <input type="text" placeholder="e.g., age_group" class="w-full bg-transparent border-none outline-none focus:ring-0 placeholder-charcoal/30 font-medium">
+                                    <input type="text" placeholder="e.g., age_group" class="w-full bg-transparent border-none outline-none focus:ring-0 placeholder-slate/40 font-semibold">
                                 </td>
                                 <td class="px-8 py-4">
-                                    <select class="w-full bg-transparent border-none outline-none focus:ring-0 text-charcoal/80 cursor-pointer appearance-none">
+                                    <select class="w-full bg-transparent border-none outline-none focus:ring-0 text-slate font-medium cursor-pointer appearance-none">
                                         <option value="categorical">Categorical</option>
                                         <option value="continuous">Continuous</option>
                                         <option value="binary">Binary</option>
@@ -394,23 +394,23 @@
                                     </select>
                                 </td>
                                 <td class="px-8 py-4">
-                                    <select class="w-full bg-transparent border-none outline-none focus:ring-0 text-charcoal/80 cursor-pointer appearance-none">
+                                    <select class="w-full bg-transparent border-none outline-none focus:ring-0 text-slate font-medium cursor-pointer appearance-none">
                                         <option value="iv">Independent (Predictor)</option>
                                         <option value="dv">Dependent (Outcome)</option>
                                         <option value="control">Control</option>
                                     </select>
                                 </td>
                                 <td class="px-8 py-4">
-                                    <input type="text" placeholder="Demographic bracket of respondent..." class="w-full bg-transparent border-none outline-none focus:ring-0 placeholder-charcoal/30 text-charcoal/70">
+                                    <input type="text" placeholder="Demographic bracket of respondent..." class="w-full bg-transparent border-none outline-none focus:ring-0 placeholder-slate/40 text-slate">
                                 </td>
                             </tr>
                             <!-- Row 2 -->
-                            <tr class="hover:bg-peach/10 transition-colors">
+                            <tr class="hover:bg-light/50 transition-colors">
                                 <td class="px-8 py-4">
-                                    <input type="text" placeholder="e.g., income_usd" class="w-full bg-transparent border-none outline-none focus:ring-0 placeholder-charcoal/30 font-medium">
+                                    <input type="text" placeholder="e.g., income_usd" class="w-full bg-transparent border-none outline-none focus:ring-0 placeholder-slate/40 font-semibold">
                                 </td>
                                 <td class="px-8 py-4">
-                                    <select class="w-full bg-transparent border-none outline-none focus:ring-0 text-charcoal/80 cursor-pointer appearance-none">
+                                    <select class="w-full bg-transparent border-none outline-none focus:ring-0 text-slate font-medium cursor-pointer appearance-none">
                                         <option value="continuous" selected>Continuous</option>
                                         <option value="categorical">Categorical</option>
                                         <option value="binary">Binary</option>
@@ -418,23 +418,23 @@
                                     </select>
                                 </td>
                                 <td class="px-8 py-4">
-                                    <select class="w-full bg-transparent border-none outline-none focus:ring-0 text-charcoal/80 cursor-pointer appearance-none">
+                                    <select class="w-full bg-transparent border-none outline-none focus:ring-0 text-slate font-medium cursor-pointer appearance-none">
                                         <option value="dv" selected>Dependent (Outcome)</option>
                                         <option value="iv">Independent (Predictor)</option>
                                         <option value="control">Control</option>
                                     </select>
                                 </td>
                                 <td class="px-8 py-4">
-                                    <input type="text" placeholder="Annual household income..." class="w-full bg-transparent border-none outline-none focus:ring-0 placeholder-charcoal/30 text-charcoal/70">
+                                    <input type="text" placeholder="Annual household income..." class="w-full bg-transparent border-none outline-none focus:ring-0 placeholder-slate/40 text-slate">
                                 </td>
                             </tr>
                              <!-- Row 3 (Empty for interaction) -->
-                             <tr class="hover:bg-peach/10 transition-colors bg-white/50">
+                             <tr class="hover:bg-light/50 transition-colors bg-white/50">
                                 <td class="px-8 py-4">
-                                    <input type="text" placeholder="Add variable..." class="w-full bg-transparent border-none outline-none focus:ring-0 placeholder-charcoal/30 font-medium">
+                                    <input type="text" placeholder="Add variable..." class="w-full bg-transparent border-none outline-none focus:ring-0 placeholder-slate/40 font-semibold">
                                 </td>
                                 <td class="px-8 py-4">
-                                    <select class="w-full bg-transparent border-none outline-none focus:ring-0 text-charcoal/50 cursor-pointer appearance-none">
+                                    <select class="w-full bg-transparent border-none outline-none focus:ring-0 text-slate/50 font-medium cursor-pointer appearance-none">
                                         <option value="" disabled selected>Select Type</option>
                                         <option value="categorical">Categorical</option>
                                         <option value="continuous">Continuous</option>
@@ -443,7 +443,7 @@
                                     </select>
                                 </td>
                                 <td class="px-8 py-4">
-                                    <select class="w-full bg-transparent border-none outline-none focus:ring-0 text-charcoal/50 cursor-pointer appearance-none">
+                                    <select class="w-full bg-transparent border-none outline-none focus:ring-0 text-slate/50 font-medium cursor-pointer appearance-none">
                                         <option value="" disabled selected>Select Role</option>
                                         <option value="iv">Independent (Predictor)</option>
                                         <option value="dv">Dependent (Outcome)</option>
@@ -451,7 +451,7 @@
                                     </select>
                                 </td>
                                 <td class="px-8 py-4">
-                                    <input type="text" placeholder="Description..." class="w-full bg-transparent border-none outline-none focus:ring-0 placeholder-charcoal/30 text-charcoal/70">
+                                    <input type="text" placeholder="Description..." class="w-full bg-transparent border-none outline-none focus:ring-0 placeholder-slate/40 text-slate">
                                 </td>
                             </tr>
                         </tbody>
@@ -460,7 +460,7 @@
             </div>
             
             <div class="mt-8 flex justify-end">
-                 <button class="bg-charcoal text-white rounded-full px-6 py-2.5 text-sm font-medium hover:bg-rose transition-colors duration-300 shadow-soft">
+                 <button class="bg-orange text-black font-bold rounded-full px-8 py-3 text-sm hover:bg-black hover:text-white transition-all duration-300 shadow-soft">
                     Save Variable Map
                 </button>
             </div>
@@ -468,46 +468,46 @@
     </section>
 
     <!-- SECTION 04: QUESTION -->
-    <section id="question" class="py-32 relative bg-white border-t border-charcoal/5">
-        <div class="absolute top-10 right-10 huge-number text-charcoal">04</div>
+    <section id="question" class="py-32 relative bg-white border-t border-slate/10">
+        <div class="absolute top-10 right-10 huge-number text-slate">04</div>
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="mb-16 max-w-2xl">
-                <span class="px-4 py-1.5 rounded-full bg-peach/50 text-charcoal text-xs font-bold uppercase tracking-widest mb-4 inline-block border border-peach">Stage 04</span>
-                <h2 class="text-4xl font-bold text-charcoal mb-4">Research Question Builder</h2>
-                <p class="text-charcoal/70 text-lg">Translate your variables into a testable hypothesis. Use the interactive builder to structure your core research question.</p>
+                <span class="px-4 py-1.5 rounded-full bg-slate/10 text-slate text-xs font-bold uppercase tracking-widest mb-4 inline-block border border-slate/20">Stage 04</span>
+                <h2 class="text-4xl font-extrabold text-black mb-4 tracking-tight">Research Question Builder</h2>
+                <p class="text-slate text-lg">Translate your variables into a testable hypothesis. Use the interactive builder to structure your core research question.</p>
             </div>
 
-            <div class="bg-ivory border border-charcoal/10 rounded-3xl p-10 shadow-card">
-                <h3 class="text-xs uppercase tracking-widest text-charcoal/50 font-bold mb-8 text-center">Interactive Builder</h3>
+            <div class="bg-light border border-slate/10 rounded-3xl p-10 shadow-card">
+                <h3 class="text-xs uppercase tracking-widest text-slate font-bold mb-8 text-center">Interactive Builder</h3>
                 
                 <!-- The Mad-Libs Sentence Builder -->
-                <div class="flex flex-wrap items-center justify-center gap-4 text-2xl font-light text-charcoal leading-loose text-center max-w-4xl mx-auto">
+                <div class="flex flex-wrap items-center justify-center gap-4 text-2xl font-light text-black leading-loose text-center max-w-4xl mx-auto">
                     <span>"To what extent does</span>
                     
                     <div class="relative group inline-block">
-                        <input type="text" id="rq-iv" placeholder="[Independent Variable]" class="bg-white border-2 border-rose/30 rounded-xl px-4 py-2 text-rose font-medium text-xl w-64 text-center focus:outline-none focus:border-rose focus:ring-4 focus:ring-rose/20 transition-all shadow-sm placeholder-rose/40">
+                        <input type="text" id="rq-iv" placeholder="[Independent Variable]" class="bg-white border-2 border-slate/20 rounded-xl px-4 py-2 text-orange font-bold text-xl w-64 text-center focus:outline-none focus:border-orange focus:ring-4 focus:ring-orange/10 transition-all shadow-sm placeholder-slate/30">
                     </div>
                     
                     <span>influence or relate to</span>
                     
                     <div class="relative group inline-block">
-                        <input type="text" id="rq-dv" placeholder="[Dependent Variable]" class="bg-white border-2 border-rose/30 rounded-xl px-4 py-2 text-rose font-medium text-xl w-64 text-center focus:outline-none focus:border-rose focus:ring-4 focus:ring-rose/20 transition-all shadow-sm placeholder-rose/40">
+                        <input type="text" id="rq-dv" placeholder="[Dependent Variable]" class="bg-white border-2 border-slate/20 rounded-xl px-4 py-2 text-orange font-bold text-xl w-64 text-center focus:outline-none focus:border-orange focus:ring-4 focus:ring-orange/10 transition-all shadow-sm placeholder-slate/30">
                     </div>
                     
                     <span>within</span>
                     
                     <div class="relative group inline-block">
-                        <input type="text" id="rq-pop" placeholder="[Population / Context]" class="bg-white border-2 border-rose/30 rounded-xl px-4 py-2 text-rose font-medium text-xl w-64 text-center focus:outline-none focus:border-rose focus:ring-4 focus:ring-rose/20 transition-all shadow-sm placeholder-rose/40">
+                        <input type="text" id="rq-pop" placeholder="[Population / Context]" class="bg-white border-2 border-slate/20 rounded-xl px-4 py-2 text-orange font-bold text-xl w-64 text-center focus:outline-none focus:border-orange focus:ring-4 focus:ring-orange/10 transition-all shadow-sm placeholder-slate/30">
                     </div>
                     
                     <span>?"</span>
                 </div>
 
                 <!-- Resulting Final Question -->
-                <div class="mt-16 pt-10 border-t border-charcoal/10 text-center">
-                    <p class="text-sm font-bold text-charcoal/50 uppercase tracking-widest mb-4">Your Generated Question:</p>
-                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-charcoal/5 max-w-3xl mx-auto min-h-[100px] flex items-center justify-center">
-                        <p id="rq-result" class="text-2xl font-medium text-charcoal italic text-charcoal/40 transition-all duration-300">
+                <div class="mt-16 pt-10 border-t border-slate/10 text-center">
+                    <p class="text-sm font-bold text-slate uppercase tracking-widest mb-4">Your Generated Question:</p>
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate/10 max-w-3xl mx-auto min-h-[100px] flex items-center justify-center">
+                        <p id="rq-result" class="text-2xl font-medium text-slate italic transition-all duration-300">
                             Fill in the fields above to generate your question.
                         </p>
                     </div>
@@ -518,29 +518,29 @@
     </section>
 
     <!-- SECTION 05: ANALYSE -->
-    <section id="analyse" class="py-32 relative bg-ivory border-t border-charcoal/5">
-         <div class="absolute top-10 left-10 huge-number text-charcoal">05</div>
+    <section id="analyse" class="py-32 relative bg-light border-t border-slate/10">
+         <div class="absolute top-10 left-10 huge-number text-slate">05</div>
          <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="mb-16 max-w-2xl">
-                <span class="px-4 py-1.5 rounded-full bg-peach/50 text-charcoal text-xs font-bold uppercase tracking-widest mb-4 inline-block border border-peach">Stage 05</span>
-                <h2 class="text-4xl font-bold text-charcoal mb-4">Analysis Decision Guide</h2>
-                <p class="text-charcoal/70 text-lg">Determine the correct statistical or analytical approach based on the types of variables you identified in Stage 03.</p>
+                <span class="px-4 py-1.5 rounded-full bg-slate/10 text-slate text-xs font-bold uppercase tracking-widest mb-4 inline-block border border-slate/20">Stage 05</span>
+                <h2 class="text-4xl font-extrabold text-black mb-4 tracking-tight">Analysis Decision Guide</h2>
+                <p class="text-slate text-lg">Determine the correct statistical or analytical approach based on the types of variables you identified in Stage 03.</p>
             </div>
 
             <!-- Decision Cards Grid -->
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 
                 <!-- Goal 1 -->
-                <div class="bg-white p-8 rounded-2xl border border-charcoal/10 shadow-sm hover:shadow-card hover:border-rose/50 transition-all duration-300 relative overflow-hidden group cursor-pointer">
-                    <div class="w-1 absolute left-0 top-0 bottom-0 bg-peach group-hover:bg-rose transition-colors"></div>
-                    <div class="mb-6 bg-peach/20 w-12 h-12 rounded-full flex items-center justify-center text-charcoal">
+                <div class="bg-white p-8 rounded-2xl border border-slate/10 shadow-sm hover:shadow-card hover:border-orange/50 transition-all duration-300 relative overflow-hidden group cursor-pointer">
+                    <div class="w-1 absolute left-0 top-0 bottom-0 bg-slate group-hover:bg-orange transition-colors"></div>
+                    <div class="mb-6 bg-light w-12 h-12 rounded-xl border border-slate/5 flex items-center justify-center text-slate group-hover:text-orange transition-colors">
                         <i data-feather="bar-chart-2"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-charcoal mb-2">Compare Groups</h3>
-                    <p class="text-sm text-charcoal/70 mb-4 h-10">Looking for differences between categories.</p>
-                    <div class="bg-ivory rounded-xl p-4 border border-charcoal/5">
-                        <p class="text-xs font-semibold text-rose uppercase tracking-wide mb-2">Recommended Tests:</p>
-                        <ul class="text-sm text-charcoal font-medium space-y-1">
+                    <h3 class="text-xl font-bold text-black mb-2">Compare Groups</h3>
+                    <p class="text-sm text-slate/80 mb-4 h-10">Looking for differences between categories.</p>
+                    <div class="bg-light rounded-xl p-4 border border-slate/5">
+                        <p class="text-xs font-bold text-slate uppercase tracking-wide mb-2">Recommended Tests:</p>
+                        <ul class="text-sm text-black font-medium space-y-1">
                             <li>• T-Test (2 groups)</li>
                             <li>• ANOVA (3+ groups)</li>
                         </ul>
@@ -548,16 +548,16 @@
                 </div>
 
                 <!-- Goal 2 -->
-                <div class="bg-white p-8 rounded-2xl border border-charcoal/10 shadow-sm hover:shadow-card hover:border-rose/50 transition-all duration-300 relative overflow-hidden group cursor-pointer">
-                    <div class="w-1 absolute left-0 top-0 bottom-0 bg-peach group-hover:bg-rose transition-colors"></div>
-                    <div class="mb-6 bg-peach/20 w-12 h-12 rounded-full flex items-center justify-center text-charcoal">
+                <div class="bg-white p-8 rounded-2xl border border-slate/10 shadow-sm hover:shadow-card hover:border-orange/50 transition-all duration-300 relative overflow-hidden group cursor-pointer">
+                    <div class="w-1 absolute left-0 top-0 bottom-0 bg-slate group-hover:bg-orange transition-colors"></div>
+                    <div class="mb-6 bg-light w-12 h-12 rounded-xl border border-slate/5 flex items-center justify-center text-slate group-hover:text-orange transition-colors">
                         <i data-feather="trending-up"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-charcoal mb-2">Find Relationships</h3>
-                    <p class="text-sm text-charcoal/70 mb-4 h-10">How two continuous variables move together.</p>
-                    <div class="bg-ivory rounded-xl p-4 border border-charcoal/5">
-                        <p class="text-xs font-semibold text-rose uppercase tracking-wide mb-2">Recommended Tests:</p>
-                        <ul class="text-sm text-charcoal font-medium space-y-1">
+                    <h3 class="text-xl font-bold text-black mb-2">Find Relationships</h3>
+                    <p class="text-sm text-slate/80 mb-4 h-10">How two continuous variables move together.</p>
+                    <div class="bg-light rounded-xl p-4 border border-slate/5">
+                        <p class="text-xs font-bold text-slate uppercase tracking-wide mb-2">Recommended Tests:</p>
+                        <ul class="text-sm text-black font-medium space-y-1">
                             <li>• Pearson Correlation</li>
                             <li>• Spearman Rank</li>
                         </ul>
@@ -565,16 +565,16 @@
                 </div>
 
                 <!-- Goal 3 -->
-                <div class="bg-white p-8 rounded-2xl border border-charcoal/10 shadow-sm hover:shadow-card hover:border-rose/50 transition-all duration-300 relative overflow-hidden group cursor-pointer">
-                    <div class="w-1 absolute left-0 top-0 bottom-0 bg-peach group-hover:bg-rose transition-colors"></div>
-                    <div class="mb-6 bg-peach/20 w-12 h-12 rounded-full flex items-center justify-center text-charcoal">
+                <div class="bg-white p-8 rounded-2xl border border-slate/10 shadow-sm hover:shadow-card hover:border-orange/50 transition-all duration-300 relative overflow-hidden group cursor-pointer">
+                    <div class="w-1 absolute left-0 top-0 bottom-0 bg-slate group-hover:bg-orange transition-colors"></div>
+                    <div class="mb-6 bg-light w-12 h-12 rounded-xl border border-slate/5 flex items-center justify-center text-slate group-hover:text-orange transition-colors">
                         <i data-feather="target"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-charcoal mb-2">Predict Outcomes</h3>
-                    <p class="text-sm text-charcoal/70 mb-4 h-10">Using variables to predict a specific result.</p>
-                    <div class="bg-ivory rounded-xl p-4 border border-charcoal/5">
-                        <p class="text-xs font-semibold text-rose uppercase tracking-wide mb-2">Recommended Tests:</p>
-                        <ul class="text-sm text-charcoal font-medium space-y-1">
+                    <h3 class="text-xl font-bold text-black mb-2">Predict Outcomes</h3>
+                    <p class="text-sm text-slate/80 mb-4 h-10">Using variables to predict a specific result.</p>
+                    <div class="bg-light rounded-xl p-4 border border-slate/5">
+                        <p class="text-xs font-bold text-slate uppercase tracking-wide mb-2">Recommended Tests:</p>
+                        <ul class="text-sm text-black font-medium space-y-1">
                             <li>• Linear Regression</li>
                             <li>• Logistic Regression</li>
                         </ul>
@@ -583,44 +583,44 @@
 
             </div>
             
-            <div class="mt-12 bg-white rounded-2xl p-6 border border-charcoal/10 shadow-sm flex items-start gap-4">
-                <i data-feather="info" class="text-rose mt-1 shrink-0"></i>
-                <p class="text-sm text-charcoal/80 leading-relaxed">
-                    <strong class="text-charcoal font-semibold">Note on assumptions:</strong> Every statistical test assumes certain things about your data (e.g., normal distribution, equal variance). Always verify these assumptions in your software (SPSS, R, Python) before finalizing results.
+            <div class="mt-12 bg-white rounded-2xl p-6 border border-slate/10 shadow-sm flex items-start gap-4">
+                <i data-feather="info" class="text-orange mt-1 shrink-0"></i>
+                <p class="text-sm text-slate/90 leading-relaxed">
+                    <strong class="text-black font-bold">Note on assumptions:</strong> Every statistical test assumes certain things about your data (e.g., normal distribution, equal variance). Always verify these assumptions in your software (SPSS, R, Python) before finalizing results.
                 </p>
             </div>
          </div>
     </section>
 
     <!-- SECTION 06: AI ASSIST -->
-    <section id="ai-assist" class="py-32 relative bg-white border-t border-charcoal/5">
-         <div class="absolute top-10 right-10 huge-number text-charcoal">06</div>
+    <section id="ai-assist" class="py-32 relative bg-white border-t border-slate/10">
+         <div class="absolute top-10 right-10 huge-number text-slate">06</div>
          <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="mb-16 max-w-2xl">
-                <span class="px-4 py-1.5 rounded-full bg-peach/50 text-charcoal text-xs font-bold uppercase tracking-widest mb-4 inline-block border border-peach">Stage 06</span>
-                <h2 class="text-4xl font-bold text-charcoal mb-4">AI Prompt Toolkit</h2>
-                <p class="text-charcoal/70 text-lg">Leverage LLMs (like ChatGPT or Claude) to refine your methodology. Use these engineered prompts to stress-test your research design.</p>
+                <span class="px-4 py-1.5 rounded-full bg-slate/10 text-slate text-xs font-bold uppercase tracking-widest mb-4 inline-block border border-slate/20">Stage 06</span>
+                <h2 class="text-4xl font-extrabold text-black mb-4 tracking-tight">AI Prompt Toolkit</h2>
+                <p class="text-slate text-lg">Leverage LLMs (like ChatGPT or Claude) to refine your methodology. Use these engineered prompts to stress-test your research design.</p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-8">
                 <!-- Prompt 1 -->
-                <div class="bg-ivory p-8 rounded-3xl border border-charcoal/10 shadow-sm relative group">
-                    <button class="absolute top-6 right-6 bg-white p-2 rounded-lg border border-charcoal/10 text-charcoal hover:text-rose hover:border-rose transition-colors shadow-sm copy-btn" data-clipboard-target="#prompt1" title="Copy to clipboard">
+                <div class="bg-light p-8 rounded-3xl border border-slate/10 shadow-sm relative group">
+                    <button class="absolute top-6 right-6 bg-white p-2 rounded-lg border border-slate/10 text-slate hover:text-orange hover:border-orange transition-colors shadow-sm copy-btn" data-clipboard-target="#prompt1" title="Copy to clipboard">
                         <i data-feather="copy" class="w-4 h-4"></i>
                     </button>
-                    <h3 class="text-sm font-bold text-charcoal uppercase tracking-widest mb-4">Critique My Question</h3>
-                    <div class="bg-white p-6 rounded-xl border border-charcoal/5 text-charcoal/80 font-mono text-sm leading-relaxed" id="prompt1">
+                    <h3 class="text-sm font-bold text-black uppercase tracking-widest mb-4">Critique My Question</h3>
+                    <div class="bg-white p-6 rounded-xl border border-slate/10 text-slate/90 font-mono text-sm leading-relaxed" id="prompt1">
                         "Act as a strict university data science professor. I am investigating [Topic]. My independent variable is [IV] and dependent variable is [DV]. My research question is: '[Paste Question]'. Critique this question for specificity, measurability, and potential confounding variables. Suggest 2 alternative formulations."
                     </div>
                 </div>
 
                 <!-- Prompt 2 -->
-                <div class="bg-ivory p-8 rounded-3xl border border-charcoal/10 shadow-sm relative group">
-                    <button class="absolute top-6 right-6 bg-white p-2 rounded-lg border border-charcoal/10 text-charcoal hover:text-rose hover:border-rose transition-colors shadow-sm copy-btn" data-clipboard-target="#prompt2" title="Copy to clipboard">
+                <div class="bg-light p-8 rounded-3xl border border-slate/10 shadow-sm relative group">
+                    <button class="absolute top-6 right-6 bg-white p-2 rounded-lg border border-slate/10 text-slate hover:text-orange hover:border-orange transition-colors shadow-sm copy-btn" data-clipboard-target="#prompt2" title="Copy to clipboard">
                         <i data-feather="copy" class="w-4 h-4"></i>
                     </button>
-                    <h3 class="text-sm font-bold text-charcoal uppercase tracking-widest mb-4">Data Cleaning Guide</h3>
-                    <div class="bg-white p-6 rounded-xl border border-charcoal/5 text-charcoal/80 font-mono text-sm leading-relaxed" id="prompt2">
+                    <h3 class="text-sm font-bold text-black uppercase tracking-widest mb-4">Data Cleaning Guide</h3>
+                    <div class="bg-white p-6 rounded-xl border border-slate/10 text-slate/90 font-mono text-sm leading-relaxed" id="prompt2">
                         "I am working with a public dataset from [Source] about [Topic]. I have identified missing values in my [Variable Name] column, which is a [Data Type] variable. What are the statistically rigorous ways to handle this missing data? Explain the pros and cons of imputation versus exclusion in this specific context."
                     </div>
                 </div>
@@ -629,33 +629,33 @@
     </section>
 
     <!-- FOOTER / WRAP UP -->
-    <footer class="bg-charcoal text-white py-20 border-t border-charcoal/20">
+    <footer class="bg-black text-light py-20 border-t border-slate">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
             <div>
-                <div class="font-bold text-2xl tracking-wide flex items-center gap-2 mb-4">
-                    <i data-feather="book-open" class="text-rose"></i>
-                    <span>DATA<span class="text-rose">.</span>RESEARCH</span>
+                <div class="font-bold text-2xl tracking-wide flex items-center gap-2 mb-4 text-white">
+                    <i data-feather="book-open" class="text-orange"></i>
+                    <span>DATA<span class="text-orange">.</span>RESEARCH</span>
                 </div>
-                <p class="text-white/50 text-sm max-w-sm">
+                <p class="text-light/60 text-sm max-w-sm">
                     A beautifully designed framework for academic research, helping you transform public datasets into structured insights.
                 </p>
             </div>
             
             <div class="flex items-center gap-4">
-                <button onclick="window.print()" class="bg-white/10 hover:bg-rose text-white rounded-full px-6 py-3 text-sm font-medium transition-colors border border-white/20 inline-flex items-center gap-2">
+                <button onclick="window.print()" class="bg-white/10 hover:bg-slate text-white rounded-full px-6 py-3 text-sm font-bold transition-colors border border-white/20 inline-flex items-center gap-2">
                     <i data-feather="printer" class="w-4 h-4"></i> Export to PDF
                 </button>
-                <button class="bg-rose text-white rounded-full px-6 py-3 text-sm font-medium hover:bg-white hover:text-charcoal transition-colors border border-rose">
+                <button class="bg-orange text-black rounded-full px-6 py-3 text-sm font-bold hover:bg-white transition-colors border border-orange">
                     Save Progress
                 </button>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between text-xs text-white/40">
-            <p>&copy; 2026 Digital Research Workbook. Designed with precision.</p>
+        <div class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between text-xs text-light/40">
+            <p>&copy; 2026 Digital Research Workbook. Designed for Data Hubs.</p>
             <div class="flex gap-4 mt-4 md:mt-0">
-                <a href="#" class="hover:text-rose transition-colors">Privacy</a>
-                <a href="#" class="hover:text-rose transition-colors">Terms</a>
-                <a href="#" class="hover:text-rose transition-colors">Documentation</a>
+                <a href="#" class="hover:text-orange transition-colors">Privacy</a>
+                <a href="#" class="hover:text-orange transition-colors">Terms</a>
+                <a href="#" class="hover:text-orange transition-colors">Documentation</a>
             </div>
         </div>
     </footer>
@@ -678,13 +678,13 @@
             const hasValues = rqIv.value.trim() !== '' || rqDv.value.trim() !== '' || rqPop.value.trim() !== '';
 
             if (hasValues) {
-                rqResult.innerHTML = `To what extent does <span class="font-bold text-rose">${iv}</span> influence or relate to <span class="font-bold text-rose">${dv}</span> within <span class="font-bold text-rose">${pop}</span>?`;
-                rqResult.classList.remove('text-charcoal/40', 'italic');
-                rqResult.classList.add('text-charcoal');
+                rqResult.innerHTML = `To what extent does <span class="font-bold text-orange">${iv}</span> influence or relate to <span class="font-bold text-orange">${dv}</span> within <span class="font-bold text-orange">${pop}</span>?`;
+                rqResult.classList.remove('text-slate', 'italic');
+                rqResult.classList.add('text-black', 'font-bold');
             } else {
                 rqResult.innerHTML = 'Fill in the fields above to generate your question.';
-                rqResult.classList.add('text-charcoal/40', 'italic');
-                rqResult.classList.remove('text-charcoal');
+                rqResult.classList.add('text-slate', 'italic');
+                rqResult.classList.remove('text-black', 'font-bold');
             }
         }
 
@@ -710,9 +710,9 @@
                     
                     // Update Nav Links
                     navLinks.forEach(link => {
-                        link.classList.remove('text-rose', 'border-b-2', 'border-rose');
+                        link.classList.remove('text-orange', 'border-b-2', 'border-orange');
                         if (link.getAttribute('data-target') === currentId) {
-                            link.classList.add('text-rose', 'border-b-2', 'border-rose');
+                            link.classList.add('text-orange', 'border-b-2', 'border-orange');
                         }
                     });
 
@@ -723,23 +723,23 @@
                         const indicator = step.querySelector('.indicator');
                         
                         if (stepId === currentId) {
-                            step.classList.add('text-rose');
-                            step.classList.remove('text-charcoal/40');
-                            indicator.classList.remove('bg-charcoal/20');
-                            indicator.classList.add('bg-rose');
+                            step.classList.add('text-orange');
+                            step.classList.remove('text-slate');
+                            indicator.classList.remove('bg-slate');
+                            indicator.classList.add('bg-orange', 'shadow-[0_0_8px_rgba(255,122,47,0.8)]');
                             passedCurrent = true;
                         } else if (!passedCurrent) {
                             // Steps before current (completed)
-                            step.classList.add('text-rose');
-                            step.classList.remove('text-charcoal/40');
-                            indicator.classList.remove('bg-charcoal/20');
-                            indicator.classList.add('bg-rose');
+                            step.classList.add('text-orange');
+                            step.classList.remove('text-slate');
+                            indicator.classList.remove('bg-slate');
+                            indicator.classList.add('bg-orange', 'shadow-[0_0_8px_rgba(255,122,47,0.8)]');
                         } else {
                             // Steps after current (pending)
-                            step.classList.remove('text-rose');
-                            step.classList.add('text-charcoal/40');
-                            indicator.classList.remove('bg-rose');
-                            indicator.classList.add('bg-charcoal/20');
+                            step.classList.remove('text-orange');
+                            step.classList.add('text-slate');
+                            indicator.classList.remove('bg-orange', 'shadow-[0_0_8px_rgba(255,122,47,0.8)]');
+                            indicator.classList.add('bg-slate');
                         }
                     });
                 }
@@ -784,9 +784,9 @@
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
-                navbar.classList.add('shadow-sm');
+                navbar.classList.add('shadow-md');
             } else {
-                navbar.classList.remove('shadow-sm');
+                navbar.classList.remove('shadow-md');
             }
         });
     </script>
