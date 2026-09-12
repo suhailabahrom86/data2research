@@ -5,11 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Public Data to Research | Digital Workbook</title>
 
+    <script>
+        (function () {
+            try {
+                const savedTheme = localStorage.getItem('dataResearchTheme');
+                if (savedTheme === 'dark') document.documentElement.classList.add('dark');
+            } catch (e) {}
+        })();
+    </script>
+
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
+    <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]]},svg:{fontCache:"global"}};</script>
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 
     <script>
         tailwind.config = {
@@ -41,132 +53,983 @@
         .huge-number { font-size: 16rem; line-height: 1; opacity: 0.04; z-index: 0; pointer-events: none; user-select: none; font-weight: 800; }
         .hide-scroll::-webkit-scrollbar { display: none; }
         .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
-    </style>
+        .quiz-answer{display:none}.quiz-answer.show{display:block}
+        details summary{list-style:none} details summary::-webkit-details-marker{display:none}
+        .reg-flow{position:relative}.reg-flow:not(:last-child)::after{content:"→";position:absolute;right:-15px;top:50%;transform:translateY(-50%);color:#FF7A2F;font-weight:800}
+        @media(max-width:1024px){.reg-flow:not(:last-child)::after{display:none}}
+
+        .learning-journey-card{transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+        .learning-journey-card:hover{transform:translateY(-2px);border-color:#FF7A2F;box-shadow:0 10px 30px -18px rgba(255,122,47,.7)}
+        .copy-prompt,.ai-action{cursor:pointer}
+        .ai-output{min-height:92px}
+        .mobile-menu-panel{display:none}
+        .mobile-menu-panel.open{display:block}
+        .stage-label{letter-spacing:.16em}
+    
+        :root{--sidebar-w:258px;--bg:#E9EAED;--surface:#fff;--surface2:#F5F6F7;--ink:#14212B;--muted:#536B79;--border:rgba(41,71,90,.16);--accent:#FF7A2F;--navy:#29475A;--feature:#050708}
+        html.dark{--bg:#0B1116;--surface:#111B23;--surface2:#16232D;--ink:#F5F7F9;--muted:#B7C4CD;--border:rgba(222,232,238,.15);--feature:#050708}
+        html,body{max-width:100%;overflow-x:hidden} body{background:var(--bg)!important;color:var(--muted)!important;transition:.25s}
+        a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid rgba(255,122,47,.38)!important;outline-offset:2px}
+        .training-sidebar{position:fixed;inset:0 auto 0 0;width:var(--sidebar-w);z-index:60;background:#050708;color:#fff;border-right:1px solid rgba(255,255,255,.09)}
+        .sidebar-inner{height:100%;display:flex;flex-direction:column;padding:18px 14px;overflow-y:auto}.sidebar-brand{display:flex;gap:12px;align-items:center;padding:8px 8px 18px}
+        .brand-mark{width:40px;height:40px;border-radius:12px;background:rgba(255,122,47,.12);display:grid;place-items:center;color:var(--accent)}.brand-mark svg{width:20px;height:20px}
+        .brand-title{font-size:15px;font-weight:800;letter-spacing:.05em;color:#fff}.brand-subtitle{font-size:11px;color:rgba(255,255,255,.55);margin-top:2px}
+        .theme-toggle{min-height:42px;width:100%;display:flex;align-items:center;justify-content:center;gap:9px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:#fff;border-radius:12px;font-size:13px;font-weight:700;margin-bottom:14px}.theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
+        .sidebar-progress{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);padding:12px;border-radius:14px;margin-bottom:12px}.progress-row{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:rgba(255,255,255,.74)}.progress-row strong{color:#fff}.progress-track{height:8px;border-radius:999px;background:rgba(255,255,255,.12);overflow:hidden;margin:9px 0 7px}.progress-fill{height:100%;width:0;background:var(--accent);border-radius:inherit;transition:width .4s ease}.progress-count{font-size:10px;color:rgba(255,255,255,.55)}
+        .sidebar-nav{display:grid;gap:4px}.side-link{min-height:42px;display:grid;grid-template-columns:25px 1fr auto;gap:8px;align-items:center;color:rgba(255,255,255,.72);padding:8px 10px;border-radius:11px;font-size:12px;font-weight:700;border:1px solid transparent;transition:.18s}.side-link:hover{background:rgba(255,255,255,.06);color:#fff}.side-link.active{background:rgba(255,122,47,.13);color:#fff;border-color:rgba(255,122,47,.35)}.side-link.active .side-text{color:var(--accent)}.side-link.explored .section-status{color:#78D7A4;font-weight:800}.section-status{font-size:11px;color:rgba(255,255,255,.42)}.sidebar-note{font-size:10px;line-height:1.5;color:rgba(255,255,255,.48);border-top:1px solid rgba(255,255,255,.08);margin-top:12px;padding:12px 8px}.sidebar-note strong{color:rgba(255,255,255,.8)}
+        .app-main,.app-footer{margin-left:var(--sidebar-w)}.section-shell{max-width:1180px;margin:auto;padding:72px 36px}.training-section{scroll-margin-top:18px}
+        .welcome-section{background:var(--bg)}.welcome-hero{background:var(--feature);color:#fff;padding:72px 54px;border-radius:0 0 30px 30px;min-height:510px;display:flex;flex-direction:column;justify-content:center}.welcome-kicker,.card-eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.16em;font-weight:800;color:var(--accent)}.welcome-hero h1{font-size:clamp(3rem,7vw,6.4rem);line-height:.95;font-weight:800;margin:16px 0 24px;max-width:900px}.welcome-hero h1 span{color:var(--accent)}.welcome-lead{font-size:clamp(1rem,2vw,1.2rem);line-height:1.7;color:rgba(255,255,255,.72);max-width:760px}.welcome-badges{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0}.welcome-badges span{font-size:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);padding:10px 12px;border-radius:999px}.primary-cta{align-self:flex-start;display:inline-flex;gap:10px;align-items:center;background:var(--accent);color:#111!important;font-weight:800;padding:14px 18px;border-radius:13px;min-height:48px}.primary-cta:hover{background:#fff}
+        .overview-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;margin-top:28px}.training-card{background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:26px;color:var(--ink)}.training-card h2,.training-card h3{color:var(--ink);font-weight:800}.training-card h2{font-size:24px;margin:8px 0 12px}.training-card p{color:var(--muted);line-height:1.7}.emphasis-card{background:var(--navy);border-color:transparent}.emphasis-card h2{color:#fff}.emphasis-card p{color:rgba(255,255,255,.75)}
+        .objectives-card,.duration-card{margin-top:22px}.objective-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px}.objective-item{display:grid;grid-template-columns:34px 1fr;gap:10px;background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:14px}.objective-item>span{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:#111;font-weight:800;font-size:12px}.objective-item p{font-size:13px;margin:0}.duration-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:18px}.duration-grid div{background:var(--surface2);border:1px solid var(--border);padding:14px;border-radius:14px;display:flex;flex-direction:column}.duration-grid strong{color:var(--accent);font-size:18px}.duration-grid span{color:var(--muted);font-size:12px}.time-note{margin-top:16px;padding:14px;border-left:4px solid var(--accent);background:var(--surface2);border-radius:10px;color:var(--muted);font-size:12px;line-height:1.6}
+        .journey-section{background:var(--surface)}.section-heading h2{font-size:clamp(1.8rem,3vw,2.5rem);color:var(--ink);font-weight:800;margin:8px 0}.section-heading p{color:var(--muted);max-width:760px}.journey-flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:24px}.journey-step{background:var(--surface2);border:1px solid var(--border);border-radius:16px;padding:16px;color:var(--ink)!important;transition:.2s}.journey-step:hover{border-color:var(--accent);transform:translateY(-2px)}.journey-step strong{display:block;color:var(--accent);font-size:11px;letter-spacing:.12em}.journey-step span{display:block;font-weight:800;margin:5px 0}.journey-step small{display:block;color:var(--muted)}
+        .reflection-section{background:var(--bg)}.reflection-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:24px}.reflection-card{display:flex;flex-direction:column;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:18px;color:var(--ink)}.reflection-card>span{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:#111;font-weight:800}.reflection-card textarea{width:100%;resize:vertical;background:var(--surface2);color:var(--ink);border:1px solid var(--border);border-radius:12px;padding:12px;font-size:14px;min-height:100px}.completion-card{display:flex;gap:16px;align-items:center;background:var(--feature);color:#fff;border-radius:20px;padding:22px;margin-top:20px}.completion-icon{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:#111;font-size:22px;font-weight:900}.completion-card h3{font-weight:800;font-size:20px}.completion-card p{color:rgba(255,255,255,.68);font-size:13px;margin-top:4px}
+        .section-nav{position:fixed;left:calc(var(--sidebar-w) + 18px);right:18px;bottom:18px;z-index:50;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;background:rgba(5,7,8,.93);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.11);border-radius:16px;padding:10px 12px;box-shadow:0 14px 40px rgba(0,0,0,.24)}.section-nav-btn{min-height:42px;padding:0 15px;border-radius:11px;border:1px solid rgba(255,255,255,.14);color:#fff;background:rgba(255,255,255,.05);font-size:12px;font-weight:800}.section-nav-btn.primary{background:var(--accent);color:#111;border-color:var(--accent)}.section-nav-btn:disabled{opacity:.35}.section-nav-center{text-align:center;color:#fff}.section-nav-center span{display:block;font-size:12px;font-weight:800}.section-nav-center small{display:block;font-size:10px;color:rgba(255,255,255,.52)}
+        .mobile-header,.mobile-drawer,.drawer-backdrop{display:none}.drawer-backdrop[hidden]{display:none!important}
+        html.dark .bg-white{background-color:var(--surface)!important}html.dark .bg-light{background-color:var(--surface2)!important}html.dark .bg-orange\/5{background-color:rgba(255,122,47,.08)!important}html.dark .bg-orange\/10{background-color:rgba(255,122,47,.12)!important}html.dark .bg-red-50{background-color:rgba(127,29,29,.18)!important}html.dark .bg-green-50{background-color:rgba(20,83,45,.2)!important}html.dark .text-black{color:var(--ink)!important}html.dark .text-slate{color:var(--muted)!important}html.dark input,html.dark textarea,html.dark select{background:var(--surface2)!important;color:var(--ink)!important;border-color:var(--border)!important}html.dark ::placeholder{color:#83939D!important}html.dark mjx-container{color:var(--ink)!important}
+        .app-main .max-w-7xl{max-width:1180px}.app-main img,.app-main svg{max-width:100%}
+        @media(max-width:1023px){.training-sidebar{display:none}.app-main,.app-footer{margin-left:0}.mobile-header{position:fixed;top:0;left:0;right:0;z-index:70;height:58px;display:grid;grid-template-columns:46px 1fr 46px;align-items:center;background:#050708;border-bottom:1px solid rgba(255,255,255,.1);padding:0 8px}.mobile-brand{text-align:center;color:#fff;font-weight:800;font-size:14px}.mobile-icon-btn{width:42px;height:42px;display:grid;place-items:center;border-radius:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:#fff}.drawer-backdrop{display:block;position:fixed;inset:0;z-index:79;background:rgba(0,0,0,.55)}.mobile-drawer{display:block;position:fixed;z-index:80;left:0;top:0;bottom:0;width:min(88vw,330px);background:#050708;color:#fff;padding:14px;transform:translateX(-105%);transition:.25s;overflow-y:auto}.mobile-drawer.open{transform:translateX(0)}.drawer-head{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:4px 0 16px}.section-shell{padding:72px 22px 76px}.welcome-hero{margin-top:58px;padding:58px 24px;min-height:500px}.section-nav{left:10px;right:10px;bottom:10px}.objective-grid{grid-template-columns:1fr}.duration-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.journey-flow{grid-template-columns:repeat(2,minmax(0,1fr))}.reflection-grid{grid-template-columns:1fr}}
+        @media(max-width:640px){.section-shell{padding:64px 16px 78px}.welcome-hero{padding:48px 18px}.welcome-hero h1{font-size:2.7rem}.overview-grid{grid-template-columns:1fr}.duration-grid{grid-template-columns:1fr 1fr}.journey-flow{grid-template-columns:1fr}.section-nav-btn{padding:0 10px;font-size:11px}.section-nav-center small{display:none}.app-main .py-28,.app-main .py-32{padding-top:4rem!important;padding-bottom:5rem!important}.app-main .px-6{padding-left:1rem!important;padding-right:1rem!important}.app-main .p-8{padding:1.25rem!important}.app-main .p-7{padding:1.15rem!important}.app-main .p-6{padding:1rem!important}.app-main .text-5xl{font-size:2.25rem!important}.app-main .text-4xl{font-size:2rem!important}.copy-prompt{font-size:10px!important;padding:.45rem .55rem!important}}
+
+
+        html.dark table{color:var(--ink)!important}
+        html.dark th,html.dark td{border-color:var(--border)!important}
+        html.dark .text-light\/80,html.dark .text-light\/70,html.dark .text-light\/60{color:#C5D0D7!important}
+        html.dark .bg-black{background-color:#050708!important}
+        html.dark .border-red-200{border-color:rgba(248,113,113,.35)!important}
+        html.dark .border-green-200{border-color:rgba(74,222,128,.32)!important}
+        html.dark .text-red-700{color:#FCA5A5!important}
+        html.dark .text-green-700{color:#86EFAC!important}
+
+</style>
 </head>
 <body class="bg-light text-slate font-sans antialiased selection:bg-orange selection:text-black relative">
 
-<nav class="fixed top-0 w-full z-50 glass-nav border-b border-white/10 transition-all duration-300" id="navbar">
-    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <div class="font-bold text-lg tracking-wide flex items-center gap-2 text-white">
-            <i data-feather="book-open" class="text-orange"></i>
-            <span>DATA<span class="text-orange">.</span>RESEARCH</span>
-        </div>
-        <div class="hidden lg:flex items-center space-x-8 text-sm font-medium text-light/70">
-            <a href="#home" class="nav-link hover:text-orange transition-colors relative text-white" data-target="home">HOME</a>
-            <a href="#discover" class="nav-link hover:text-orange transition-colors relative" data-target="discover">DISCOVER</a>
-            <a href="#evaluate" class="nav-link hover:text-orange transition-colors relative" data-target="evaluate">EVALUATE</a>
-            <a href="#understand" class="nav-link hover:text-orange transition-colors relative" data-target="understand">UNDERSTAND</a>
-            <a href="#question" class="nav-link hover:text-orange transition-colors relative" data-target="question">QUESTION</a>
-            <a href="#analyse" class="nav-link hover:text-orange transition-colors relative" data-target="analyse">ANALYSE</a>
-            <a href="#ai-assist" class="nav-link hover:text-orange transition-colors relative" data-target="ai-assist">AI ASSIST</a>
-        </div>
-        <button class="lg:hidden text-white hover:text-orange transition-colors"><i data-feather="menu"></i></button>
-    </div>
-</nav>
 
-<section id="home" class="min-h-screen pt-32 flex items-center relative overflow-hidden bg-black">
-    <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
-        <p class="text-white tracking-[0.2em] uppercase text-sm font-bold mb-6">Digital Research Workbook</p>
-        <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-[1.1] mb-8 tracking-tight">
-            FROM <br><span class="text-orange">PUBLIC DATA</span><br>TO RESEARCH
-        </h1>
-        <p class="text-xl text-light/80 font-light mb-10 max-w-lg leading-relaxed">
-            A guided framework to discover datasets, evaluate quality, formulate strong research questions, and apply rigorous analysis.
-        </p>
-        <a href="#discover" class="bg-orange text-black rounded-full px-8 py-4 font-bold hover:bg-white transition-all inline-flex items-center gap-3">
-            START THE WORKBOOK <i data-feather="arrow-right" class="w-4 h-4"></i>
-        </a>
+<aside id="training-sidebar" class="training-sidebar" aria-label="Training navigation">
+  <div class="sidebar-inner">
+    <div class="sidebar-brand">
+      <div class="brand-mark"><i data-feather="book-open"></i></div>
+      <div><div class="brand-title">DATA<span class="text-orange">.</span>RESEARCH</div><div class="brand-subtitle">2-Hour Guided Training</div></div>
     </div>
+    <button id="theme-toggle" type="button" class="theme-toggle" aria-label="Switch colour theme"><span id="theme-icon">🌙</span><span id="theme-label">Dark Mode</span></button>
+    <div class="sidebar-progress" aria-live="polite">
+      <div class="progress-row"><span>Your Progress</span><strong id="progress-percent">0%</strong></div>
+      <div class="progress-track"><div id="progress-fill" class="progress-fill"></div></div>
+      <div id="progress-count" class="progress-count">0 of 9 sections explored</div>
+    </div>
+    <nav class="sidebar-nav" aria-label="Course sections">
+      <a href="#home" class="side-link" data-section="home"><span class="side-icon">🏠</span><span class="side-text">Welcome</span><span class="section-status" data-status-for="home">○</span></a>
+      <a href="#discover" class="side-link" data-section="discover"><span class="side-icon">🔎</span><span class="side-text">Discover</span><span class="section-status" data-status-for="discover">○</span></a>
+      <a href="#evaluate" class="side-link" data-section="evaluate"><span class="side-icon">✅</span><span class="side-text">Evaluate</span><span class="section-status" data-status-for="evaluate">○</span></a>
+      <a href="#understand" class="side-link" data-section="understand"><span class="side-icon">💡</span><span class="side-text">Understand</span><span class="section-status" data-status-for="understand">○</span></a>
+      <a href="#question" class="side-link" data-section="question"><span class="side-icon">❓</span><span class="side-text">Question</span><span class="section-status" data-status-for="question">○</span></a>
+      <a href="#analyse" class="side-link" data-section="analyse"><span class="side-icon">📊</span><span class="side-text">Analyse</span><span class="section-status" data-status-for="analyse">○</span></a>
+      <a href="#regression" class="side-link" data-section="regression"><span class="side-icon">📈</span><span class="side-text">Regression</span><span class="section-status" data-status-for="regression">○</span></a>
+      <a href="#ai-assist" class="side-link" data-section="ai-assist"><span class="side-icon">🤖</span><span class="side-text">AI Assist</span><span class="section-status" data-status-for="ai-assist">○</span></a>
+      <a href="#reflection" class="side-link" data-section="reflection"><span class="side-icon">🪞</span><span class="side-text">Reflection</span><span class="section-status" data-status-for="reflection">○</span></a>
+    </nav>
+    <div class="sidebar-note"><strong>Core session:</strong> follow the guided sequence.<br><span>Optional / Explore Further content can be revisited after the workshop.</span></div>
+  </div>
+</aside>
+
+<header id="mobile-header" class="mobile-header">
+  <button id="drawer-open" type="button" class="mobile-icon-btn" aria-label="Open navigation" aria-controls="mobile-drawer" aria-expanded="false"><i data-feather="menu"></i></button>
+  <div class="mobile-brand">DATA<span class="text-orange">.</span>RESEARCH</div>
+  <button id="mobile-theme-toggle" type="button" class="mobile-icon-btn" aria-label="Switch colour theme"><span id="mobile-theme-icon">🌙</span></button>
+</header>
+<div id="drawer-backdrop" class="drawer-backdrop" hidden></div>
+<aside id="mobile-drawer" class="mobile-drawer" aria-label="Mobile training navigation" aria-hidden="true">
+  <div class="drawer-head"><div><div class="brand-title">DATA<span class="text-orange">.</span>RESEARCH</div><div class="brand-subtitle">Training Menu</div></div><button id="drawer-close" type="button" class="mobile-icon-btn" aria-label="Close navigation"><i data-feather="x"></i></button></div>
+  <div class="sidebar-progress compact"><div class="progress-row"><span>Your Progress</span><strong id="mobile-progress-percent">0%</strong></div><div class="progress-track"><div id="mobile-progress-fill" class="progress-fill"></div></div><div id="mobile-progress-count" class="progress-count">0 of 9 sections explored</div></div>
+  <nav class="sidebar-nav mobile-side-nav">
+    <a href="#home" class="side-link" data-section="home"><span class="side-icon">🏠</span><span class="side-text">Welcome</span><span class="section-status" data-status-for="home">○</span></a>
+    <a href="#discover" class="side-link" data-section="discover"><span class="side-icon">🔎</span><span class="side-text">Discover</span><span class="section-status" data-status-for="discover">○</span></a>
+    <a href="#evaluate" class="side-link" data-section="evaluate"><span class="side-icon">✅</span><span class="side-text">Evaluate</span><span class="section-status" data-status-for="evaluate">○</span></a>
+    <a href="#understand" class="side-link" data-section="understand"><span class="side-icon">💡</span><span class="side-text">Understand</span><span class="section-status" data-status-for="understand">○</span></a>
+    <a href="#question" class="side-link" data-section="question"><span class="side-icon">❓</span><span class="side-text">Question</span><span class="section-status" data-status-for="question">○</span></a>
+    <a href="#analyse" class="side-link" data-section="analyse"><span class="side-icon">📊</span><span class="side-text">Analyse</span><span class="section-status" data-status-for="analyse">○</span></a>
+    <a href="#regression" class="side-link" data-section="regression"><span class="side-icon">📈</span><span class="side-text">Regression</span><span class="section-status" data-status-for="regression">○</span></a>
+    <a href="#ai-assist" class="side-link" data-section="ai-assist"><span class="side-icon">🤖</span><span class="side-text">AI Assist</span><span class="section-status" data-status-for="ai-assist">○</span></a>
+    <a href="#reflection" class="side-link" data-section="reflection"><span class="side-icon">🪞</span><span class="side-text">Reflection</span><span class="section-status" data-status-for="reflection">○</span></a>
+  </nav>
+</aside>
+
+
+
+<main id="main-content" class="app-main">
+<section id="home" class="training-section welcome-section">
+  <div class="section-shell">
+    <div class="welcome-hero">
+      <div class="welcome-kicker">Interactive 2-Hour Training Workbook</div>
+      <h1>FROM <span>PUBLIC DATA</span> TO RESEARCH</h1>
+      <p class="welcome-lead">A guided introductory session for exploring public data, thinking critically with AI, formulating useful questions, and interpreting basic analytical information.</p>
+      <div class="welcome-badges">
+        <span>⏱ Approximately 2 Hours</span><span>👥 Diverse Disciplines Welcome</span><span>🧭 Guided, Beginner-Friendly Process</span>
+      </div>
+      <a href="#discover" class="primary-cta">Begin the Guided Journey <i data-feather="arrow-right"></i></a>
+    </div>
+
+    <div class="overview-grid">
+      <article class="training-card">
+        <div class="card-eyebrow">Welcome / Training Overview</div>
+        <h2>Who is this session for?</h2>
+        <p>This workshop is designed for participants from diverse academic or professional backgrounds, including those with limited prior experience in mathematics, statistics, data analysis, or AI.</p>
+        <p>The session introduces a guided workflow and practical examples. It does not assume advanced technical knowledge and does not aim to create expert-level competency within two hours.</p>
+      </article>
+      <article class="training-card emphasis-card">
+        <div class="card-eyebrow">Session Principle</div>
+        <h2>AI should support thinking, not replace it.</h2>
+        <p>Use AI to explore, question, clarify and evaluate ideas. Verify important academic information, inspect evidence, and keep final academic judgement with the user.</p>
+      </article>
+    </div>
+
+    <div class="training-card objectives-card">
+      <div class="card-eyebrow">Training Objectives</div>
+      <h2>By the end of this introductory session, participants should be able to:</h2>
+      <div class="objective-grid">
+        <div class="objective-item"><span>1</span><p>Describe the purpose of the training workflow in simple terms and recognise how the main stages connect.</p></div>
+        <div class="objective-item"><span>2</span><p>Identify and explore credible public-data resources relevant to a simple topic or discipline-specific question.</p></div>
+        <div class="objective-item"><span>3</span><p>Evaluate AI-generated information using basic criteria such as accuracy, evidence, credibility, currency, bias and limitations.</p></div>
+        <div class="objective-item"><span>4</span><p>Formulate more purposeful questions and prompts that encourage explanation, comparison, evidence checking and reflection.</p></div>
+        <div class="objective-item"><span>5</span><p>Apply a guided process to a simple analytical example and interpret basic regression information at an introductory level.</p></div>
+        <div class="objective-item"><span>6</span><p>Use selected AI-assisted prompts with guidance while recognising that AI suggestions require verification and human judgement.</p></div>
+        <div class="objective-item"><span>7</span><p>Reflect on one or more ideas, resources or approaches that could be adapted to their own teaching, learning, research or professional context.</p></div>
+      </div>
+    </div>
+
+    <div class="training-card duration-card">
+      <div class="card-eyebrow">Suggested 120-Minute Flow</div>
+      <h2>Approximate Session Duration: 2 Hours</h2>
+      <div class="duration-grid">
+        <div><strong>10 min</strong><span>Welcome & Orientation</span></div>
+        <div><strong>15 min</strong><span>Discover</span></div>
+        <div><strong>15 min</strong><span>Evaluate</span></div>
+        <div><strong>15 min</strong><span>Understand</span></div>
+        <div><strong>15 min</strong><span>Question</span></div>
+        <div><strong>10 min</strong><span>Analyse</span></div>
+        <div><strong>20 min</strong><span>Regression Core Activity</span></div>
+        <div><strong>10 min</strong><span>AI Assist</span></div>
+        <div><strong>10 min</strong><span>Reflection & Wrap-up</span></div>
+      </div>
+      <div class="time-note"><strong>Core vs Optional:</strong> During the live session, focus on the guided core activities. Detailed regression extensions, advanced model-selection notes and additional prompt libraries remain available as <em>Optional / Explore Further</em> content after the workshop.</div>
+    </div>
+  </div>
 </section>
 
-<section id="discover" class="py-32 relative border-t border-slate/10 bg-light">
-    <div class="absolute top-10 left-10 huge-number text-slate">01</div>
+
+
+<section id="learning-journey" class="training-section journey-section" aria-labelledby="journey-title">
+  <div class="section-shell">
+    <div class="section-heading">
+      <div class="card-eyebrow">Your Learning Journey</div>
+      <h2 id="journey-title">Follow the guided sequence — revisit sections whenever needed.</h2>
+      <p>Each stage answers a different question and contributes to your overall training progress.</p>
+    </div>
+    <div class="journey-flow">
+      <a href="#home" class="journey-step"><strong>START</strong><span>Welcome</span><small>Where am I going?</small></a>
+      <a href="#discover" class="journey-step"><strong>01</strong><span>DISCOVER</span><small>What can I find out?</small></a>
+      <a href="#evaluate" class="journey-step"><strong>02</strong><span>EVALUATE</span><small>Can I trust or use this?</small></a>
+      <a href="#understand" class="journey-step"><strong>03</strong><span>UNDERSTAND</span><small>Do I really understand it?</small></a>
+      <a href="#question" class="journey-step"><strong>04</strong><span>QUESTION</span><small>What should I ask next?</small></a>
+      <a href="#analyse" class="journey-step"><strong>05</strong><span>ANALYSE</span><small>What approach fits?</small></a>
+      <a href="#regression" class="journey-step"><strong>06</strong><span>REGRESSION</span><small>How can I read a basic model?</small></a>
+      <a href="#ai-assist" class="journey-step"><strong>07</strong><span>AI ASSIST</span><small>How can AI support my thinking?</small></a>
+      <a href="#reflection" class="journey-step"><strong>END</strong><span>REFLECT</span><small>What will I take forward?</small></a>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section id="discover" class="py-28 relative border-t border-slate/10 bg-light">
+    <div class="absolute top-8 left-8 huge-number text-slate">01</div>
     <div class="max-w-7xl mx-auto px-6 relative z-10">
-        <div class="mb-16 max-w-2xl">
+        <div class="max-w-3xl mb-12">
             <span class="px-4 py-1.5 rounded-full bg-slate/10 text-slate text-xs font-bold uppercase tracking-widest mb-4 inline-block border border-slate/20">Stage 01</span>
-            <h2 class="text-4xl font-extrabold text-black mb-4">Dataset Hunt</h2>
-            <p class="text-slate text-lg">Locate reliable secondary data sources. A strong research project begins with credible, well-documented public data.</p>
+            <h2 class="text-4xl md:text-5xl font-extrabold text-black">DISCOVER</h2>
+            <p class="text-xl font-semibold text-orange mt-2">What can I find out?</p>
+            <p class="text-slate text-lg mt-4 leading-relaxed">Discover is the exploration stage. The goal is to widen your understanding before deciding what is important, correct, or useful.</p>
+            <div class="mt-6 inline-flex items-center gap-3 bg-black text-white rounded-2xl px-5 py-4">
+                <span class="text-orange text-xl">✦</span><strong>Explore first. Conclude later.</strong>
+            </div>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-white rounded-2xl p-8 border border-slate/10 shadow-card">
-                <div class="w-12 h-12 rounded-xl bg-light flex items-center justify-center text-orange mb-6"><i data-feather="database"></i></div>
-                <h3 class="text-xl font-bold text-black mb-3">Government Portals</h3>
-                <p class="text-slate/80 text-sm mb-6 leading-relaxed">Official open data portals providing census, economic, demographic and sector-specific data.</p>
-                <div class="flex flex-wrap gap-2 mb-6">
-                    <a href="https://data.gov.my/" target="_blank" rel="noopener noreferrer" class="px-3 py-1 bg-light rounded-md text-xs font-semibold text-slate border border-slate/10 hover:border-orange hover:text-orange transition-colors">Data.gov.my</a>
-                    <a href="https://open.dosm.gov.my/" target="_blank" rel="noopener noreferrer" class="px-3 py-1 bg-light rounded-md text-xs font-semibold text-slate border border-slate/10 hover:border-orange hover:text-orange transition-colors">OpenDOSM</a>
-                    <a href="https://myenergystats.st.gov.my/dashboard" target="_blank" rel="noopener noreferrer" class="px-3 py-1 bg-light rounded-md text-xs font-semibold text-slate border border-slate/10 hover:border-orange hover:text-orange transition-colors">MyEnergyStats</a>
-                    <a href="https://ec.europa.eu/eurostat" target="_blank" rel="noopener noreferrer" class="px-3 py-1 bg-light rounded-md text-xs font-semibold text-slate border border-slate/10 hover:border-orange hover:text-orange transition-colors">Eurostat</a>
+        <div class="grid lg:grid-cols-2 gap-8 mb-12">
+            <div class="bg-white rounded-3xl p-7 border border-slate/10 shadow-card">
+                <p class="text-xs font-bold text-orange uppercase tracking-widest mb-3">A. Discover Public Data / Resources</p>
+                <p class="text-sm text-slate mb-6">Use credible public repositories to locate datasets, documentation and contextual information before choosing a research direction.</p>
+                <div class="space-y-5">
+                    <div>
+                        <h3 class="font-bold text-black mb-2">Government Portals</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <a href="https://data.gov.my/" target="_blank" rel="noopener noreferrer" class="px-3 py-2 bg-light rounded-lg text-xs font-semibold hover:text-orange">Data.gov.my</a>
+                            <a href="https://open.dosm.gov.my/" target="_blank" rel="noopener noreferrer" class="px-3 py-2 bg-light rounded-lg text-xs font-semibold hover:text-orange">OpenDOSM</a>
+                            <a href="https://myenergystats.st.gov.my/dashboard" target="_blank" rel="noopener noreferrer" class="px-3 py-2 bg-light rounded-lg text-xs font-semibold hover:text-orange">MyEnergyStats</a>
+                            <a href="https://ec.europa.eu/eurostat" target="_blank" rel="noopener noreferrer" class="px-3 py-2 bg-light rounded-lg text-xs font-semibold hover:text-orange">Eurostat</a>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-black mb-2">Global Organisations</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <a href="https://data.worldbank.org/" target="_blank" rel="noopener noreferrer" class="px-3 py-2 bg-light rounded-lg text-xs font-semibold hover:text-orange">World Bank</a>
+                            <a href="https://www.who.int/data" target="_blank" rel="noopener noreferrer" class="px-3 py-2 bg-light rounded-lg text-xs font-semibold hover:text-orange">WHO</a>
+                            <a href="https://fred.stlouisfed.org/" target="_blank" rel="noopener noreferrer" class="px-3 py-2 bg-light rounded-lg text-xs font-semibold hover:text-orange">FRED</a>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-black mb-2">Research & ML Platforms</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <a href="https://www.kaggle.com/datasets" target="_blank" rel="noopener noreferrer" class="px-3 py-2 bg-light rounded-lg text-xs font-semibold hover:text-orange">Kaggle</a>
+                            <a href="https://archive.ics.uci.edu/" target="_blank" rel="noopener noreferrer" class="px-3 py-2 bg-light rounded-lg text-xs font-semibold hover:text-orange">UCI Machine Learning Repository</a>
+                            <a href="https://dataverse.harvard.edu/" target="_blank" rel="noopener noreferrer" class="px-3 py-2 bg-light rounded-lg text-xs font-semibold hover:text-orange">Harvard Dataverse</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="bg-white rounded-2xl p-8 border border-slate/10 shadow-card">
-                <div class="w-12 h-12 rounded-xl bg-light flex items-center justify-center text-orange mb-6"><i data-feather="globe"></i></div>
-                <h3 class="text-xl font-bold text-black mb-3">Global Organizations</h3>
-                <p class="text-slate/80 text-sm mb-6 leading-relaxed">International datasets covering health, development, economic and related indicators.</p>
-                <div class="flex flex-wrap gap-2 mb-6">
-                    <a href="https://data.worldbank.org/" target="_blank" rel="noopener noreferrer" class="px-3 py-1 bg-light rounded-md text-xs font-semibold text-slate border border-slate/10 hover:border-orange hover:text-orange">World Bank</a>
-                    <a href="https://www.who.int/data" target="_blank" rel="noopener noreferrer" class="px-3 py-1 bg-light rounded-md text-xs font-semibold text-slate border border-slate/10 hover:border-orange hover:text-orange">WHO</a>
-                    <a href="https://fred.stlouisfed.org/" target="_blank" rel="noopener noreferrer" class="px-3 py-1 bg-light rounded-md text-xs font-semibold text-slate border border-slate/10 hover:border-orange hover:text-orange">FRED</a>
+            <div class="bg-black text-white rounded-3xl p-7">
+                <p class="text-xs font-bold text-orange uppercase tracking-widest mb-3">B. Discover Ideas with AI</p>
+                <p class="text-sm text-white/70 mb-5">Explore unfamiliar topics, terminology, perspectives, resources, approaches, possible gaps and questions worth investigating.</p>
+                <div class="grid sm:grid-cols-2 gap-3 text-sm">
+                    <div class="bg-white/5 border border-white/10 rounded-xl p-4">🔎 Unfamiliar topics</div>
+                    <div class="bg-white/5 border border-white/10 rounded-xl p-4">🏷️ Important keywords</div>
+                    <div class="bg-white/5 border border-white/10 rounded-xl p-4">🔗 Related concepts</div>
+                    <div class="bg-white/5 border border-white/10 rounded-xl p-4">⚖️ Different perspectives</div>
+                    <div class="bg-white/5 border border-white/10 rounded-xl p-4">🧭 Possible approaches</div>
+                    <div class="bg-white/5 border border-white/10 rounded-xl p-4">❓ Questions worth investigating</div>
                 </div>
             </div>
+        </div>
 
-            <div class="bg-white rounded-2xl p-8 border border-slate/10 shadow-card">
-                <div class="w-12 h-12 rounded-xl bg-light flex items-center justify-center text-orange mb-6"><i data-feather="code"></i></div>
-                <h3 class="text-xl font-bold text-black mb-3">Research & ML Platforms</h3>
-                <p class="text-slate/80 text-sm mb-6 leading-relaxed">Community and academic hubs offering diverse datasets for research and machine learning.</p>
-                <div class="flex flex-wrap gap-2 mb-6">
-                    <a href="https://www.kaggle.com/datasets" target="_blank" rel="noopener noreferrer" class="px-3 py-1 bg-light rounded-md text-xs font-semibold text-slate border border-slate/10 hover:border-orange hover:text-orange">Kaggle</a>
-                    <a href="https://archive.ics.uci.edu/" target="_blank" rel="noopener noreferrer" class="px-3 py-1 bg-light rounded-md text-xs font-semibold text-slate border border-slate/10 hover:border-orange hover:text-orange">UCI Machine Learning Repository</a>
-                    <a href="https://dataverse.harvard.edu/" target="_blank" rel="noopener noreferrer" class="px-3 py-1 bg-light rounded-md text-xs font-semibold text-slate border border-slate/10 hover:border-orange hover:text-orange">Harvard Dataverse</a>
-                </div>
+        <h3 class="text-2xl font-bold text-black mb-5">How to Use DISCOVER</h3>
+        <div class="grid md:grid-cols-5 gap-4 mb-12">
+            <div class="bg-white p-5 rounded-2xl border border-slate/10"><b class="text-orange">1. Start Broad</b><p class="text-sm text-slate mt-2">Ask for an overview before requesting conclusions.</p></div>
+            <div class="bg-white p-5 rounded-2xl border border-slate/10"><b class="text-orange">2. Identify Concepts</b><p class="text-sm text-slate mt-2">Find terminology, theories, variables, methods and debates.</p></div>
+            <div class="bg-white p-5 rounded-2xl border border-slate/10"><b class="text-orange">3. Explore Perspectives</b><p class="text-sm text-slate mt-2">Ask how different disciplines or researchers may view the topic.</p></div>
+            <div class="bg-white p-5 rounded-2xl border border-slate/10"><b class="text-orange">4. Generate Directions</b><p class="text-sm text-slate mt-2">Brainstorm possibilities without treating them as final decisions.</p></div>
+            <div class="bg-white p-5 rounded-2xl border border-slate/10"><b class="text-orange">5. Identify Gaps</b><p class="text-sm text-slate mt-2">Ask what may be missing or what information is still needed.</p></div>
+        </div>
+
+        <div class="bg-white rounded-3xl p-7 border border-slate/10 shadow-card mb-12">
+            <p class="text-xs font-bold text-orange uppercase tracking-widest">Example</p>
+            <h3 class="text-xl font-bold text-black mt-2">Topic: Student engagement in online learning</h3>
+            <div class="grid md:grid-cols-3 gap-4 mt-5">
+                <div class="bg-light rounded-xl p-4"><b>Basic</b><p class="text-sm text-slate mt-2">“What are the main factors commonly discussed in relation to student engagement in online learning?”</p></div>
+                <div class="bg-light rounded-xl p-4"><b>Follow-up</b><p class="text-sm text-slate mt-2">“Group these factors into student-related, teacher-related, technology-related, and course-design factors.”</p></div>
+                <div class="bg-light rounded-xl p-4"><b>Then</b><p class="text-sm text-slate mt-2">“Which of these factors could reasonably be investigated using survey data?”</p></div>
             </div>
+            <p class="text-sm text-slate mt-5"><b class="text-black">Purpose:</b> not to decide which factor is correct, but to discover the possibilities.</p>
+        </div>
+
+        <h3 class="text-2xl font-bold text-black mb-5">Try Asking AI</h3>
+        <div class="grid lg:grid-cols-2 gap-4 mb-8">
+        <div class="bg-white rounded-2xl p-5 border border-slate/10 shadow-card">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 1 — Explore a Topic</p>
+                    <p id="disc-p1" class="text-sm text-slate mt-3 leading-relaxed">I am new to [TOPIC]. Give me a structured overview of the main concepts, important terminology, and related ideas I should understand before studying it in detail.</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-slate/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="disc-p1">COPY PROMPT</button>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 border border-slate/10 shadow-card">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 2 — Generate Keywords</p>
+                    <p id="disc-p2" class="text-sm text-slate mt-3 leading-relaxed">Generate 15 useful academic search keywords and keyword combinations related to [TOPIC]. Group them into broad, specific, and methodological terms.</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-slate/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="disc-p2">COPY PROMPT</button>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 border border-slate/10 shadow-card">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 3 — Explore Perspectives</p>
+                    <p id="disc-p3" class="text-sm text-slate mt-3 leading-relaxed">Show me several different perspectives or approaches to understanding [TOPIC]. Explain briefly how each perspective differs.</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-slate/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="disc-p3">COPY PROMPT</button>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 border border-slate/10 shadow-card">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 4 — Identify Gaps</p>
+                    <p id="disc-p4" class="text-sm text-slate mt-3 leading-relaxed">Based on this topic, what important questions or areas might someone overlook? Do not assume these are proven research gaps; present them as possible areas for further investigation.</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-slate/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="disc-p4">COPY PROMPT</button>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 border border-slate/10 shadow-card">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 5 — Map the Topic</p>
+                    <p id="disc-p5" class="text-sm text-slate mt-3 leading-relaxed">Create a beginner-friendly concept map in text form for [TOPIC], showing the main concept, related concepts, possible variables, and possible applications.</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-slate/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="disc-p5">COPY PROMPT</button>
+            </div>
+        </div></div>
+
+        <div class="bg-orange/10 border border-orange/20 rounded-2xl p-6">
+            <p class="font-bold text-black">💡 KEY TIP</p>
+            <p class="text-sm text-slate mt-2">Do not stop at the first AI response. Ask follow-up questions, request alternative perspectives, and compare different explanations. AI can help expand the search space, but you remain responsible for deciding what is relevant and worth investigating.</p>
         </div>
     </div>
 </section>
 
-<section id="evaluate" class="py-32 bg-white">
-    <div class="max-w-7xl mx-auto px-6">
-        <h2 class="text-4xl font-extrabold text-black mb-4">Dataset Quality Check</h2>
-        <p class="text-slate text-lg">Evaluate provenance, documentation, timeliness and completeness before using public data.</p>
-    </div>
-</section>
 
-<section id="understand" class="py-32 bg-light">
-    <div class="max-w-7xl mx-auto px-6">
-        <h2 class="text-4xl font-extrabold text-black mb-4">Dataset Anatomy</h2>
-        <p class="text-slate text-lg">Identify variables, data types and analytical roles.</p>
-    </div>
-</section>
 
-<section id="question" class="py-32 bg-white">
+<section id="evaluate" class="py-28 bg-white">
     <div class="max-w-7xl mx-auto px-6">
-        <h2 class="text-4xl font-extrabold text-black mb-4">Research Question Builder</h2>
-        <div class="grid md:grid-cols-3 gap-4 mt-8">
-            <input id="rq-iv" class="p-4 border rounded-xl" placeholder="Independent Variable">
-            <input id="rq-dv" class="p-4 border rounded-xl" placeholder="Dependent Variable">
-            <input id="rq-pop" class="p-4 border rounded-xl" placeholder="Population / Context">
+        <div class="max-w-3xl mb-10">
+            <span class="px-4 py-1.5 rounded-full bg-orange/10 text-orange text-xs font-bold uppercase tracking-widest mb-4 inline-block">Stage 02</span>
+            <h2 class="text-4xl md:text-5xl font-extrabold text-black">EVALUATE</h2>
+            <p class="text-xl font-semibold text-orange mt-2">Can I trust or use this information?</p>
+            <p class="text-slate text-lg mt-4">Evaluate means critically examining information before deciding whether it is reliable, relevant, and appropriate to use.</p>
         </div>
-        <p id="rq-result" class="mt-8 text-xl italic text-slate">Fill in the fields above to generate your question.</p>
+        <div class="bg-black text-white rounded-3xl p-7 mb-10 text-center">
+            <p class="text-white/70 text-sm mb-3">Important distinction</p>
+            <div class="text-xl md:text-3xl font-extrabold"><span class="text-orange">AI-GENERATED SUGGESTION</span> ≠ VERIFIED ACADEMIC EVIDENCE</div>
+            <p class="text-sm text-white/65 mt-4">AI-generated information should not automatically be treated as verified fact.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+            <div class="bg-light rounded-2xl p-5"><b>Accuracy</b><p class="text-sm text-slate mt-2">Is the information factually correct?</p></div>
+            <div class="bg-light rounded-2xl p-5"><b>Relevance</b><p class="text-sm text-slate mt-2">Does it actually answer the question?</p></div>
+            <div class="bg-light rounded-2xl p-5"><b>Credibility</b><p class="text-sm text-slate mt-2">Is it supported by trustworthy expertise or reliable sources?</p></div>
+            <div class="bg-light rounded-2xl p-5"><b>Evidence</b><p class="text-sm text-slate mt-2">What evidence supports the statement?</p></div>
+            <div class="bg-light rounded-2xl p-5"><b>Currency</b><p class="text-sm text-slate mt-2">Is the information current enough?</p></div>
+            <div class="bg-light rounded-2xl p-5"><b>Bias</b><p class="text-sm text-slate mt-2">Is one perspective presented as if it were the only valid view?</p></div>
+            <div class="bg-light rounded-2xl p-5"><b>Consistency</b><p class="text-sm text-slate mt-2">Does it agree with other credible sources?</p></div>
+            <div class="bg-light rounded-2xl p-5"><b>Limitations / Source Quality</b><p class="text-sm text-slate mt-2">What uncertainty, weakness or source problem is missing?</p></div>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8 mb-10">
+            <div class="bg-orange/5 border border-orange/20 rounded-3xl p-7">
+                <p class="text-xs font-bold text-orange uppercase tracking-widest">Example</p>
+                <p class="font-bold text-black mt-3">AI claim:</p>
+                <p class="text-lg text-slate mt-1">“Online learning always increases student independence.”</p>
+                <div class="space-y-2 mt-5 text-sm text-slate">
+                    <p>→ What evidence supports this claim?</p>
+                    <p>→ Is the word “always” justified?</p>
+                    <p>→ What conditions might produce different outcomes?</p>
+                </div>
+                <p class="text-sm text-slate mt-4">Important claims should then be checked against suitable academic or authoritative sources.</p>
+            </div>
+            <div class="bg-light rounded-3xl p-7 border border-slate/10">
+                <h3 class="font-bold text-black mb-4">Before accepting an AI response, ask:</h3>
+                <div class="grid sm:grid-cols-2 gap-3 text-sm">
+                    <label class="bg-white rounded-xl p-3"><input type="checkbox" class="mr-2 accent-orange">Is it accurate?</label>
+                    <label class="bg-white rounded-xl p-3"><input type="checkbox" class="mr-2 accent-orange">Is there evidence?</label>
+                    <label class="bg-white rounded-xl p-3"><input type="checkbox" class="mr-2 accent-orange">Is the source credible?</label>
+                    <label class="bg-white rounded-xl p-3"><input type="checkbox" class="mr-2 accent-orange">Is it current?</label>
+                    <label class="bg-white rounded-xl p-3"><input type="checkbox" class="mr-2 accent-orange">Is it relevant?</label>
+                    <label class="bg-white rounded-xl p-3"><input type="checkbox" class="mr-2 accent-orange">Are alternatives possible?</label>
+                    <label class="bg-white rounded-xl p-3"><input type="checkbox" class="mr-2 accent-orange">Are assumptions being made?</label>
+                    <label class="bg-white rounded-xl p-3"><input type="checkbox" class="mr-2 accent-orange">Are limitations missing?</label>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="text-2xl font-bold text-black mb-5">Try Asking AI</h3>
+        <div class="grid lg:grid-cols-2 gap-4 mb-8">
+        <div class="bg-white rounded-2xl p-5 border border-slate/10 shadow-card">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 1 — Critical Review</p>
+                    <p id="eval-p1" class="text-sm text-slate mt-3 leading-relaxed">Review the following response critically. Separate factual claims, interpretations, assumptions, and recommendations. Identify which claims require external verification.</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-slate/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="eval-p1">COPY PROMPT</button>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 border border-slate/10 shadow-card">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 2 — Find Weaknesses</p>
+                    <p id="eval-p2" class="text-sm text-slate mt-3 leading-relaxed">Identify possible weaknesses, unsupported assumptions, missing context, or overgeneralisation in the following explanation: [PASTE TEXT].</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-slate/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="eval-p2">COPY PROMPT</button>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 border border-slate/10 shadow-card">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 3 — Compare Explanations</p>
+                    <p id="eval-p3" class="text-sm text-slate mt-3 leading-relaxed">Compare these two explanations of [TOPIC]. Identify where they agree, where they differ, and what evidence would be needed to determine which interpretation is better supported.</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-slate/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="eval-p3">COPY PROMPT</button>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 border border-slate/10 shadow-card">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 4 — Evidence Check</p>
+                    <p id="eval-p4" class="text-sm text-slate mt-3 leading-relaxed">For each major claim in the following text, tell me what type of evidence or source would be appropriate for verification. Do not invent references.</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-slate/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="eval-p4">COPY PROMPT</button>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 border border-slate/10 shadow-card">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 5 — Bias and Alternatives</p>
+                    <p id="eval-p5" class="text-sm text-slate mt-3 leading-relaxed">Examine the following response for possible bias or one-sided framing. Suggest alternative interpretations or perspectives that should also be considered.</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-slate/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="eval-p5">COPY PROMPT</button>
+            </div>
+        </div></div>
+        <div class="bg-black text-white rounded-2xl p-6"><p class="font-bold text-orange">⚠️ KEY TIP</p><p class="text-sm text-white/75 mt-2">Fluent language is not evidence of accuracy. A response can sound professional and still be wrong. Treat important academic claims as something to verify, not simply something to believe.</p></div>
     </div>
 </section>
+
+
+
+<section id="understand" class="py-28 bg-light">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="max-w-3xl mb-10">
+            <span class="px-4 py-1.5 rounded-full bg-slate/10 text-slate text-xs font-bold uppercase tracking-widest mb-4 inline-block">Stage 03</span>
+            <h2 class="text-4xl md:text-5xl font-extrabold text-black">UNDERSTAND</h2>
+            <p class="text-xl font-semibold text-orange mt-2">Do I really understand it?</p>
+            <p class="text-slate text-lg mt-4">Understand means moving beyond receiving an answer to understanding the meaning, reasoning, relationships, and implications behind it.</p>
+        </div>
+        <div class="bg-black text-white rounded-3xl p-7 mb-10">
+            <div class="flex flex-col md:flex-row items-center justify-center gap-4 text-center font-extrabold text-xl md:text-2xl">
+                <span>ANSWER</span><span class="text-orange">→</span><span>MEANING</span><span class="text-orange">→</span><span>APPLICATION</span>
+            </div>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+            <div class="bg-white rounded-2xl p-5 border"><b>🧠 SIMPLIFY</b><p class="text-sm text-slate mt-2">Translate technical ideas into clearer language.</p></div>
+            <div class="bg-white rounded-2xl p-5 border"><b>🔄 RE-EXPLAIN</b><p class="text-sm text-slate mt-2">Explain the same idea using another approach.</p></div>
+            <div class="bg-white rounded-2xl p-5 border"><b>⚖️ COMPARE</b><p class="text-sm text-slate mt-2">Show similarities and differences.</p></div>
+            <div class="bg-white rounded-2xl p-5 border"><b>📚 GIVE EXAMPLES</b><p class="text-sm text-slate mt-2">Connect abstract ideas to realistic situations.</p></div>
+            <div class="bg-white rounded-2xl p-5 border"><b>🔗 CONNECT IDEAS</b><p class="text-sm text-slate mt-2">Relate new knowledge to prior knowledge.</p></div>
+            <div class="bg-white rounded-2xl p-5 border"><b>⚠️ MISCONCEPTIONS</b><p class="text-sm text-slate mt-2">Identify common misunderstandings.</p></div>
+            <div class="bg-white rounded-2xl p-5 border"><b>💡 ANALOGIES</b><p class="text-sm text-slate mt-2">Use intuitive comparisons while noting their limits.</p></div>
+            <div class="bg-white rounded-2xl p-5 border"><b>🪜 BREAK DOWN</b><p class="text-sm text-slate mt-2">Present complex processes as manageable steps.</p></div>
+        </div>
+        <div class="grid lg:grid-cols-2 gap-8 mb-10">
+            <div class="bg-white rounded-3xl p-7 border shadow-card">
+                <p class="text-xs font-bold text-orange uppercase tracking-widest">Example</p>
+                <h3 class="font-bold text-black mt-2">Concept: Correlation does not imply causation</h3>
+                <div class="space-y-3 mt-5 text-sm">
+                    <div class="bg-light p-4 rounded-xl"><b>Basic:</b> “Define correlation.”</div>
+                    <div class="bg-light p-4 rounded-xl"><b>Better:</b> “Explain why correlation does not prove causation using a simple example.”</div>
+                    <div class="bg-light p-4 rounded-xl"><b>Deeper:</b> “What alternative explanations could produce a correlation between two variables?”</div>
+                    <div class="bg-light p-4 rounded-xl"><b>Further:</b> “Give me a situation where causal interpretation might be more defensible.”</div>
+                </div>
+            </div>
+            <div class="bg-orange/5 border border-orange/20 rounded-3xl p-7">
+                <p class="text-xs font-bold text-orange uppercase tracking-widest">From Answer → To Understanding</p>
+                <div class="space-y-4 mt-4">
+                    <div><b>Answer-focused</b><p class="text-sm text-slate">“What is a confidence interval?”</p></div>
+                    <div><b>Understanding-focused</b><p class="text-sm text-slate">“Explain what a confidence interval means in practical terms and identify one common misconception.”</p></div>
+                    <div><b>Deeper understanding</b><p class="text-sm text-slate">“Give me two examples showing correct and incorrect interpretations of a 95% confidence interval.”</p></div>
+                </div>
+                <p class="text-sm text-slate mt-5">The first question obtains information. The later questions encourage understanding.</p>
+            </div>
+        </div>
+        <h3 class="text-2xl font-bold text-black mb-5">Try Asking AI</h3>
+        <div class="grid lg:grid-cols-2 gap-4 mb-8">
+        <div class="bg-white rounded-2xl p-5 border border-slate/10 shadow-card">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 1 — Beginner Explanation</p>
+                    <p id="und-p1" class="text-sm text-slate mt-3 leading-relaxed">Explain [CONCEPT] to a beginner using simple language, but keep the important academic meaning.</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-slate/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="und-p1">COPY PROMPT</button>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 border border-slate/10 shadow-card">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 2 — Explain With an Example</p>
+                    <p id="und-p2" class="text-sm text-slate mt-3 leading-relaxed">Explain [CONCEPT] using one simple real-world example. Then explain exactly how the example represents the concept.</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-slate/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="und-p2">COPY PROMPT</button>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 border border-slate/10 shadow-card">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 3 — Compare Concepts</p>
+                    <p id="und-p3" class="text-sm text-slate mt-3 leading-relaxed">Compare [CONCEPT A] and [CONCEPT B]. Explain their similarities, differences, and when each is used.</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-slate/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="und-p3">COPY PROMPT</button>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 border border-slate/10 shadow-card">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 4 — Find Misconceptions</p>
+                    <p id="und-p4" class="text-sm text-slate mt-3 leading-relaxed">What common misconceptions might a beginner have about [CONCEPT]? Explain why each misconception is incorrect.</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-slate/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="und-p4">COPY PROMPT</button>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 border border-slate/10 shadow-card">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 5 — Explain Another Way</p>
+                    <p id="und-p5" class="text-sm text-slate mt-3 leading-relaxed">I still do not understand this explanation: [PASTE TEXT]. Explain it in a different way using simpler language, an analogy, and a short example.</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-slate/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="und-p5">COPY PROMPT</button>
+            </div>
+        </div></div>
+        <div class="bg-white border-l-4 border-orange rounded-2xl p-6"><p class="font-bold text-black">🧠 KEY TIP</p><p class="text-sm text-slate mt-2">If you can only repeat the AI's answer, you may not yet understand it. Ask: Why? How? Can you give me an example? What would be a counterexample? How is this different from something similar? What mistake might I make here?</p></div>
+    </div>
+</section>
+
+
+
+<section id="question" class="py-28 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="max-w-3xl mb-10">
+            <span class="px-4 py-1.5 rounded-full bg-orange/10 text-orange text-xs font-bold uppercase tracking-widest mb-4 inline-block">Stage 04</span>
+            <h2 class="text-4xl md:text-5xl font-extrabold text-black">QUESTION</h2>
+            <p class="text-xl font-semibold text-orange mt-2">What should I ask next?</p>
+            <p class="text-slate text-lg mt-4">Better questioning improves thinking, not just AI output. It helps clarify ideas, expose assumptions, identify evidence, recognise uncertainty, compare alternatives and move from description to analysis.</p>
+        </div>
+
+        <div class="bg-light rounded-3xl p-7 border border-slate/10 mb-10">
+            <p class="font-bold text-black mb-5">A useful questioning progression</p>
+            <div class="grid md:grid-cols-6 gap-3 text-center text-sm">
+                <div class="bg-white rounded-xl p-4"><b class="text-orange">RECALL</b><p class="mt-2">What is it?</p></div>
+                <div class="bg-white rounded-xl p-4"><b class="text-orange">EXPLAIN</b><p class="mt-2">Why does it happen?</p></div>
+                <div class="bg-white rounded-xl p-4"><b class="text-orange">APPLY</b><p class="mt-2">How would I use it?</p></div>
+                <div class="bg-white rounded-xl p-4"><b class="text-orange">ANALYSE</b><p class="mt-2">How are the parts related?</p></div>
+                <div class="bg-white rounded-xl p-4"><b class="text-orange">EVALUATE</b><p class="mt-2">How strong is the evidence?</p></div>
+                <div class="bg-white rounded-xl p-4"><b class="text-orange">CREATE</b><p class="mt-2">What could I propose or investigate?</p></div>
+            </div>
+            <p class="text-xs text-slate mt-4">This is a useful progression, not a rigid rule. Choose the level that fits your learning purpose.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+            <div class="border rounded-2xl p-5"><b>Clarification</b><p class="text-sm text-slate mt-2">“What exactly does this term mean?”</p></div>
+            <div class="border rounded-2xl p-5"><b>Probing</b><p class="text-sm text-slate mt-2">“Why does this conclusion follow?”</p></div>
+            <div class="border rounded-2xl p-5"><b>Comparison</b><p class="text-sm text-slate mt-2">“How is Method A different from Method B?”</p></div>
+            <div class="border rounded-2xl p-5"><b>Why</b><p class="text-sm text-slate mt-2">“Why is this assumption important?”</p></div>
+            <div class="border rounded-2xl p-5"><b>What If</b><p class="text-sm text-slate mt-2">“What might happen if this condition is violated?”</p></div>
+            <div class="border rounded-2xl p-5"><b>Assumption Checking</b><p class="text-sm text-slate mt-2">“What assumptions does this argument depend on?”</p></div>
+            <div class="border rounded-2xl p-5"><b>Evidence Seeking</b><p class="text-sm text-slate mt-2">“What evidence would support this claim?”</p></div>
+            <div class="border rounded-2xl p-5"><b>Reflective</b><p class="text-sm text-slate mt-2">“What have I understood well, and what remains unclear?”</p></div>
+        </div>
+
+        <h3 class="text-2xl font-bold text-black mb-5">Weak → Better → Deeper</h3>
+        <div class="grid lg:grid-cols-3 gap-5 mb-10">
+            <div class="bg-light rounded-2xl p-5"><b>Regression</b><p class="text-sm mt-3"><span class="text-slate">Weak:</span> “What is regression?”</p><p class="text-sm mt-2"><span class="text-slate">Better:</span> “Explain the purpose of regression and give a simple real-world example.”</p><p class="text-sm mt-2"><span class="text-orange font-semibold">Deeper:</span> “What assumptions should be considered before interpreting a regression model, and what problems could arise if they are violated?”</p></div>
+            <div class="bg-light rounded-2xl p-5"><b>AI Bias</b><p class="text-sm mt-3"><span class="text-slate">Weak:</span> “What is AI bias?”</p><p class="text-sm mt-2"><span class="text-slate">Better:</span> “Explain how bias may appear in AI-generated responses and give two examples.”</p><p class="text-sm mt-2"><span class="text-orange font-semibold">Deeper:</span> “How could a user distinguish between bias introduced by the training data, the prompt, and the interpretation of the AI response?”</p></div>
+            <div class="bg-light rounded-2xl p-5"><b>Source Evaluation</b><p class="text-sm mt-3"><span class="text-slate">Weak:</span> “Is this source good?”</p><p class="text-sm mt-2"><span class="text-slate">Better:</span> “Evaluate the credibility of this source using authority, evidence, currency, relevance, and possible bias.”</p><p class="text-sm mt-2"><span class="text-orange font-semibold">Deeper:</span> “What additional sources would you consult before relying on this source for an academic conclusion?”</p></div>
+        </div>
+
+        <div class="bg-light rounded-3xl p-7 border border-slate/10 mb-10">
+            <h3 class="text-xl font-bold text-black">Existing Research Question Builder</h3>
+            <p class="text-sm text-slate mt-2">Use the builder below to turn variables and context into a starting research question, then refine it using the deeper-question prompts.</p>
+            <div class="grid md:grid-cols-3 gap-4 mt-5">
+                <input id="rq-iv" class="p-4 border rounded-xl" placeholder="Independent Variable">
+                <input id="rq-dv" class="p-4 border rounded-xl" placeholder="Dependent Variable">
+                <input id="rq-pop" class="p-4 border rounded-xl" placeholder="Population / Context">
+            </div>
+            <p id="rq-result" class="mt-6 text-lg italic text-slate">Fill in the fields above to generate your question.</p>
+        </div>
+
+        <h3 class="text-2xl font-bold text-black mb-5">Try Asking AI</h3>
+        <div class="grid lg:grid-cols-2 gap-4 mb-8">
+        <div class="bg-white rounded-2xl p-5 border border-slate/10 shadow-card">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 1 — Improve My Question</p>
+                    <p id="q-p1" class="text-sm text-slate mt-3 leading-relaxed">Turn the following basic question into three stronger versions: one explanatory, one analytical, and one evaluative. Question: [QUESTION].</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-slate/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="q-p1">COPY PROMPT</button>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 border border-slate/10 shadow-card">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 2 — Critical-Thinking Questions</p>
+                    <p id="q-p2" class="text-sm text-slate mt-3 leading-relaxed">Generate five critical-thinking questions about [TOPIC]. Include questions about assumptions, evidence, limitations, and alternative explanations.</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-slate/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="q-p2">COPY PROMPT</button>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 border border-slate/10 shadow-card">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 3 — Challenge a Conclusion</p>
+                    <p id="q-p3" class="text-sm text-slate mt-3 leading-relaxed">Here is a conclusion: [CONCLUSION]. What questions should I ask before accepting it?</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-slate/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="q-p3">COPY PROMPT</button>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 border border-slate/10 shadow-card">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 4 — Evidence-Focused Questioning</p>
+                    <p id="q-p4" class="text-sm text-slate mt-3 leading-relaxed">Generate questions that would help me evaluate whether this claim is well supported: [CLAIM].</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-slate/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="q-p4">COPY PROMPT</button>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 border border-slate/10 shadow-card">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 5 — Socratic Tutor</p>
+                    <p id="q-p5" class="text-sm text-slate mt-3 leading-relaxed">Act as a Socratic tutor. Do not give me the answer immediately. Ask me one question at a time to help me reason through [TOPIC/PROBLEM].</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-slate/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="q-p5">COPY PROMPT</button>
+            </div>
+        </div></div>
+        <div class="bg-black text-white rounded-2xl p-6"><p class="font-bold text-orange">❓ REMEMBER</p><p class="text-sm text-white/75 mt-2">Better questions often lead to better thinking. Do not use AI only to obtain answers. Use it to expose assumptions, examine evidence, deepen understanding and improve judgement.</p></div>
+    </div>
+</section>
+
 
 <section id="analyse" class="py-32 bg-light">
     <div class="max-w-7xl mx-auto px-6">
         <h2 class="text-4xl font-extrabold text-black mb-4">Analysis Decision Guide</h2>
-        <p class="text-slate text-lg">Match the research question and variable structure with an appropriate analytical approach.</p>
+        <p class="text-slate text-lg mb-8">Match the research question and variable structure with an appropriate analytical approach.</p>
+        <div class="grid md:grid-cols-3 gap-5">
+            <div class="bg-white rounded-2xl p-6 border border-slate/10"><h3 class="font-bold text-black mb-2">Describe</h3><p class="text-sm text-slate">Start with descriptive statistics and suitable visualisation.</p></div>
+            <div class="bg-white rounded-2xl p-6 border border-slate/10"><h3 class="font-bold text-black mb-2">Compare / Associate</h3><p class="text-sm text-slate">Choose a method that matches your question, variable types and study design.</p></div>
+            <div class="bg-black text-white rounded-2xl p-6"><h3 class="font-bold text-orange mb-2">Predict a numerical outcome?</h3><p class="text-sm text-white/70 mb-4">Linear regression may be a suitable starting point when the context and assumptions are reasonable.</p><a href="#regression" class="text-orange font-bold text-sm">Open Regression Module →</a></div>
+        </div>
     </div>
 </section>
 
-<section id="ai-assist" class="py-32 bg-white">
+
+<section id="regression" class="py-28 bg-white border-t border-slate/10">
+<div class="max-w-7xl mx-auto px-6">
+  <div class="max-w-3xl mb-12"><span class="px-4 py-1.5 rounded-full bg-orange/10 text-orange text-xs font-bold uppercase tracking-widest mb-4 inline-block border border-orange/20">Applied Analysis Module</span><h2 class="text-4xl md:text-5xl font-extrabold text-black mb-4">Regression Analysis: From Dataset to Meaning</h2><p class="text-lg text-slate leading-relaxed">A practical beginner pathway to decide when regression is useful, apply it to a dataset, read the key output, check model assumptions and report findings responsibly.</p></div>
+  <div class="training-card regression-session-guide mb-10">
+    <div class="card-eyebrow">20-Minute Guided Core</div>
+    <h3>Regression Core for the Live Session</h3>
+    <p><strong>CORE:</strong> focus on Regression in Plain English, the equation idea, what to check before modelling, the key output, the Regression Health Check, and the worked example.</p>
+    <p><strong>OPTIONAL / EXPLORE FURTHER:</strong> multiple regression extensions, model-selection notes, and the full AI prompt library can be revisited after the workshop.</p>
+  </div>
+
+
+  <div class="bg-black text-white rounded-3xl p-6 md:p-8 mb-10"><p class="text-orange text-xs font-bold uppercase tracking-[0.2em] mb-5">The beginner workflow</p><div class="grid sm:grid-cols-2 lg:grid-cols-6 gap-4">
+    <div class="reg-flow bg-white/5 border border-white/10 rounded-2xl p-4"><b class="text-orange">01 Dataset</b><p class="text-xs text-white/60 mt-1">Know the variables.</p></div><div class="reg-flow bg-white/5 border border-white/10 rounded-2xl p-4"><b class="text-orange">02 Question</b><p class="text-xs text-white/60 mt-1">Define what you want to study.</p></div><div class="reg-flow bg-white/5 border border-white/10 rounded-2xl p-4"><b class="text-orange">03 Choose Y & X</b><p class="text-xs text-white/60 mt-1">Outcome and predictor(s).</p></div><div class="reg-flow bg-white/5 border border-white/10 rounded-2xl p-4"><b class="text-orange">04 Visualise</b><p class="text-xs text-white/60 mt-1">Look for pattern and outliers.</p></div><div class="reg-flow bg-white/5 border border-white/10 rounded-2xl p-4"><b class="text-orange">05 Run & Check</b><p class="text-xs text-white/60 mt-1">Fit model and inspect diagnostics.</p></div><div class="reg-flow bg-white/5 border border-white/10 rounded-2xl p-4"><b class="text-orange">06 Interpret</b><p class="text-xs text-white/60 mt-1">Explain and report carefully.</p></div>
+  </div></div>
+
+  <div class="grid lg:grid-cols-2 gap-8 mb-10">
+    <article class="bg-light rounded-3xl p-8 border border-slate/10"><div class="flex gap-3 items-center mb-4"><span class="w-10 h-10 rounded-xl bg-orange text-black flex items-center justify-center font-bold">1</span><h3 class="text-2xl font-bold text-black">Regression in Plain English</h3></div><p class="text-slate leading-relaxed mb-4">Regression describes how an outcome variable changes in relation to one or more predictor variables. In simple linear regression, one predictor \(X\) is related to one numerical outcome \(Y\).</p><div class="bg-white rounded-2xl p-5 border border-slate/10"><p class="font-bold text-black mb-2">Example question</p><p class="text-slate">Can study hours help explain or predict students' test scores?</p><div class="grid grid-cols-2 gap-3 mt-4 text-sm"><div class="bg-orange/10 rounded-xl p-3"><b>Y:</b> Test Score</div><div class="bg-slate/10 rounded-xl p-3"><b>X:</b> Study Hours</div></div></div><div class="mt-4 bg-black text-white rounded-2xl p-4"><b class="text-orange">🧠 Remember</b><p class="text-sm text-white/75 mt-1">Association or prediction does not automatically establish causation.</p></div></article>
+    <article class="bg-white rounded-3xl p-8 border border-slate/10 shadow-card"><div class="flex gap-3 items-center mb-4"><span class="w-10 h-10 rounded-xl bg-slate text-white flex items-center justify-center font-bold">2</span><h3 class="text-2xl font-bold text-black">When Should I Use Regression?</h3></div><div class="space-y-4 text-sm"><div class="border rounded-2xl p-4"><b class="text-black">Simple Linear Regression</b><p class="text-slate mt-1">One numerical outcome \(Y\) and one predictor \(X\).</p></div><div class="border rounded-2xl p-4"><b class="text-black">Multiple Linear Regression</b><p class="text-slate mt-1">One numerical outcome \(Y\) and two or more predictors.</p></div><div class="bg-orange/5 border border-orange/20 rounded-2xl p-4"><b class="text-black">⚠️ Regression may not be suitable when...</b><p class="text-slate mt-1">the outcome is not numerical, the relationship is clearly non-linear, data quality is poor, or the study design does not support the intended interpretation.</p></div><details class="border rounded-2xl p-4"><summary class="font-bold text-black cursor-pointer">Good to know: other regression types</summary><p class="text-slate mt-3">The source notes also cover logistic regression for categorical outcomes and multivariate regression for multiple outcomes. They are useful next steps, but the core training here focuses on basic linear regression.</p></details></div></article>
+  </div>
+
+  <article class="bg-light rounded-3xl p-8 border border-slate/10 mb-10"><div class="flex gap-3 items-center mb-5"><span class="w-10 h-10 rounded-xl bg-orange text-black flex items-center justify-center font-bold">3</span><h3 class="text-2xl font-bold text-black">Meet the Regression Equation</h3></div><div class="grid lg:grid-cols-2 gap-8 items-center"><div><div class="bg-white rounded-2xl p-6 border text-center mb-4"><div class="text-3xl font-semibold">\[\hat{y}=b_0+b_1x\]</div></div><div class="grid sm:grid-cols-2 gap-3 text-sm"><div class="bg-white p-4 rounded-xl border"><b>\(\hat y\)</b><br><span class="text-slate">predicted outcome</span></div><div class="bg-white p-4 rounded-xl border"><b>\(b_0\)</b><br><span class="text-slate">intercept</span></div><div class="bg-white p-4 rounded-xl border"><b>\(b_1\)</b><br><span class="text-slate">slope / regression coefficient</span></div><div class="bg-white p-4 rounded-xl border"><b>\(x\)</b><br><span class="text-slate">predictor value</span></div></div></div><div class="bg-white rounded-2xl p-6 border"><p class="text-xs font-bold uppercase tracking-widest text-orange mb-3">Hypothetical training example</p><p class="font-bold text-black mb-2">\(\hat y=45+3.2x\)</p><p class="text-slate mb-4">Each additional study hour is associated with an estimated 3.2-point increase in predicted test score.</p><label class="text-sm font-semibold" for="studyHours">Try a value for study hours</label><div class="flex gap-3 mt-2"><input id="studyHours" type="number" value="5" min="0" class="w-28 p-3 rounded-xl border focus:border-orange outline-none"><button id="predictStudy" class="px-5 py-3 rounded-xl bg-orange text-black font-bold hover:bg-black hover:text-white">Predict</button></div><p id="studyPrediction" class="mt-4 font-bold text-slate">Predicted score: 61.0</p></div></div></article>
+
+  <div class="grid lg:grid-cols-2 gap-8 mb-10"><article class="bg-white rounded-3xl p-8 border shadow-card"><div class="flex gap-3 items-center mb-4"><span class="w-10 h-10 rounded-xl bg-slate text-white flex items-center justify-center font-bold">4</span><h3 class="text-2xl font-bold text-black">Look at Your Data First</h3></div><div class="space-y-3 text-sm text-slate"><p>✓ Identify Y and X.</p><p>✓ Inspect missing values and obvious errors.</p><p>✓ Review descriptive statistics.</p><p>✓ Create a scatter plot.</p><p>✓ Look for unusual observations / outliers.</p><p>✓ Ask whether an approximately linear pattern is plausible.</p></div><div class="mt-5 bg-orange/10 border border-orange/20 rounded-2xl p-4"><b class="text-black">🛑 STOP & CHECK</b><p class="text-sm text-slate mt-1">Software can print an output even when the model is inappropriate.</p></div></article><article class="bg-light rounded-3xl p-8 border"><div class="flex gap-3 items-center mb-4"><span class="w-10 h-10 rounded-xl bg-orange text-black flex items-center justify-center font-bold">5</span><h3 class="text-2xl font-bold text-black">Run the Regression</h3></div><ol class="space-y-3 text-sm"><li class="bg-white rounded-xl p-4 border"><b>1.</b> Select outcome Y.</li><li class="bg-white rounded-xl p-4 border"><b>2.</b> Select predictor(s) X.</li><li class="bg-white rounded-xl p-4 border"><b>3.</b> Fit the model.</li><li class="bg-white rounded-xl p-4 border"><b>4.</b> Examine coefficient, \(R^2\), p-value and/or confidence interval.</li><li class="bg-white rounded-xl p-4 border"><b>5.</b> Check diagnostics.</li><li class="bg-white rounded-xl p-4 border"><b>6.</b> Interpret and report.</li></ol><p class="text-xs text-slate mt-4">The same conceptual workflow applies in R, Python, SPSS, Jamovi, Excel and other statistical software.</p></article></div>
+
+  <article class="bg-black text-white rounded-3xl p-8 mb-10"><div class="flex gap-3 items-center mb-6"><span class="w-10 h-10 rounded-xl bg-orange text-black flex items-center justify-center font-bold">6</span><h3 class="text-2xl font-bold">The Regression Output: Focus Here First</h3></div><div class="grid md:grid-cols-2 lg:grid-cols-5 gap-4"><div class="bg-white/5 border border-white/10 rounded-2xl p-5"><b class="text-orange">1. Coefficient</b><p class="text-sm text-white/70 mt-2">Direction and estimated size of change in Y.</p></div><div class="bg-white/5 border border-white/10 rounded-2xl p-5"><b class="text-orange">2. \(R^2\)</b><p class="text-sm text-white/70 mt-2">Variation in Y accounted for by the model.</p></div><div class="bg-white/5 border border-white/10 rounded-2xl p-5"><b class="text-orange">3. p-value / CI</b><p class="text-sm text-white/70 mt-2">Evidence about whether a coefficient differs from zero.</p></div><div class="bg-white/5 border border-white/10 rounded-2xl p-5"><b class="text-orange">4. Direction</b><p class="text-sm text-white/70 mt-2">Positive = upward; negative = downward.</p></div><div class="bg-white/5 border border-white/10 rounded-2xl p-5"><b class="text-orange">5. Diagnostics</b><p class="text-sm text-white/70 mt-2">Look for residual patterns and unusual points.</p></div></div><div class="mt-6 bg-orange/10 border border-orange/20 rounded-2xl p-5"><b class="text-orange">⚠️ Safeguard</b><p class="text-sm text-white/75 mt-1">p &lt; 0.05 does not prove practical importance, good model fit or causation. High \(R^2\) does not automatically mean a model is valid.</p></div></article>
+
+  <div class="grid lg:grid-cols-2 gap-8 mb-10"><article class="bg-light rounded-3xl p-8 border"><div class="flex gap-3 items-center mb-5"><span class="w-10 h-10 rounded-xl bg-orange text-black flex items-center justify-center font-bold">7</span><h3 class="text-2xl font-bold text-black">How to Interpret Results</h3></div><div class="space-y-4 text-sm"><div class="bg-white rounded-2xl p-4 border"><b>Coefficient</b><p class="text-slate mt-1">“For every one-unit increase in X, predicted Y increases/decreases by approximately ___ units.”</p></div><div class="bg-white rounded-2xl p-4 border"><b>\(R^2\)</b><p class="text-slate mt-1">“Approximately ___% of observed variation in Y is accounted for by the predictors in this model.”</p></div><div class="bg-white rounded-2xl p-4 border"><b>p-value</b><p class="text-slate mt-1">A small p-value is evidence against a zero coefficient under the model assumptions; it is not a measure of practical importance.</p></div><div class="bg-white rounded-2xl p-4 border"><b>Prediction</b><p class="text-slate mt-1">Prefer interpolation within the observed range; extrapolation outside it is risky.</p></div></div></article><article class="bg-white rounded-3xl p-8 border shadow-card"><div class="flex gap-3 items-center mb-5"><span class="w-10 h-10 rounded-xl bg-slate text-white flex items-center justify-center font-bold">8</span><h3 class="text-2xl font-bold text-black">🚦 Regression Health Check</h3></div><div class="space-y-4 text-sm"><div><b>✓ Linearity</b><p class="text-slate">A straight-line pattern should be a reasonable approximation.</p></div><div><b>✓ Independence</b><p class="text-slate">Problematic dependence should not be present where independence is assumed.</p></div><div><b>✓ Constant residual variance</b><p class="text-slate">Residual spread should be reasonably similar across fitted values.</p></div><div><b>✓ Residual behaviour</b><p class="text-slate">Residual and Q–Q plots can reveal warning signs.</p></div><div><b>✓ Influential observations</b><p class="text-slate">Extreme points can strongly affect the fitted model.</p></div><div><b>✓ Multicollinearity</b><p class="text-slate">In multiple regression, highly correlated predictors can make coefficient interpretation less reliable.</p></div></div></article></div>
+
+  <article class="bg-light rounded-3xl p-8 border mb-10"><div class="flex gap-3 items-center mb-5"><span class="w-10 h-10 rounded-xl bg-orange text-black flex items-center justify-center font-bold">9</span><h3 class="text-2xl font-bold text-black">Multiple Regression Without the Fear</h3></div><div class="grid lg:grid-cols-2 gap-8"><div class="bg-white rounded-2xl p-6 border text-center"><div class="text-2xl">\[\hat y=b_0+b_1x_1+b_2x_2+\cdots+b_kx_k\]</div><p class="text-slate mt-3">One numerical outcome, several predictors.</p></div><div class="bg-white rounded-2xl p-6 border"><b class="text-black">House-price example</b><ul class="text-sm text-slate space-y-2 mt-3"><li>Y = House price</li><li>\(X_1\) = House size</li><li>\(X_2\) = Number of bedrooms</li><li>\(X_3\) = Distance from city centre</li></ul><p class="text-sm text-slate mt-4"><b>“Holding the other predictors constant”</b> means interpreting one predictor while comparing cases that are similar on the other predictors in the model.</p></div></div><details class="mt-5 bg-white border rounded-2xl p-5"><summary class="cursor-pointer font-bold text-black">Advanced / Next Step: model selection</summary><p class="text-sm text-slate mt-3">The source notes introduce adjusted \(R^2\), Mallows' \(C_p\), AIC, all-possible regression, best-subset regression and stepwise regression. Keep these as advanced tools rather than the beginner starting point.</p></details></article>
+
+  <article class="bg-white rounded-3xl p-8 border shadow-card mb-10"><div class="flex gap-3 items-center mb-5"><span class="w-10 h-10 rounded-xl bg-slate text-white flex items-center justify-center font-bold">10</span><h3 class="text-2xl font-bold text-black">From Output to a Research Statement</h3></div><div class="grid md:grid-cols-2 gap-5 mb-5"><div class="bg-red-50 border border-red-200 rounded-2xl p-5"><b class="text-red-700">❌ Poor</b><p class="text-sm text-slate mt-2">“X causes Y because p &lt; 0.05.”</p></div><div class="bg-green-50 border border-green-200 rounded-2xl p-5"><b class="text-green-700">✅ Better</b><p class="text-sm text-slate mt-2">“X was statistically associated with Y in the fitted model. This result should not automatically be interpreted as causal.”</p></div></div><div class="bg-black text-white rounded-2xl p-6"><b class="text-orange">Reusable reporting template</b><p class="text-sm text-white/75 mt-2">“A linear regression was used to examine whether [X] was associated with / helped predict [Y]. The estimated coefficient for [X] was [b = ___], indicating that [...]. The model accounted for approximately [\(R^2\times100\)]% of the observed variation in [Y]. [Include uncertainty/significance information where appropriate]. These results indicate an association within the analysed data and should not automatically be interpreted as causal.”</p></div></article>
+
+  <article class="bg-orange/5 border border-orange/20 rounded-3xl p-8 mb-10"><p class="text-xs font-bold uppercase tracking-widest text-orange mb-2">Complete Worked Example</p><h3 class="text-2xl font-bold text-black mb-5">Hypothetical Training Example: Study Hours → Test Score</h3><div class="grid md:grid-cols-4 gap-4 mb-5"><div class="bg-white rounded-2xl p-4 border"><b>Question</b><p class="text-sm text-slate mt-1">Can study hours help predict test score?</p></div><div class="bg-white rounded-2xl p-4 border"><b>Y</b><p class="text-sm text-slate mt-1">Test Score</p></div><div class="bg-white rounded-2xl p-4 border"><b>X</b><p class="text-sm text-slate mt-1">Study Hours</p></div><div class="bg-white rounded-2xl p-4 border"><b>Visual check</b><p class="text-sm text-slate mt-1">Look for a roughly straight-line pattern and unusual points.</p></div></div><div class="grid lg:grid-cols-2 gap-5"><div class="bg-white rounded-2xl p-5 border"><b>Illustrative model</b><p class="text-slate mt-2">\(\hat y=45+3.2x\)</p><p class="text-sm text-slate mt-2">Each extra study hour corresponds to an estimated 3.2-point increase in predicted score.</p><p class="text-xs text-orange font-semibold mt-3">Numerical values are hypothetical for training only.</p></div><div class="bg-white rounded-2xl p-5 border"><b>Read in this order</b><ul class="text-sm text-slate mt-2 space-y-2"><li>1. Coefficient / slope</li><li>2. \(R^2\)</li><li>3. p-value / confidence interval</li><li>4. Diagnostics</li><li>5. Prediction, if appropriate</li></ul></div></div></article>
+
+  <div class="mb-10"><h3 class="text-2xl font-bold text-black mb-5">✓ Quick Knowledge Checks</h3><div class="grid md:grid-cols-2 gap-4"><button class="quiz-btn text-left bg-light rounded-2xl p-5 border hover:border-orange" data-answer="qa1"><b>Which variable is Y?</b><span class="block text-sm text-slate mt-1">Tap to reveal.</span><span id="qa1" class="quiz-answer text-sm text-orange font-semibold mt-3">Y is the dependent / outcome / response variable.</span></button><button class="quiz-btn text-left bg-light rounded-2xl p-5 border hover:border-orange" data-answer="qa2"><b>What does \(R^2\) tell you?</b><span class="block text-sm text-slate mt-1">Tap to reveal.</span><span id="qa2" class="quiz-answer text-sm text-orange font-semibold mt-3">It describes the proportion of observed variation in Y accounted for by the fitted model.</span></button><button class="quiz-btn text-left bg-light rounded-2xl p-5 border hover:border-orange" data-answer="qa3"><b>If \(b_1\) is negative?</b><span class="block text-sm text-slate mt-1">Tap to reveal.</span><span id="qa3" class="quiz-answer text-sm text-orange font-semibold mt-3">As X increases, predicted Y tends to decrease within the model.</span></button><button class="quiz-btn text-left bg-light rounded-2xl p-5 border hover:border-orange" data-answer="qa4"><b>Does p &lt; 0.05 prove causation?</b><span class="block text-sm text-slate mt-1">Tap to reveal.</span><span id="qa4" class="quiz-answer text-sm text-orange font-semibold mt-3">No. Statistical significance does not itself establish causality.</span></button></div></div>
+
+  <article class="bg-black rounded-3xl p-8 text-white"><p class="text-xs uppercase tracking-widest font-bold text-orange mb-2">🤖 AI-assisted regression</p><h3 class="text-2xl font-bold mb-2">Use AI as Your Regression Assistant — Not Your Statistician</h3><p class="text-sm text-white/65 mb-6">Use AI to clarify thinking, but verify the model, assumptions and interpretation.</p><div class="grid md:grid-cols-2 gap-5">
+    <div class="bg-white/5 rounded-2xl p-5 border border-white/10"><div class="flex justify-between gap-3"><b class="text-orange">Identify Y and X</b><button class="copy-reg text-xs border border-white/20 rounded-lg px-3 py-1" data-copy="rp1">Copy</button></div><p id="rp1" class="text-sm text-white/75 mt-3">I am studying [topic]. My dataset contains these variables: [variables]. My research question is [question]. Help me identify a reasonable dependent variable Y and predictor variable(s) X. Explain your reasoning and flag any ambiguity. Do not invent variables that are not in my dataset.</p></div>
+    <div class="bg-white/5 rounded-2xl p-5 border border-white/10"><div class="flex justify-between gap-3"><b class="text-orange">Regression suitability</b><button class="copy-reg text-xs border border-white/20 rounded-lg px-3 py-1" data-copy="rp2">Copy</button></div><p id="rp2" class="text-sm text-white/75 mt-3">Based on the following variables and research question, assess whether linear regression is potentially appropriate. Explain what I should check before running the model. Do not assume that the regression assumptions are satisfied.</p></div>
+    <div class="bg-white/5 rounded-2xl p-5 border border-white/10"><div class="flex justify-between gap-3"><b class="text-orange">Interpret output</b><button class="copy-reg text-xs border border-white/20 rounded-lg px-3 py-1" data-copy="rp3">Copy</button></div><p id="rp3" class="text-sm text-white/75 mt-3">Here is my regression output: [paste output]. Explain the coefficient, R², p-value/confidence interval and key diagnostics in beginner-friendly language. Separate statistical interpretation from causal interpretation and do not overclaim.</p></div>
+    <div class="bg-white/5 rounded-2xl p-5 border border-white/10"><div class="flex justify-between gap-3"><b class="text-orange">Check my interpretation</b><button class="copy-reg text-xs border border-white/20 rounded-lg px-3 py-1" data-copy="rp4">Copy</button></div><p id="rp4" class="text-sm text-white/75 mt-3">Here is my regression result and my written interpretation: [paste]. Check whether my interpretation is statistically defensible. Identify any overclaiming, especially causal claims, and rewrite it more cautiously if needed.</p></div>
+    <div class="bg-white/5 rounded-2xl p-5 border border-white/10 md:col-span-2"><div class="flex justify-between gap-3"><b class="text-orange">Explain diagnostics</b><button class="copy-reg text-xs border border-white/20 rounded-lg px-3 py-1" data-copy="rp5">Copy</button></div><p id="rp5" class="text-sm text-white/75 mt-3">Here are my regression diagnostic results/plots: [paste or upload]. Explain what each diagnostic is checking, what warning signs are present, and what I should investigate next. Do not claim assumptions are satisfied unless the evidence supports that conclusion.</p></div>
+  </div></article>
+</div></section>
+
+
+<section id="ai-assist" class="py-28 bg-white">
     <div class="max-w-7xl mx-auto px-6">
-        <h2 class="text-4xl font-extrabold text-black mb-4">AI Prompt Toolkit</h2>
-        <p class="text-slate text-lg">Use AI to support dataset understanding and methodological thinking, while verifying all outputs.</p>
+        <div class="max-w-3xl mb-10">
+            <span class="px-4 py-1.5 rounded-full bg-orange/10 text-orange text-xs font-bold uppercase tracking-widest mb-4 inline-block">Stage 05</span>
+            <h2 class="text-4xl md:text-5xl font-extrabold text-black">AI ASSIST</h2>
+            <p class="text-xl font-semibold text-orange mt-2">How can AI help me think through these stages?</p>
+            <p class="text-slate text-lg mt-4">AI Assist supports DISCOVER, EVALUATE, UNDERSTAND and QUESTION. It is not intended to be an unquestioned answer generator.</p>
+        </div>
+
+        <div class="bg-black text-white rounded-3xl p-7 mb-10">
+            <div class="grid lg:grid-cols-4 gap-5">
+                <details class="bg-white/5 border border-white/10 rounded-2xl p-5" open>
+                    <summary class="cursor-pointer font-bold text-orange">🔎 Help Me Discover</summary>
+                    <p class="text-sm text-white/70 mt-3">Broaden a topic, identify possibilities and generate directions for exploration.</p>
+                    <p class="text-xs text-white/45 mt-3">Starters: Help me explore... · What else should I consider... · What perspectives exist on...</p>
+                </details>
+                <details class="bg-white/5 border border-white/10 rounded-2xl p-5">
+                    <summary class="cursor-pointer font-bold text-orange">🧠 Help Me Evaluate</summary>
+                    <p class="text-sm text-white/70 mt-3">Identify claims, assumptions, weaknesses, evidence needs and alternatives.</p>
+                    <p class="text-xs text-white/45 mt-3">Starters: Critically evaluate... · What evidence supports... · What needs verification...</p>
+                </details>
+                <details class="bg-white/5 border border-white/10 rounded-2xl p-5">
+                    <summary class="cursor-pointer font-bold text-orange">💡 Help Me Understand</summary>
+                    <p class="text-sm text-white/70 mt-3">Clarify difficult ideas, connect concepts and reveal misconceptions.</p>
+                    <p class="text-xs text-white/45 mt-3">Starters: Explain... · Simplify... · Compare... · Give me an example...</p>
+                </details>
+                <details class="bg-white/5 border border-white/10 rounded-2xl p-5">
+                    <summary class="cursor-pointer font-bold text-orange">❓ Help Me Question</summary>
+                    <p class="text-sm text-white/70 mt-3">Generate deeper analytical, evaluative and reflective questions.</p>
+                    <p class="text-xs text-white/45 mt-3">Starters: What should I ask... · Challenge this... · What if... · What assumptions...</p>
+                </details>
+            </div>
+        </div>
+
+        <div class="space-y-8">
+            <div class="bg-black text-white rounded-3xl p-7"><h3 class="text-2xl font-bold text-orange mb-2">🔎 Help Me Discover</h3><p class="text-sm text-white/65 mb-5">Use AI to broaden your view of a topic, identify possibilities and generate directions for further exploration.</p><div class="grid lg:grid-cols-2 gap-4">
+        <div class="bg-white/5 rounded-2xl p-5 border border-white/10">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 1</p>
+                    <p id="aid1" class="text-sm text-white/75 mt-3 leading-relaxed">Suggest five important ideas related to [TOPIC] and explain why each might be relevant.</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-white/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="aid1">COPY PROMPT</button>
+            </div>
+        </div>
+        <div class="bg-white/5 rounded-2xl p-5 border border-white/10">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 2</p>
+                    <p id="aid2" class="text-sm text-white/75 mt-3 leading-relaxed">What concepts should I understand before learning [TOPIC]? Arrange them from foundational to more advanced.</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-white/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="aid2">COPY PROMPT</button>
+            </div>
+        </div>
+        <div class="bg-white/5 rounded-2xl p-5 border border-white/10">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 3</p>
+                    <p id="aid3" class="text-sm text-white/75 mt-3 leading-relaxed">Show me different perspectives on [TOPIC]. Do not present one perspective as automatically correct.</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-white/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="aid3">COPY PROMPT</button>
+            </div>
+        </div>
+        <div class="bg-white/5 rounded-2xl p-5 border border-white/10">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 4</p>
+                    <p id="aid4" class="text-sm text-white/75 mt-3 leading-relaxed">Generate academic search keywords related to [TOPIC].</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-white/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="aid4">COPY PROMPT</button>
+            </div>
+        </div>
+        <div class="bg-white/5 rounded-2xl p-5 border border-white/10">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 5</p>
+                    <p id="aid5" class="text-sm text-white/75 mt-3 leading-relaxed">What possible research questions could emerge from this topic? Present them as ideas for further investigation rather than confirmed research gaps.</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-white/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="aid5">COPY PROMPT</button>
+            </div>
+        </div></div></div>
+            <div class="bg-black text-white rounded-3xl p-7"><h3 class="text-2xl font-bold text-orange mb-2">🧠 Help Me Evaluate</h3><p class="text-sm text-white/65 mb-5">Use AI to help identify claims, assumptions, weaknesses, evidence needs and alternative interpretations.</p><div class="grid lg:grid-cols-2 gap-4">
+        <div class="bg-white/5 rounded-2xl p-5 border border-white/10">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 1</p>
+                    <p id="aie1" class="text-sm text-white/75 mt-3 leading-relaxed">Critically evaluate the following response: [TEXT]. Identify claims, assumptions, limitations, and points requiring verification.</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-white/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="aie1">COPY PROMPT</button>
+            </div>
+        </div>
+        <div class="bg-white/5 rounded-2xl p-5 border border-white/10">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 2</p>
+                    <p id="aie2" class="text-sm text-white/75 mt-3 leading-relaxed">Which statements in this answer should be verified using external sources? Explain why.</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-white/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="aie2">COPY PROMPT</button>
+            </div>
+        </div>
+        <div class="bg-white/5 rounded-2xl p-5 border border-white/10">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 3</p>
+                    <p id="aie3" class="text-sm text-white/75 mt-3 leading-relaxed">What assumptions are being made in the following argument?</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-white/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="aie3">COPY PROMPT</button>
+            </div>
+        </div>
+        <div class="bg-white/5 rounded-2xl p-5 border border-white/10">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 4</p>
+                    <p id="aie4" class="text-sm text-white/75 mt-3 leading-relaxed">Compare these two explanations and identify which claims are better supported and what additional evidence is needed.</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-white/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="aie4">COPY PROMPT</button>
+            </div>
+        </div>
+        <div class="bg-white/5 rounded-2xl p-5 border border-white/10">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 5</p>
+                    <p id="aie5" class="text-sm text-white/75 mt-3 leading-relaxed">Identify possible bias, missing perspectives, or overgeneralisation in this response.</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-white/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="aie5">COPY PROMPT</button>
+            </div>
+        </div></div></div>
+            <div class="bg-black text-white rounded-3xl p-7"><h3 class="text-2xl font-bold text-orange mb-2">💡 Help Me Understand</h3><p class="text-sm text-white/65 mb-5">Use AI to clarify difficult ideas, connect concepts, identify misconceptions and explain material in more than one way.</p><div class="grid lg:grid-cols-2 gap-4">
+        <div class="bg-white/5 rounded-2xl p-5 border border-white/10">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 1</p>
+                    <p id="aiu1" class="text-sm text-white/75 mt-3 leading-relaxed">Explain [CONCEPT] in simple terms without removing the important academic meaning.</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-white/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="aiu1">COPY PROMPT</button>
+            </div>
+        </div>
+        <div class="bg-white/5 rounded-2xl p-5 border border-white/10">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 2</p>
+                    <p id="aiu2" class="text-sm text-white/75 mt-3 leading-relaxed">Give me a worked example of [CONCEPT] and explain each step.</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-white/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="aiu2">COPY PROMPT</button>
+            </div>
+        </div>
+        <div class="bg-white/5 rounded-2xl p-5 border border-white/10">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 3</p>
+                    <p id="aiu3" class="text-sm text-white/75 mt-3 leading-relaxed">Compare [CONCEPT A] and [CONCEPT B] using a simple table and one example.</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-white/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="aiu3">COPY PROMPT</button>
+            </div>
+        </div>
+        <div class="bg-white/5 rounded-2xl p-5 border border-white/10">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 4</p>
+                    <p id="aiu4" class="text-sm text-white/75 mt-3 leading-relaxed">Explain this idea using an analogy, then explain where the analogy stops being accurate.</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-white/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="aiu4">COPY PROMPT</button>
+            </div>
+        </div>
+        <div class="bg-white/5 rounded-2xl p-5 border border-white/10">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 5</p>
+                    <p id="aiu5" class="text-sm text-white/75 mt-3 leading-relaxed">What misconception might a beginner have about [CONCEPT], and how would you correct it?</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-white/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="aiu5">COPY PROMPT</button>
+            </div>
+        </div></div></div>
+            <div class="bg-black text-white rounded-3xl p-7"><h3 class="text-2xl font-bold text-orange mb-2">❓ Help Me Question</h3><p class="text-sm text-white/65 mb-5">Use AI to generate deeper questions that support analysis, evaluation, reflection and further inquiry.</p><div class="grid lg:grid-cols-2 gap-4">
+        <div class="bg-white/5 rounded-2xl p-5 border border-white/10">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 1</p>
+                    <p id="aiq1" class="text-sm text-white/75 mt-3 leading-relaxed">Generate five critical-thinking questions about [TOPIC].</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-white/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="aiq1">COPY PROMPT</button>
+            </div>
+        </div>
+        <div class="bg-white/5 rounded-2xl p-5 border border-white/10">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 2</p>
+                    <p id="aiq2" class="text-sm text-white/75 mt-3 leading-relaxed">What questions should I ask before accepting this conclusion: [CONCLUSION]?</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-white/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="aiq2">COPY PROMPT</button>
+            </div>
+        </div>
+        <div class="bg-white/5 rounded-2xl p-5 border border-white/10">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 3</p>
+                    <p id="aiq3" class="text-sm text-white/75 mt-3 leading-relaxed">Turn this basic question into a deeper analytical question: [QUESTION].</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-white/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="aiq3">COPY PROMPT</button>
+            </div>
+        </div>
+        <div class="bg-white/5 rounded-2xl p-5 border border-white/10">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 4</p>
+                    <p id="aiq4" class="text-sm text-white/75 mt-3 leading-relaxed">Generate three ‘what if’ questions that would test the limits of this idea.</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-white/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="aiq4">COPY PROMPT</button>
+            </div>
+        </div>
+        <div class="bg-white/5 rounded-2xl p-5 border border-white/10">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-orange text-xs font-bold uppercase tracking-wider">Prompt 5</p>
+                    <p id="aiq5" class="text-sm text-white/75 mt-3 leading-relaxed">Ask me a sequence of questions that will help me evaluate the evidence for [CLAIM]. Do not give the final judgement immediately.</p>
+                </div>
+                <button type="button" class="copy-prompt shrink-0 text-xs font-bold border border-white/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange transition-colors" data-copy="aiq5">COPY PROMPT</button>
+            </div>
+        </div></div></div>
+        </div>
+
+        <div class="mt-10 bg-light rounded-3xl p-7 border border-slate/10">
+            <h3 class="text-2xl font-bold text-black">Interactive Prompt Starter</h3>
+            <p class="text-sm text-slate mt-2">Choose an action to generate a reusable prompt template.</p>
+            <div class="flex flex-wrap gap-3 mt-5">
+                <button class="ai-action px-4 py-2 bg-white border rounded-xl text-sm font-semibold hover:border-orange" data-template="Explain the following text clearly while preserving its academic meaning: [PASTE TEXT]">✨ Explain This</button>
+                <button class="ai-action px-4 py-2 bg-white border rounded-xl text-sm font-semibold hover:border-orange" data-template="Explore [TOPIC] further. Suggest related concepts, perspectives, keywords and useful follow-up directions.">🔍 Explore Further</button>
+                <button class="ai-action px-4 py-2 bg-white border rounded-xl text-sm font-semibold hover:border-orange" data-template="Check the following claim or response. Identify accuracy concerns, assumptions and information that requires verification: [PASTE TEXT]">✅ Check This</button>
+                <button class="ai-action px-4 py-2 bg-white border rounded-xl text-sm font-semibold hover:border-orange" data-template="Compare [IDEA A] and [IDEA B] using clear criteria. Explain similarities, differences, strengths and limitations.">⚖️ Compare Ideas</button>
+                <button class="ai-action px-4 py-2 bg-white border rounded-xl text-sm font-semibold hover:border-orange" data-template="Simplify the following content for a beginner without removing important academic meaning: [PASTE TEXT]">🧠 Simplify</button>
+                <button class="ai-action px-4 py-2 bg-white border rounded-xl text-sm font-semibold hover:border-orange" data-template="Turn this basic question into deeper analytical, evaluative and reflective questions: [QUESTION]">❓ Ask Deeper</button>
+                <button class="ai-action px-4 py-2 bg-white border rounded-xl text-sm font-semibold hover:border-orange" data-template="Give me a simple realistic example that illustrates [CONCEPT], then explain exactly how the example represents the concept.">📚 Give Example</button>
+                <button class="ai-action px-4 py-2 bg-white border rounded-xl text-sm font-semibold hover:border-orange" data-template="Identify the explicit and implicit assumptions in the following argument or conclusion: [PASTE TEXT]">🔎 Find Assumptions</button>
+                <button class="ai-action px-4 py-2 bg-white border rounded-xl text-sm font-semibold hover:border-orange" data-template="Give me a useful hint for [PROBLEM] without giving the complete answer. Ask one guiding question if helpful.">💡 Give Me a Hint</button>
+                <button class="ai-action px-4 py-2 bg-white border rounded-xl text-sm font-semibold hover:border-orange" data-template="Explain [CONCEPT] in another way using different wording, structure, analogy and an example. State any limitation of the analogy.">🔄 Explain Another Way</button>
+            </div>
+            <div class="mt-5 bg-white border rounded-2xl p-5">
+                <div class="flex justify-between gap-4 items-start">
+                    <div class="flex-1"><p class="text-xs font-bold text-orange uppercase tracking-widest">Generated Prompt</p><p id="ai-action-output" class="ai-output text-sm text-slate mt-3">Select a button above to generate a prompt template.</p></div>
+                    <button id="copy-ai-action" type="button" class="text-xs font-bold border border-slate/20 rounded-lg px-3 py-2 hover:border-orange hover:text-orange">COPY PROMPT</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8 bg-orange/10 border border-orange/20 rounded-2xl p-6">
+            <p class="font-bold text-black">Academic safeguard</p>
+            <p class="text-sm text-slate mt-2">AI should support thinking, not replace thinking. Verify important factual and academic information, distinguish suggestions from evidence, and remain responsible for final academic judgement and academic integrity.</p>
+        </div>
     </div>
 </section>
 
-<footer class="bg-black text-light py-16">
+
+
+<section id="reflection" class="training-section reflection-section">
+  <div class="section-shell">
+    <div class="section-heading">
+      <div class="card-eyebrow">Before You Finish</div>
+      <h2>Reflection & Completion</h2>
+      <p>Use these questions to connect the introductory session to your own context.</p>
+    </div>
+    <div class="reflection-grid">
+      <label class="reflection-card"><span>1</span><strong>What is one idea from today's session that is clearer to you now?</strong><textarea id="reflection-1" rows="4" placeholder="Write a short reflection..."></textarea></label>
+      <label class="reflection-card"><span>2</span><strong>Which tool, approach or activity could be useful in your own field?</strong><textarea id="reflection-2" rows="4" placeholder="Write a short reflection..."></textarea></label>
+      <label class="reflection-card"><span>3</span><strong>What would you like to explore further after this introductory session?</strong><textarea id="reflection-3" rows="4" placeholder="Write a short reflection..."></textarea></label>
+    </div>
+    <div class="completion-card"><div class="completion-icon">✓</div><div><h3>Well done — you have completed the guided training journey.</h3><p>This introductory session is a starting point. Continue exploring, verifying, practising and adapting the ideas to your own context.</p></div></div>
+  </div>
+</section>
+
+</main>
+<footer class="app-footer bg-black text-light py-16">
     <div class="max-w-7xl mx-auto px-6">
         <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-10">
             <div>
@@ -193,22 +1056,167 @@
 <script>
     feather.replace();
 
-    const rqIv = document.getElementById('rq-iv');
-    const rqDv = document.getElementById('rq-dv');
-    const rqPop = document.getElementById('rq-pop');
-    const rqResult = document.getElementById('rq-result');
+    const studyHours = document.getElementById('studyHours');
+    const predictStudy = document.getElementById('predictStudy');
+    const studyPrediction = document.getElementById('studyPrediction');
+    function updateStudyPrediction(){ if(!studyHours||!studyPrediction)return; const x=Number(studyHours.value); studyPrediction.textContent=Number.isFinite(x)?`Predicted score: ${(45+3.2*x).toFixed(1)}`:'Enter a valid number.'; }
+    if(predictStudy) predictStudy.addEventListener('click', updateStudyPrediction);
+    if(studyHours) studyHours.addEventListener('input', updateStudyPrediction);
+    document.querySelectorAll('.quiz-btn').forEach(btn=>btn.addEventListener('click',()=>{const el=document.getElementById(btn.dataset.answer); if(el) el.classList.toggle('show');}));
+    document.querySelectorAll('.copy-reg').forEach(btn=>btn.addEventListener('click',async()=>{const el=document.getElementById(btn.dataset.copy);if(!el)return;const old=btn.textContent;try{await navigator.clipboard.writeText(el.innerText);}catch(e){const t=document.createElement('textarea');t.value=el.innerText;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();}btn.textContent='Copied';setTimeout(()=>btn.textContent=old,1200);}));
 
-    function updateQuestion() {
-        const iv = rqIv.value.trim() || '[Independent Variable]';
-        const dv = rqDv.value.trim() || '[Dependent Variable]';
-        const pop = rqPop.value.trim() || '[Population / Context]';
-        if (rqIv.value.trim() || rqDv.value.trim() || rqPop.value.trim()) {
-            rqResult.innerHTML = `To what extent does <span class="font-bold text-orange">${iv}</span> influence or relate to <span class="font-bold text-orange">${dv}</span> within <span class="font-bold text-orange">${pop}</span>?`;
+
+    // Safe Research Question Builder (supports current QUESTION section)
+    const rqIv2 = document.getElementById('rq-iv');
+    const rqDv2 = document.getElementById('rq-dv');
+    const rqPop2 = document.getElementById('rq-pop');
+    const rqResult2 = document.getElementById('rq-result');
+    function updateQuestionSafe() {
+        if (!rqIv2 || !rqDv2 || !rqPop2 || !rqResult2) return;
+        const iv = rqIv2.value.trim() || '[Independent Variable]';
+        const dv = rqDv2.value.trim() || '[Dependent Variable]';
+        const pop = rqPop2.value.trim() || '[Population / Context]';
+        if (rqIv2.value.trim() || rqDv2.value.trim() || rqPop2.value.trim()) {
+            rqResult2.innerHTML = `To what extent does <span class="font-bold text-orange">${iv}</span> influence or relate to <span class="font-bold text-orange">${dv}</span> within <span class="font-bold text-orange">${pop}</span>?`;
         } else {
-            rqResult.textContent = 'Fill in the fields above to generate your question.';
+            rqResult2.textContent = 'Fill in the fields above to generate your question.';
         }
     }
-    [rqIv, rqDv, rqPop].forEach(input => input.addEventListener('input', updateQuestion));
+    [rqIv2, rqDv2, rqPop2].forEach(el => { if (el) el.addEventListener('input', updateQuestionSafe); });
+
+    // Universal COPY PROMPT functionality
+    async function copyText(text, button) {
+        const original = button.textContent;
+        try {
+            await navigator.clipboard.writeText(text);
+        } catch (err) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+        }
+        button.textContent = 'Copied ✓';
+        setTimeout(() => button.textContent = original, 1600);
+    }
+    document.querySelectorAll('.copy-prompt').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const target = document.getElementById(btn.dataset.copy);
+            if (target) copyText(target.innerText.trim(), btn);
+        });
+    });
+
+    // AI Assist action buttons
+    const aiActionOutput = document.getElementById('ai-action-output');
+    document.querySelectorAll('.ai-action').forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (aiActionOutput) aiActionOutput.textContent = btn.dataset.template || '';
+        });
+    });
+    const copyAiAction = document.getElementById('copy-ai-action');
+    if (copyAiAction && aiActionOutput) {
+        copyAiAction.addEventListener('click', () => copyText(aiActionOutput.innerText.trim(), copyAiAction));
+    }
+
+    // Mobile navigation
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenuPanel = document.getElementById('mobile-menu-panel');
+    if (mobileMenuBtn && mobileMenuPanel) {
+        mobileMenuBtn.addEventListener('click', () => mobileMenuPanel.classList.toggle('open'));
+        document.querySelectorAll('.mobile-nav-link').forEach(link => link.addEventListener('click', () => mobileMenuPanel.classList.remove('open')));
+    }
+
+
+    // ===== Training shell: sidebar, progress, theme, sequential navigation =====
+    const TRAINING_SECTIONS = [
+      {id:'home',label:'Welcome'},{id:'discover',label:'Discover'},{id:'evaluate',label:'Evaluate'},
+      {id:'understand',label:'Understand'},{id:'question',label:'Question'},{id:'analyse',label:'Analyse'},
+      {id:'regression',label:'Regression'},{id:'ai-assist',label:'AI Assist'},{id:'reflection',label:'Reflection'}
+    ];
+    const PROGRESS_KEY='dataResearchTrainingProgressV1', THEME_KEY='dataResearchTheme', REFLECTION_KEY='dataResearchReflectionV1';
+    const readJSON=(k,f)=>{try{const r=localStorage.getItem(k);return r?JSON.parse(r):f}catch(e){return f}};
+    const writeJSON=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+    let exploredSections=new Set((readJSON(PROGRESS_KEY,[])||[]).filter(id=>TRAINING_SECTIONS.some(s=>s.id===id)));
+    let activeTrainingSection='home', markTimers={};
+
+    function updateProgressUI(){
+      const total=TRAINING_SECTIONS.length, completed=exploredSections.size, percent=Math.round(completed/total*100);
+      ['progress-percent','mobile-progress-percent'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=`${percent}%`});
+      ['progress-fill','mobile-progress-fill'].forEach(id=>{const e=document.getElementById(id);if(e)e.style.width=`${percent}%`});
+      ['progress-count','mobile-progress-count'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=`${completed} of ${total} sections explored`});
+      document.querySelectorAll('.side-link').forEach(a=>a.classList.toggle('explored',exploredSections.has(a.dataset.section)));
+      document.querySelectorAll('.section-status').forEach(s=>{
+        const id=s.dataset.statusFor;
+        if(id===activeTrainingSection&&!exploredSections.has(id)){s.textContent='◐';s.setAttribute('aria-label','In progress')}
+        else if(exploredSections.has(id)){s.textContent='✓';s.setAttribute('aria-label','Explored')}
+        else{s.textContent='○';s.setAttribute('aria-label','Not explored')}
+      });
+    }
+    function markExplored(id){
+      if(!TRAINING_SECTIONS.some(s=>s.id===id)||exploredSections.has(id))return;
+      exploredSections.add(id);writeJSON(PROGRESS_KEY,[...exploredSections]);updateProgressUI();
+    }
+    function updateSequentialNav(){
+      const i=TRAINING_SECTIONS.findIndex(s=>s.id===activeTrainingSection);
+      const p=document.getElementById('prev-section'),n=document.getElementById('next-section'),l=document.getElementById('current-section-label'),h=document.getElementById('next-section-hint');
+      if(l)l.textContent=TRAINING_SECTIONS[i]?.label||'Training';
+      if(p){p.disabled=i<=0;p.dataset.target=i>0?TRAINING_SECTIONS[i-1].id:''}
+      if(n){n.disabled=i<0||i>=TRAINING_SECTIONS.length-1;n.dataset.target=(i>=0&&i<TRAINING_SECTIONS.length-1)?TRAINING_SECTIONS[i+1].id:''}
+      if(h)h.textContent=(i>=0&&i<TRAINING_SECTIONS.length-1)?`Next: ${TRAINING_SECTIONS[i+1].label}`:'Guided journey complete';
+    }
+    function setActiveSection(id){
+      if(!TRAINING_SECTIONS.some(s=>s.id===id))return;
+      activeTrainingSection=id;
+      document.querySelectorAll('.side-link').forEach(a=>{const on=a.dataset.section===id;a.classList.toggle('active',on);on?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current')});
+      updateProgressUI();updateSequentialNav();
+      clearTimeout(markTimers[id]);markTimers[id]=setTimeout(()=>markExplored(id),650);
+    }
+    function goToSection(id){
+      const t=document.getElementById(id);if(!t)return;
+      t.scrollIntoView({behavior:'smooth',block:'start'});history.replaceState(null,'',`#${id}`);setActiveSection(id);
+    }
+    document.getElementById('prev-section')?.addEventListener('click',e=>{const t=e.currentTarget.dataset.target;if(t)goToSection(t)});
+    document.getElementById('next-section')?.addEventListener('click',e=>{const t=e.currentTarget.dataset.target;if(t)goToSection(t)});
+    document.querySelectorAll('.side-link').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();goToSection(a.dataset.section);closeDrawer()}));
+
+    const trainingObserver=new IntersectionObserver(entries=>{
+      const v=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio);
+      if(v.length)setActiveSection(v[0].target.id);
+    },{rootMargin:'-22% 0px -62% 0px',threshold:[.01,.08,.2]});
+    TRAINING_SECTIONS.forEach(s=>{const e=document.getElementById(s.id);if(e)trainingObserver.observe(e)});
+
+    function applyTheme(theme){
+      const dark=theme==='dark';document.documentElement.classList.toggle('dark',dark);
+      try{localStorage.setItem(THEME_KEY,dark?'dark':'light')}catch(e){}
+      const i=document.getElementById('theme-icon'),l=document.getElementById('theme-label'),mi=document.getElementById('mobile-theme-icon');
+      if(i)i.textContent=dark?'☀️':'🌙';if(l)l.textContent=dark?'Light Mode':'Dark Mode';if(mi)mi.textContent=dark?'☀️':'🌙';
+      if(window.MathJax&&MathJax.typesetPromise)setTimeout(()=>MathJax.typesetPromise().catch(()=>{}),60);
+    }
+    const toggleTheme=()=>applyTheme(document.documentElement.classList.contains('dark')?'light':'dark');
+    document.getElementById('theme-toggle')?.addEventListener('click',toggleTheme);
+    document.getElementById('mobile-theme-toggle')?.addEventListener('click',toggleTheme);
+    let savedTheme='light';try{savedTheme=localStorage.getItem(THEME_KEY)||(document.documentElement.classList.contains('dark')?'dark':'light')}catch(e){}
+    applyTheme(savedTheme);
+
+    const drawer=document.getElementById('mobile-drawer'),backdrop=document.getElementById('drawer-backdrop'),openBtn=document.getElementById('drawer-open'),closeBtn=document.getElementById('drawer-close');
+    function openDrawer(){if(!drawer||!backdrop)return;drawer.classList.add('open');drawer.setAttribute('aria-hidden','false');backdrop.hidden=false;openBtn?.setAttribute('aria-expanded','true');document.body.style.overflow='hidden'}
+    function closeDrawer(){if(!drawer||!backdrop)return;drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true');backdrop.hidden=true;openBtn?.setAttribute('aria-expanded','false');document.body.style.overflow=''}
+    openBtn?.addEventListener('click',openDrawer);closeBtn?.addEventListener('click',closeDrawer);backdrop?.addEventListener('click',closeDrawer);document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer()});
+
+    const reflections=readJSON(REFLECTION_KEY,{});
+    ['reflection-1','reflection-2','reflection-3'].forEach(id=>{const e=document.getElementById(id);if(!e)return;if(reflections[id])e.value=reflections[id];e.addEventListener('input',()=>{reflections[id]=e.value;writeJSON(REFLECTION_KEY,reflections)})});
+
+    const initialHash=location.hash.replace('#','');const initial=TRAINING_SECTIONS.some(s=>s.id===initialHash)?initialHash:'home';
+    setActiveSection(initial);updateProgressUI();
+
 </script>
+
+<div id="section-nav" class="section-nav" aria-label="Sequential section navigation">
+  <button id="prev-section" type="button" class="section-nav-btn" aria-label="Go to previous training section">← Previous</button>
+  <div class="section-nav-center"><span id="current-section-label">Welcome</span><small id="next-section-hint">Next: Discover</small></div>
+  <button id="next-section" type="button" class="section-nav-btn primary" aria-label="Go to next training section">Next →</button>
+</div>
+
 </body>
 </html>
