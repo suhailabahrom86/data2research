@@ -21,8 +21,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-    <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]]},svg:{fontCache:"global"}};</script>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]]},svg:{fontCache:"global"}};</script>
     <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 
     <script>
@@ -640,22 +639,6 @@
         @media(max-width:640px){.upload-shell{padding:64px 16px}.upload-stat-grid,.model-metrics{grid-template-columns:1fr}}
 
 
-        .upload-reset-btn{
-          display:inline-flex;align-items:center;gap:8px;
-          margin-left:10px;
-          background:transparent;
-          color:#fff;
-          border:1px solid rgba(255,255,255,.28);
-          font-weight:800;
-          padding:12px 16px;
-          border-radius:12px;
-          cursor:pointer;
-        }
-        .upload-reset-btn:hover{border-color:var(--accent);color:var(--accent)}
-        @media(max-width:640px){
-          .upload-reset-btn{margin-left:0;margin-top:10px;width:100%;justify-content:center}
-          .upload-btn{width:100%;justify-content:center}
-        }
 
 </style>
 </head>
@@ -673,7 +656,7 @@
     <div class="sidebar-progress" aria-live="polite">
       <div class="progress-row"><span>Your Progress</span><strong id="progress-percent">0%</strong></div>
       <div class="progress-track"><div id="progress-fill" class="progress-fill"></div></div>
-      <div id="progress-count" class="progress-count">0 of 11 sections explored</div>
+      <div id="progress-count" class="progress-count">0 of 10 sections explored</div>
     </div>
     <nav class="sidebar-nav" aria-label="Course sections">
       <a href="#home" class="side-link" data-section="home"><span class="side-icon">🏠</span><span class="side-text">Welcome</span><span class="section-status" data-status-for="home">○</span></a>
@@ -684,7 +667,7 @@
       <a href="#analyse" class="side-link" data-section="analyse"><span class="side-icon">📊</span><span class="side-text">Analyse</span><span class="section-status" data-status-for="analyse">○</span></a>
       <a href="#regression" class="side-link" data-section="regression"><span class="side-icon">📈</span><span class="side-text">Regression</span><span class="section-status" data-status-for="regression">○</span></a>
       <a href="#uci-worked-example" class="side-link" data-section="uci-worked-example"><span class="side-icon">🧪</span><span class="side-text">UCI Hands-on</span><span class="section-status" data-status-for="uci-worked-example">○</span></a>
-      <a href="#upload-analyse" class="side-link" data-section="upload-analyse"><span class="side-icon">📤</span><span class="side-text">Upload & Analyse</span><span class="section-status" data-status-for="upload-analyse">○</span></a>
+      
       <a href="#ai-assist" class="side-link" data-section="ai-assist"><span class="side-icon">🤖</span><span class="side-text">AI Assist</span><span class="section-status" data-status-for="ai-assist">○</span></a>
       <a href="#reflection" class="side-link" data-section="reflection"><span class="side-icon">🪞</span><span class="side-text">Reflection</span><span class="section-status" data-status-for="reflection">○</span></a>
     </nav>
@@ -700,7 +683,7 @@
 <div id="drawer-backdrop" class="drawer-backdrop" hidden></div>
 <aside id="mobile-drawer" class="mobile-drawer" aria-label="Mobile training navigation" aria-hidden="true">
   <div class="drawer-head"><div><div class="brand-title">DATA<span class="text-orange">.</span>RESEARCH</div><div class="brand-subtitle">Training Menu</div></div><button id="drawer-close" type="button" class="mobile-icon-btn" aria-label="Close navigation"><i data-feather="x"></i></button></div>
-  <div class="sidebar-progress compact"><div class="progress-row"><span>Your Progress</span><strong id="mobile-progress-percent">0%</strong></div><div class="progress-track"><div id="mobile-progress-fill" class="progress-fill"></div></div><div id="mobile-progress-count" class="progress-count">0 of 11 sections explored</div></div>
+  <div class="sidebar-progress compact"><div class="progress-row"><span>Your Progress</span><strong id="mobile-progress-percent">0%</strong></div><div class="progress-track"><div id="mobile-progress-fill" class="progress-fill"></div></div><div id="mobile-progress-count" class="progress-count">0 of 10 sections explored</div></div>
   <button id="mobile-refresh-progress-btn" type="button" class="refresh-progress-btn" aria-label="Reset training progress"><span>↺</span><span>Refresh Progress</span></button>
   <nav class="sidebar-nav mobile-side-nav">
     <a href="#home" class="side-link" data-section="home"><span class="side-icon">🏠</span><span class="side-text">Welcome</span><span class="section-status" data-status-for="home">○</span></a>
@@ -711,7 +694,7 @@
     <a href="#analyse" class="side-link" data-section="analyse"><span class="side-icon">📊</span><span class="side-text">Analyse</span><span class="section-status" data-status-for="analyse">○</span></a>
     <a href="#regression" class="side-link" data-section="regression"><span class="side-icon">📈</span><span class="side-text">Regression</span><span class="section-status" data-status-for="regression">○</span></a>
       <a href="#uci-worked-example" class="side-link" data-section="uci-worked-example"><span class="side-icon">🧪</span><span class="side-text">UCI Hands-on</span><span class="section-status" data-status-for="uci-worked-example">○</span></a>
-      <a href="#upload-analyse" class="side-link" data-section="upload-analyse"><span class="side-icon">📤</span><span class="side-text">Upload & Analyse</span><span class="section-status" data-status-for="upload-analyse">○</span></a>
+      
     <a href="#ai-assist" class="side-link" data-section="ai-assist"><span class="side-icon">🤖</span><span class="side-text">AI Assist</span><span class="section-status" data-status-for="ai-assist">○</span></a>
     <a href="#reflection" class="side-link" data-section="reflection"><span class="side-icon">🪞</span><span class="side-text">Reflection</span><span class="section-status" data-status-for="reflection">○</span></a>
   </nav>
@@ -2688,124 +2671,7 @@
 </section>
 
 
-<section id="upload-analyse" class="training-section upload-lab-section" aria-labelledby="upload-analyse-title">
-  <div class="upload-shell">
-    <div class="upload-hero">
-      <div class="uci-case-kicker">Your Own Dataset / Guided Hands-on</div>
-      <h2 id="upload-analyse-title">Upload & Analyse Your Own Excel or CSV</h2>
-      <p>Upload a dataset and follow the same workflow used in the UCI case study: inspect → clean → describe → explore → model → validate → report → deploy.</p>
 
-      <div class="upload-zone" id="upload-zone">
-        <div>
-          <label class="upload-btn" for="dataset-file">📤 Choose Excel / CSV File</label>
-          <button id="reset-upload-btn" type="button" class="upload-reset-btn">🗑️ Remove / Reset File</button>
-        </div>
-        <input id="dataset-file" type="file" accept=".csv,.xlsx,.xls">
-        <div class="upload-meta">Accepted: CSV, XLSX, XLS • Analysis runs in your browser.</div>
-        <div id="upload-file-name" class="upload-meta">No file selected.</div>
-      </div>
-    </div>
-
-    <div class="upload-workflow">
-      <div class="upload-step-tabs">
-        <button class="upload-step-tab active" data-upload-target="upl-1">01 Inspect</button>
-        <button class="upload-step-tab" data-upload-target="upl-2">02 Clean</button>
-        <button class="upload-step-tab" data-upload-target="upl-3">03 Describe</button>
-        <button class="upload-step-tab" data-upload-target="upl-4">04 EDA</button>
-        <button class="upload-step-tab" data-upload-target="upl-5">05 Regression</button>
-        <button class="upload-step-tab" data-upload-target="upl-6">06 Validate</button>
-        <button class="upload-step-tab" data-upload-target="upl-7">07 Report</button>
-        <button class="upload-step-tab" data-upload-target="upl-8">08 Deploy</button>
-      </div>
-
-      <div id="upl-1" class="upload-step-panel active">
-        <div class="upload-stat-grid">
-          <div class="upload-stat"><b id="upl-rows">0</b><span>Rows</span></div>
-          <div class="upload-stat"><b id="upl-cols">0</b><span>Columns</span></div>
-          <div class="upload-stat"><b id="upl-numcols">0</b><span>Numerical columns</span></div>
-          <div class="upload-stat"><b id="upl-catcols">0</b><span>Categorical / text columns</span></div>
-        </div>
-        <div class="upload-card" style="margin-top:14px">
-          <h4>Data Preview</h4>
-          <div id="upl-preview" class="upload-table-wrap"><div style="padding:20px;color:var(--muted)">Upload a file to preview the data.</div></div>
-        </div>
-        <div class="upload-note"><strong>Step 1:</strong> understand what each row and column represents before doing any analysis.</div>
-      </div>
-
-      <div id="upl-2" class="upload-step-panel">
-        <div class="upload-grid-2">
-          <div class="upload-card">
-            <h4>Automatic Data Quality Scan</h4>
-            <div id="upl-clean-list" class="clean-list"><div class="clean-item">Upload a dataset first.</div></div>
-          </div>
-          <div class="upload-card">
-            <h4>Suggested Cleaning Actions</h4>
-            <div id="upl-clean-actions" class="clean-list"><div class="clean-item">Suggestions will appear after upload.</div></div>
-          </div>
-        </div>
-      </div>
-
-      <div id="upl-3" class="upload-step-panel">
-        <div class="upload-control-row">
-          <label>Choose numerical variable
-            <select id="upl-desc-var"></select>
-          </label>
-        </div>
-        <div id="upl-desc-stats" class="upload-stat-grid"></div>
-        <div id="upl-desc-chart" class="upload-chart"></div>
-      </div>
-
-      <div id="upl-4" class="upload-step-panel">
-        <div class="upload-control-row">
-          <label>X variable<select id="upl-x-var"></select></label>
-          <label>Y variable<select id="upl-y-var"></select></label>
-          <button id="upl-eda-run" class="upload-action" type="button">Plot Relationship</button>
-        </div>
-        <div id="upl-eda-chart" class="upload-chart"></div>
-        <div id="upl-eda-note" class="upload-note"><strong>EDA:</strong> choose two numerical variables to inspect their relationship.</div>
-      </div>
-
-      <div id="upl-5" class="upload-step-panel">
-        <div class="upload-control-row">
-          <label>Outcome (Y)<select id="upl-reg-y"></select></label>
-          <label>Predictor (X)<select id="upl-reg-x"></select></label>
-          <button id="upl-reg-run" class="upload-action" type="button">Run Simple Regression</button>
-        </div>
-        <div id="upl-reg-chart" class="upload-chart"></div>
-        <div id="upl-reg-output" class="model-output"><h4>Regression Output</h4><p>Choose X and Y, then run the model.</p></div>
-      </div>
-
-      <div id="upl-6" class="upload-step-panel">
-        <div class="upload-grid-2">
-          <div class="upload-card">
-            <h4>Validation Checks</h4>
-            <div id="upl-validation-list" class="clean-list"><div class="clean-item">Run regression first.</div></div>
-          </div>
-          <div class="upload-card">
-            <h4>Residual Plot</h4>
-            <div id="upl-resid-chart" class="upload-chart"></div>
-          </div>
-        </div>
-      </div>
-
-      <div id="upl-7" class="upload-step-panel">
-        <div class="upload-card">
-          <h4>Auto-generated Research Report Draft</h4>
-          <div id="upl-report" class="report-box">Upload data and run regression to generate a report draft.</div>
-        </div>
-      </div>
-
-      <div id="upl-8" class="upload-step-panel">
-        <div class="upload-grid-3">
-          <div class="upload-card"><h4>📊 Dashboard</h4><p>Use descriptive statistics, charts and model summaries as a simple dashboard.</p></div>
-          <div class="upload-card"><h4>📄 Research Report</h4><p>Use the generated report draft as a starting point, then verify and refine it.</p></div>
-          <div class="upload-card"><h4>🌐 Interactive Tool</h4><p>If the model is appropriate, convert the regression equation into a small browser-based calculator.</p></div>
-        </div>
-        <div class="upload-note"><strong>Important:</strong> this browser workflow supports exploratory teaching use. Always verify cleaning, model assumptions and interpretation before academic reporting or real-world deployment.</div>
-      </div>
-    </div>
-  </div>
-</section>
 
 
 <section id="ai-assist" class="py-28 bg-white">
@@ -3194,7 +3060,6 @@
       {id:'analyse',label:'Analyse'},
       {id:'regression',label:'Regression'},
       {id:'uci-worked-example',label:'UCI Hands-on'},
-      {id:'upload-analyse',label:'Upload & Analyse'},
       {id:'ai-assist',label:'AI Assist'},
       {id:'reflection',label:'Reflection'}
     ];
@@ -3587,7 +3452,6 @@
       analyse: ['analyse'],
       regression: ['regression'],
       'uci-worked-example': ['uci-worked-example'],
-      'upload-analyse': ['upload-analyse'],
       'ai-assist': ['ai-assist'],
       reflection: ['reflection']
     };
@@ -3595,7 +3459,7 @@
     const ALL_PAGE_SECTION_IDS = [
       'home','learning-journey','research-workflow',
       'discover','evaluate','understand','question','analyse',
-      'regression','uci-worked-example','upload-analyse','ai-assist','reflection'
+      'regression','uci-worked-example','ai-assist','reflection'
     ];
 
     function showTrainingPage(id){
@@ -3663,287 +3527,7 @@
     });
 
 
-    // ===== Upload & Analyse Workflow =====
-    (function(){
-      let uploadRows=[], uploadCols=[], numericCols=[], categoricalCols=[], lastModel=null;
 
-      const q=id=>document.getElementById(id);
-      const fileInput=q('dataset-file');
-
-      function median(arr){
-        const a=[...arr].sort((x,y)=>x-y), n=a.length;
-        return n ? (n%2 ? a[(n-1)/2] : (a[n/2-1]+a[n/2])/2) : NaN;
-      }
-      function mean(arr){ return arr.length ? arr.reduce((a,b)=>a+b,0)/arr.length : NaN; }
-      function sd(arr){
-        if(arr.length<2) return NaN;
-        const m=mean(arr);
-        return Math.sqrt(arr.reduce((s,v)=>s+(v-m)**2,0)/(arr.length-1));
-      }
-      function corr(x,y){
-        if(x.length<2) return NaN;
-        const mx=mean(x), my=mean(y);
-        let num=0,dx=0,dy=0;
-        for(let i=0;i<x.length;i++){const a=x[i]-mx,b=y[i]-my;num+=a*b;dx+=a*a;dy+=b*b}
-        return num/Math.sqrt(dx*dy);
-      }
-      function linreg(x,y){
-        const mx=mean(x), my=mean(y);
-        let num=0,den=0;
-        for(let i=0;i<x.length;i++){num+=(x[i]-mx)*(y[i]-my);den+=(x[i]-mx)**2}
-        const b1=num/den,b0=my-b1*mx;
-        const fitted=x.map(v=>b0+b1*v), residuals=y.map((v,i)=>v-fitted[i]);
-        const sse=residuals.reduce((s,v)=>s+v*v,0);
-        const sst=y.reduce((s,v)=>s+(v-my)**2,0);
-        const r2=1-sse/sst;
-        const rmse=Math.sqrt(sse/x.length);
-        return {b0,b1,fitted,residuals,r2,rmse};
-      }
-      function numericValues(col){
-        return uploadRows.map(r=>Number(r[col])).filter(v=>Number.isFinite(v));
-      }
-      function paired(xc,yc){
-        return uploadRows.map(r=>[Number(r[xc]),Number(r[yc])]).filter(([x,y])=>Number.isFinite(x)&&Number.isFinite(y));
-      }
-      function escapeHtml(s){
-        return String(s ?? '').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
-      }
-      function fillSelect(id, cols){
-        const el=q(id); if(!el) return;
-        el.innerHTML=cols.map(c=>`<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('');
-      }
-
-      document.querySelectorAll('.upload-step-tab').forEach(tab=>{
-        tab.addEventListener('click',()=>{
-          document.querySelectorAll('.upload-step-tab').forEach(t=>t.classList.remove('active'));
-          document.querySelectorAll('.upload-step-panel').forEach(p=>p.classList.remove('active'));
-          tab.classList.add('active');
-          q(tab.dataset.uploadTarget)?.classList.add('active');
-        });
-      });
-
-      fileInput?.addEventListener('change', async e=>{
-        const file=e.target.files?.[0];
-        if(!file) return;
-        q('upload-file-name').textContent=file.name;
-
-        try{
-          const buffer=await file.arrayBuffer();
-          const wb=XLSX.read(buffer,{type:'array'});
-          const ws=wb.Sheets[wb.SheetNames[0]];
-          uploadRows=XLSX.utils.sheet_to_json(ws,{defval:null,raw:true});
-          uploadCols=uploadRows.length ? Object.keys(uploadRows[0]) : [];
-
-          numericCols=uploadCols.filter(c=>{
-            const vals=uploadRows.map(r=>r[c]).filter(v=>v!==null&&v!==''&&v!==undefined);
-            if(!vals.length) return false;
-            const numericCount=vals.filter(v=>Number.isFinite(Number(v))).length;
-            return numericCount/vals.length >= .8;
-          });
-          categoricalCols=uploadCols.filter(c=>!numericCols.includes(c));
-
-          q('upl-rows').textContent=uploadRows.length;
-          q('upl-cols').textContent=uploadCols.length;
-          q('upl-numcols').textContent=numericCols.length;
-          q('upl-catcols').textContent=categoricalCols.length;
-
-          renderPreview();
-          renderCleaning();
-          ['upl-desc-var','upl-x-var','upl-y-var','upl-reg-y','upl-reg-x'].forEach(id=>fillSelect(id,numericCols));
-          if(numericCols.length>1){
-            q('upl-y-var').selectedIndex=1;
-            q('upl-reg-y').selectedIndex=1;
-          }
-          renderDescriptive();
-        }catch(err){
-          q('upload-file-name').textContent='Could not read file.';
-        }
-      });
-
-      function renderPreview(){
-        if(!uploadRows.length){return}
-        const cols=uploadCols;
-        const rows=uploadRows.slice(0,10);
-        q('upl-preview').innerHTML=`<table class="upload-table"><thead><tr>${cols.map(c=>`<th>${escapeHtml(c)}</th>`).join('')}</tr></thead><tbody>${
-          rows.map(r=>`<tr>${cols.map(c=>`<td>${escapeHtml(r[c])}</td>`).join('')}</tr>`).join('')
-        }</tbody></table>`;
-      }
-
-      function renderCleaning(){
-        let missing=0;
-        uploadRows.forEach(r=>uploadCols.forEach(c=>{if(r[c]===null||r[c]===''||r[c]===undefined) missing++;}));
-        const signatures=uploadRows.map(r=>JSON.stringify(uploadCols.map(c=>r[c])));
-        const duplicates=signatures.length-new Set(signatures).size;
-
-        const issues=[
-          `Missing cells detected: ${missing}`,
-          `Duplicate rows detected: ${duplicates}`,
-          `Numerical columns detected: ${numericCols.length}`,
-          `Categorical/text columns detected: ${categoricalCols.length}`
-        ];
-        q('upl-clean-list').innerHTML=issues.map(x=>`<div class="clean-item">${x}</div>`).join('');
-
-        const actions=[];
-        if(missing>0) actions.push('Review missing values before analysis; decide whether to retain, impute or exclude based on context.');
-        else actions.push('No obvious blank cells detected in the imported sheet.');
-        if(duplicates>0) actions.push('Review duplicate rows and remove only if they are truly accidental duplicates.');
-        else actions.push('No exact duplicate rows detected.');
-        actions.push('Check units, category labels and impossible values manually.');
-        actions.push('Inspect outliers before deciding whether they are errors or valid observations.');
-        q('upl-clean-actions').innerHTML=actions.map(x=>`<div class="clean-item">${x}</div>`).join('');
-      }
-
-      q('upl-desc-var')?.addEventListener('change',renderDescriptive);
-      function renderDescriptive(){
-        const col=q('upl-desc-var')?.value;
-        if(!col || !uploadRows.length) return;
-        const vals=numericValues(col);
-        if(!vals.length) return;
-        const stats=[
-          ['n',vals.length],['Mean',mean(vals).toFixed(3)],['Median',median(vals).toFixed(3)],
-          ['SD',sd(vals).toFixed(3)],['Min',Math.min(...vals)],['Max',Math.max(...vals)]
-        ];
-        q('upl-desc-stats').innerHTML=stats.map(([k,v])=>`<div class="upload-stat"><b>${v}</b><span>${k}</span></div>`).join('');
-        if(window.Plotly){
-          Plotly.react('upl-desc-chart',[{x:vals,type:'histogram',marker:{color:'#FF7A2F'}}],
-            {title:`Distribution of ${col}`,paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',font:{color:getComputedStyle(document.body).color},margin:{l:50,r:20,t:50,b:45},xaxis:{title:col},yaxis:{title:'Frequency'}},
-            {responsive:true,displaylogo:false});
-        }
-      }
-
-      q('upl-eda-run')?.addEventListener('click',()=>{
-        const xc=q('upl-x-var').value, yc=q('upl-y-var').value;
-        const p=paired(xc,yc), x=p.map(v=>v[0]), y=p.map(v=>v[1]);
-        if(!p.length) return;
-        const r=corr(x,y);
-        Plotly.react('upl-eda-chart',[{x,y,mode:'markers',type:'scatter',marker:{color:'#FF7A2F',opacity:.6,size:7},hovertemplate:`${xc}=%{x}<br>${yc}=%{y}<extra></extra>`}],
-          {title:`${xc} vs ${yc}`,paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',margin:{l:55,r:20,t:50,b:50},xaxis:{title:xc},yaxis:{title:yc}},
-          {responsive:true,displaylogo:false});
-        q('upl-eda-note').innerHTML=`<strong>Correlation:</strong> r = ${Number.isFinite(r)?r.toFixed(3):'NA'}. Inspect the plot before deciding whether a linear model is reasonable.`;
-      });
-
-      q('upl-reg-run')?.addEventListener('click',()=>{
-        const yc=q('upl-reg-y').value, xc=q('upl-reg-x').value;
-        if(xc===yc){q('upl-reg-output').innerHTML='<h4>Regression Output</h4><p>Please choose different X and Y variables.</p>';return;}
-        const p=paired(xc,yc), x=p.map(v=>v[0]), y=p.map(v=>v[1]);
-        if(p.length<3) return;
-        const m=linreg(x,y);
-        lastModel={...m,xc,yc,x,y,n:p.length};
-
-        const xs=[Math.min(...x),Math.max(...x)];
-        Plotly.react('upl-reg-chart',[
-          {x,y,mode:'markers',type:'scatter',name:'Observed',marker:{color:'#FF7A2F',opacity:.6,size:7}},
-          {x:xs,y:xs.map(v=>m.b0+m.b1*v),mode:'lines',name:'Fitted line',line:{color:'#29475A',width:3}}
-        ],{title:`Simple Regression: ${yc} on ${xc}`,paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',margin:{l:55,r:20,t:50,b:50},xaxis:{title:xc},yaxis:{title:yc}},
-        {responsive:true,displaylogo:false});
-
-        q('upl-reg-output').innerHTML=`
-          <h4>Regression Output</h4>
-          <div class="model-metrics">
-            <div class="model-metric"><b>${m.b0.toFixed(4)}</b><span>Intercept</span></div>
-            <div class="model-metric"><b>${m.b1.toFixed(4)}</b><span>Slope</span></div>
-            <div class="model-metric"><b>${m.r2.toFixed(4)}</b><span>R²</span></div>
-            <div class="model-metric"><b>${m.rmse.toFixed(4)}</b><span>RMSE</span></div>
-          </div>
-          <div class="upload-note"><strong>Equation:</strong> ŷ = ${m.b0.toFixed(4)} + ${m.b1.toFixed(4)}(${escapeHtml(xc)}). A one-unit increase in ${escapeHtml(xc)} is associated with an estimated ${m.b1.toFixed(4)}-unit change in predicted ${escapeHtml(yc)} within this fitted sample.</div>
-        `;
-
-        renderValidation();
-        renderReport();
-      });
-
-      function renderValidation(){
-        if(!lastModel) return;
-        const m=lastModel;
-        const checks=[
-          `Observations used: ${m.n}`,
-          `R² = ${m.r2.toFixed(4)} — proportion of observed variation in ${m.yc} accounted for by this simple fitted model.`,
-          `RMSE = ${m.rmse.toFixed(4)} — typical prediction error scale in ${m.yc} units.`,
-          `Check the residual plot for curvature, changing spread or unusual points.`,
-          `This browser demo does not by itself verify independence, normality or causal validity.`
-        ];
-        q('upl-validation-list').innerHTML=checks.map(x=>`<div class="clean-item">${x}</div>`).join('');
-        Plotly.react('upl-resid-chart',[{x:m.fitted,y:m.residuals,mode:'markers',type:'scatter',marker:{color:'#FF7A2F',opacity:.65,size:7}}],
-          {title:'Residuals vs Fitted',paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',margin:{l:55,r:20,t:50,b:50},xaxis:{title:'Fitted values'},yaxis:{title:'Residuals'},shapes:[{type:'line',x0:Math.min(...m.fitted),x1:Math.max(...m.fitted),y0:0,y1:0,line:{dash:'dash',color:'#29475A'}}]},
-          {responsive:true,displaylogo:false});
-      }
-
-      function renderReport(){
-        if(!lastModel) return;
-        const m=lastModel;
-        const direction=m.b1>=0?'positive':'negative';
-        const report=`Research Report Draft
-
-Title
-Relationship between ${m.xc} and ${m.yc}: A Simple Linear Regression Analysis
-
-Objective
-To examine whether ${m.xc} is associated with and can help predict ${m.yc} in the uploaded dataset.
-
-Data
-The analysis used ${m.n} complete paired observations for ${m.xc} and ${m.yc}.
-
-Method
-A simple linear regression model was fitted with ${m.yc} as the outcome variable and ${m.xc} as the predictor.
-
-Model
-ŷ = ${m.b0.toFixed(4)} + ${m.b1.toFixed(4)}(${m.xc})
-
-Results
-The estimated slope was ${m.b1.toFixed(4)}, indicating a ${direction} fitted association between ${m.xc} and ${m.yc}. For each one-unit increase in ${m.xc}, predicted ${m.yc} changes by approximately ${Math.abs(m.b1).toFixed(4)} units, within this fitted sample model.
-
-The model R² was ${m.r2.toFixed(4)}, meaning that approximately ${(m.r2*100).toFixed(1)}% of the observed variation in ${m.yc} was accounted for by ${m.xc} in this simple model. The RMSE was ${m.rmse.toFixed(4)} ${m.yc} units.
-
-Interpretation
-The fitted model describes an association in the uploaded dataset. It does not by itself establish causation. Model diagnostics, data quality, study design and contextual knowledge should be considered before drawing substantive conclusions.
-
-Next Step
-Inspect residuals, check influential observations, consider whether additional predictors are justified, and validate the model before deployment or academic reporting.`;
-        q('upl-report').textContent=report;
-      }
-
-      function resetUploadedDataset(){
-        uploadRows=[];
-        uploadCols=[];
-        numericCols=[];
-        categoricalCols=[];
-        lastModel=null;
-
-        if(fileInput) fileInput.value='';
-        q('upload-file-name').textContent='No file selected.';
-
-        q('upl-rows').textContent='0';
-        q('upl-cols').textContent='0';
-        q('upl-numcols').textContent='0';
-        q('upl-catcols').textContent='0';
-
-        q('upl-preview').innerHTML='<div style="padding:20px;color:var(--muted)">Upload a file to preview the data.</div>';
-        q('upl-clean-list').innerHTML='<div class="clean-item">Upload a dataset first.</div>';
-        q('upl-clean-actions').innerHTML='<div class="clean-item">Suggestions will appear after upload.</div>';
-        q('upl-desc-stats').innerHTML='';
-        q('upl-eda-note').innerHTML='<strong>EDA:</strong> choose two numerical variables to inspect their relationship.';
-        q('upl-reg-output').innerHTML='<h4>Regression Output</h4><p>Choose X and Y, then run the model.</p>';
-        q('upl-validation-list').innerHTML='<div class="clean-item">Run regression first.</div>';
-        q('upl-report').textContent='Upload data and run regression to generate a report draft.';
-
-        ['upl-desc-var','upl-x-var','upl-y-var','upl-reg-y','upl-reg-x'].forEach(id=>{
-          const el=q(id); if(el) el.innerHTML='';
-        });
-
-        ['upl-desc-chart','upl-eda-chart','upl-reg-chart','upl-resid-chart'].forEach(id=>{
-          if(window.Plotly && q(id)) Plotly.purge(id);
-          else if(q(id)) q(id).innerHTML='';
-        });
-
-        document.querySelectorAll('.upload-step-tab').forEach(t=>t.classList.remove('active'));
-        document.querySelectorAll('.upload-step-panel').forEach(p=>p.classList.remove('active'));
-        document.querySelector('.upload-step-tab[data-upload-target="upl-1"]')?.classList.add('active');
-        q('upl-1')?.classList.add('active');
-      }
-
-      q('reset-upload-btn')?.addEventListener('click',resetUploadedDataset);
-
-    })();
 
 </script>
 
